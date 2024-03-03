@@ -1,0 +1,17 @@
+Dia 1:
+Hoy he hecho un poco la preproduccion del juego, con las mecanicas y tal,
+tambien he hecho el blocking de la primera sala, y modelado un par de cosas de blocking tmb en blender, me ha llevado mas timepo del esperado
+por que no se usar blender ni probuilder hjahah
+he puesto un character controller de tutorial(lo cambiare entero)
+meter fmod en el juego tmb
+
+
+Dia2(03/03/24)
+Idea de como hacer el sistema de beat raro:
+tener una booleana de cunado estas en “ritmo” que seria basicamente el momento en el que suena el
+beat(que podria ser como 0.1s), una vez teniendo esa booleana, esta nos serviria para saber si le 
+has dado a los zombies en el beat, y para en las animaciones de andar, que le puedo decir que empieze 
+a mover se y a andar a la vez, y que solo lo haga cunado la variable de beat sea true, por lo que si le 
+haces daño, tendra que poder moverse, y empezara a moverse cunado la animacion y el beat se sincronizen.
+
+-Meter proyecto en repositiorio y probarlo en el portatil--
