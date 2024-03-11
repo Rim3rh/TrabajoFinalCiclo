@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7325194015777771269
+--- !u!114 &-6274160519074338202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,23 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Beat
+  m_Name: event:/SFX/Beat/Beat
   m_EditorClassIdentifier: 
-  Path: event:/Beat
+  Path: event:/SFX/Beat/Beat
   Guid:
-    Data1: 1160573273
-    Data2: 1136863450
-    Data3: 1083606203
-    Data4: -2015847987
+    Data1: 1613552800
+    Data2: 1166895685
+    Data3: -1269774664
+    Data4: 1972803561
   Banks:
-  - {fileID: -1289661556096902356}
-  IsStream: 1
+  - {fileID: -4016916831535697329}
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 20
+  Length: 0
+--- !u!114 &-4016916831535697329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Sfx.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FmodBanks/Desktop/Sfx.bank
+  Name: Sfx
+  StudioPath: bank:/Sfx
+  lastModified: 638457920736448168
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-1289661556096902356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +60,7 @@ MonoBehaviour:
   Path: Assets/FmodBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638457598266436130
+  lastModified: 638457920734970025
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -60,15 +78,45 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 5038018987201935539}
   - {fileID: -1289661556096902356}
+  - {fileID: -4016916831535697329}
   EditorEvents:
-  - {fileID: -7325194015777771269}
+  - {fileID: 7467681402689425820}
+  - {fileID: -6274160519074338202}
+  - {fileID: 388415886217544220}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1289661556096902356}
   StringsBanks:
   - {fileID: 5038018987201935539}
-  cacheTime: 638457598266436130
+  cacheTime: 638457920736448168
   cacheVersion: 131616
+--- !u!114 &388415886217544220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Jump
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Jump
+  Guid:
+    Data1: 506061307
+    Data2: 1207721034
+    Data3: -966496329
+    Data4: 2087042117
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 194
 --- !u!114 &5038018987201935539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,8 +132,35 @@ MonoBehaviour:
   Path: Assets/FmodBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638457598266436130
+  lastModified: 638457920735001497
   FileSizes:
   - Name: 
-    Value: 754
+    Value: 910
   Exists: 1
+--- !u!114 &7467681402689425820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Walk
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Walk
+  Guid:
+    Data1: -1934139059
+    Data2: 1238782658
+    Data3: -1072914034
+    Data4: -1222078046
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 141

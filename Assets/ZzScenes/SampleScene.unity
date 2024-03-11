@@ -575,16 +575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c44d7df22d6a449a5ca3cd9c36a387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: {fileID: 963194228}
-  moveSpeed: 4500
-  maxSpeed: 20
-  grounded: 0
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
-  counterMovement: 0.175
-  maxSlopeAngle: 35
-  jumpForce: 550
 --- !u!114 &329212397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4510,6 +4500,7 @@ MonoBehaviour:
   UnloadEvent: 0
   Banks:
   - Master
+  - 
   CollisionTag: 
   PreloadSamples: 0
 --- !u!114 &822783173
@@ -4527,11 +4518,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1160573273
-      Data2: 1136863450
-      Data3: 1083606203
-      Data4: -2015847987
-    Path: event:/Beat
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   Event: 
   PlayEvent: 1
   StopEvent: 0

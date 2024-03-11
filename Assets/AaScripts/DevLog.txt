@@ -15,3 +15,53 @@ a mover se y a andar a la vez, y que solo lo haga cunado la variable de beat sea
 haces daño, tendra que poder moverse, y empezara a moverse cunado la animacion y el beat se sincronizen.
 
 -Meter proyecto en repositiorio y probarlo en el portatil--
+
+
+Dia3(11/03/24)
+Aprobechar que en la empresa me han pedido que haga un juego pequeño en 4 dias, voy a desarrollar la mecaniuca basica de movimiento y el cambio de armas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
