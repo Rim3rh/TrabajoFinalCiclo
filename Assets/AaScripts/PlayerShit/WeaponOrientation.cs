@@ -10,5 +10,9 @@ public class WeaponOrientation : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(xRotation.localRotation.x, transform.rotation.y, zRotation.localRotation.z);
 
-   }
+
+    }
+
+
+
 }

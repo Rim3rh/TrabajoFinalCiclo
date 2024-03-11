@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using FMOD;
+using Unity.VisualScripting;
 
 public class BeatManager : MonoBehaviour
 {
     public float bpm;
+    public bool inBeat;
 
 
 
@@ -32,6 +34,9 @@ public class BeatManager : MonoBehaviour
         bps = 60/ bpm;
 
         beatTimer -= Time.deltaTime;
+
+        inBeat = Mathf.Abs(beatTimer) < 0.1f;
+
         if (beatTimer < 0)
         {
             beatTimer = bps;
