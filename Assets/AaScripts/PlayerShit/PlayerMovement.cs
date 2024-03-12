@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         pInput.actions["Sprint"].started += PlayerMovement_started;
         pInput.actions["Sprint"].canceled += PlayerMovement_canceled;
         defaultSpeed = pManager.playerSpeed;

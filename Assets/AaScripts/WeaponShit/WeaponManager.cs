@@ -2,22 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder;
 
 public class WeaponManager : MonoBehaviour
 {
 
-    [SerializeField] GameObject[] abeliableWeapons;
+    //PlayerInput
+    PlayerInput pInput;
+
+    //WEapon logic
+    public GameObject[] abeliableWeapons;
     [SerializeField] GameObject currentWeapon, secondaryWeapon;
     [SerializeField] List<GameObject> weaponSlots = new List<GameObject>();
 
 
-
+    //Shooting Logic
     public delegate void OnShoot();
 
     public static OnShoot onShoot;
+    private bool shooting;
 
-    //PlayerInput
-    PlayerInput pInput;
+
+    //animationLogic
+    [SerializeField] Animator animator;
+    [HideInInspector] public bool changingWeapon;
 
     private void Awake()
     {
@@ -26,6 +34,7 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         pInput.actions["Shoot"].started += WeaponManager_started;
+        pInput.actions["Shoot"].canceled += WeaponManager_canceled;
 
         TurnAllWeaponsOff();
 
@@ -41,13 +50,24 @@ public class WeaponManager : MonoBehaviour
         secondaryWeapon = abeliableWeapons[1];
     }
 
+    private void WeaponManager_canceled(InputAction.CallbackContext obj)
+    {
+        shooting = false;
+    }
+
     private void WeaponManager_started(InputAction.CallbackContext obj)
     {
-        if(onShoot != null) onShoot();
+        shooting = true;
     }
+
+
 
     private void Update()
     {
+        if(shooting) if (onShoot != null) onShoot();
+
+
+
         WeaponSwitch();
     }
 
@@ -58,21 +78,21 @@ public class WeaponManager : MonoBehaviour
 
     private void WeaponSwitch()
     {
-        if (weaponSlots.Count < 2) return;
+        if (weaponSlots.Count < 2 || changingWeapon) return;
 
         if (Inputs() < 0)
         {
-            SwitchToNextWeapon();
+            animator.SetTrigger("ChangeWeapon");
         }
 
         if (Inputs() > 0)
         {
-            SwitchToPreviusWeapon();
+            animator.SetTrigger("ChangeWeapon");
         }
 
     }
 
-    private void SwitchToNextWeapon()
+    public void SwitchToNextWeapon()
     {
         weaponSlots.Clear();
         weaponSlots.Add(secondaryWeapon);
@@ -88,14 +108,6 @@ public class WeaponManager : MonoBehaviour
         secondaryWeapon.SetActive(false);
         currentWeapon.SetActive(true);
     }
-    private void SwitchToPreviusWeapon()
-    {
-        weaponSlots.Clear();
-        weaponSlots.Add(secondaryWeapon);
-        weaponSlots.Add(currentWeapon);
-        UpdateWeapons();
-        
-    }
 
     private void TurnAllWeaponsOff()
     {
@@ -103,5 +115,15 @@ public class WeaponManager : MonoBehaviour
         {
             w.SetActive(false);
         }
+    }
+
+    public void SetNewWeapon(GameObject weapon)
+    {
+        currentWeapon.SetActive(false);
+        currentWeapon = weapon;
+        weaponSlots.Clear();
+        weaponSlots.Add(currentWeapon);
+        weaponSlots.Add(secondaryWeapon);
+        UpdateWeapons();
     }
 }
