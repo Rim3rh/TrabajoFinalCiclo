@@ -44,6 +44,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""456af1c7-ffbf-4849-bf4f-ae6f50cfe17f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WeaponSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""40e18302-a453-4085-b3bf-509ac1d5d76f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,50 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63b4cda4-7295-4596-8935-878257ededf5"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""9f6579f9-2246-4fc2-93ab-b4f827c48c30"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponSwitch"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fc3909dd-8e4a-4cbd-bb90-88b293fe3912"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1d14ff6b-750e-4fcd-87c3-bef933abb339"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -122,6 +184,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerNormalMovement = asset.FindActionMap("PlayerNormalMovement", throwIfNotFound: true);
         m_PlayerNormalMovement_Movement = m_PlayerNormalMovement.FindAction("Movement", throwIfNotFound: true);
         m_PlayerNormalMovement_Jump = m_PlayerNormalMovement.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerNormalMovement_Sprint = m_PlayerNormalMovement.FindAction("Sprint", throwIfNotFound: true);
+        m_PlayerNormalMovement_WeaponSwitch = m_PlayerNormalMovement.FindAction("WeaponSwitch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +249,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerNormalMovementActions> m_PlayerNormalMovementActionsCallbackInterfaces = new List<IPlayerNormalMovementActions>();
     private readonly InputAction m_PlayerNormalMovement_Movement;
     private readonly InputAction m_PlayerNormalMovement_Jump;
+    private readonly InputAction m_PlayerNormalMovement_Sprint;
+    private readonly InputAction m_PlayerNormalMovement_WeaponSwitch;
     public struct PlayerNormalMovementActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerNormalMovementActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerNormalMovement_Movement;
         public InputAction @Jump => m_Wrapper.m_PlayerNormalMovement_Jump;
+        public InputAction @Sprint => m_Wrapper.m_PlayerNormalMovement_Sprint;
+        public InputAction @WeaponSwitch => m_Wrapper.m_PlayerNormalMovement_WeaponSwitch;
         public InputActionMap Get() { return m_Wrapper.m_PlayerNormalMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +274,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
+            @WeaponSwitch.started += instance.OnWeaponSwitch;
+            @WeaponSwitch.performed += instance.OnWeaponSwitch;
+            @WeaponSwitch.canceled += instance.OnWeaponSwitch;
         }
 
         private void UnregisterCallbacks(IPlayerNormalMovementActions instance)
@@ -216,6 +290,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
+            @WeaponSwitch.started -= instance.OnWeaponSwitch;
+            @WeaponSwitch.performed -= instance.OnWeaponSwitch;
+            @WeaponSwitch.canceled -= instance.OnWeaponSwitch;
         }
 
         public void RemoveCallbacks(IPlayerNormalMovementActions instance)
@@ -237,5 +317,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
+        void OnWeaponSwitch(InputAction.CallbackContext context);
     }
 }

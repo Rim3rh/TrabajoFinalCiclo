@@ -40,8 +40,7 @@ public class BeatManager : MonoBehaviour
         if (beatTimer < 0)
         {
             beatTimer = bps;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Beat");
-            UnityEngine.Debug.Log(("HOLA"));
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Beat");
         }
     }
 }

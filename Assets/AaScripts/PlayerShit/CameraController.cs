@@ -6,10 +6,18 @@ using UnityEngine.PlayerLoop;
 
 public class CameraController : MonoBehaviour
 {
-
+    //References
     private PlayerManager pManager;
 
+    //Serializable
     [SerializeField] Transform cameraTransform;
+    [SerializeField] Transform weaponTransform;
+
+    [SerializeField] Transform cameraPos;
+    [SerializeField] Transform weaponPos;
+
+
+    //CameraROtationShit
     private float desiredX, xRotation;
 
     private void Awake()
@@ -19,7 +27,9 @@ public class CameraController : MonoBehaviour
     }
     private void Update()
     {
-        cameraTransform.transform.position = this.transform.position;
+        cameraTransform.transform.position = cameraPos.transform.position;
+        weaponTransform.transform.position = weaponPos.transform.position;
+
         Look();
     }
 
@@ -29,16 +39,20 @@ public class CameraController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * pManager.sensitivity * Time.fixedDeltaTime * pManager.sensMultiplier;
         float mouseY = Input.GetAxis("Mouse Y") * pManager.sensitivity * Time.fixedDeltaTime * pManager.sensMultiplier;
 
-        //Find current look rotation
-
 
         Vector3 rot = cameraTransform.transform.localRotation.eulerAngles;
-        //Rotate, and also make sure we dont over- or under-rotate.
+        
+
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         desiredX = rot.y + mouseX;
 
         cameraTransform.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
+        weaponTransform.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
+
+
+        this.transform.localRotation = Quaternion.Euler(transform.rotation.x, desiredX, transform.rotation.z);
+
     }
 }
