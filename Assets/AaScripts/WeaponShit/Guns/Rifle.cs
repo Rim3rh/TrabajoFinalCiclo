@@ -5,16 +5,14 @@ using UnityEngine;
 
 public class Rifle : Guns
 {
+    [SerializeField] PlayerInteract pInteract;
 
     Animator animator;
     private float shootingCD;
     private int currentAmmo;
 
 
-    //AmmoShit
-    [SerializeField] GameObject ammoPicture;
-    [SerializeField] Transform firstAmmoSpot;
-    [SerializeField] List<GameObject> ammoList = new List<GameObject>();
+
 
     private void Awake()
     {
@@ -25,35 +23,55 @@ public class Rifle : Guns
         ammo = 30;
         shootsPS = 4;
         currentAmmo = ammo;
+        AmmoManager.instance.CreateAmmoPool(ammo,2);
+        AmmoManager.instance.CreateAmmoCanvas(currentAmmo,  2);
+
     }
 
     private void OnEnable()
     {
-        WeaponManager.onShoot += Shoot;
-        CreateAmmoCanvas();
+
+        pInteract.onShoot += Shoot;
+        pInteract.onReload += Reload;
+
+        AmmoManager.instance.CreateAmmoCanvas(currentAmmo,  2);
+
     }
 
     private void OnDisable()
     {
-        WeaponManager.onShoot -= Shoot;
-        RemoveAmmoFromCanvas();
+        pInteract.onShoot -= Shoot;
+        pInteract.onReload -= Reload;
+
+        AmmoManager.instance.RemoveAllAmmoFromCanvas(ammo);
+
     }
 
     private void Shoot()
     {
-        if (shootingCD <= 0 && currentAmmo >= 0)
+        if (shootingCD <= 0 && currentAmmo > 0)
         {
             shootingCD = 1 / shootsPS;
             currentAmmo--;
-            ammoList.RemoveAt(ammoList.Count -1);
 
             //Shoot
-            animator.SetTrigger("Shoot");
+            AmmoManager.instance.RemoveOneBulletFromAmmo(2);
+
+          animator.SetTrigger("Shoot");
+            AudioManager.instance.AkSfxShoot();
+            pInteract.PlaceHole();
         }
 
 
     }
+    private void Reload()
+    {
+        animator.SetTrigger("Reload");
+        AudioManager.instance.ReloadSfx();
+        currentAmmo = ammo;
+        AmmoManager.instance.CreateAmmoCanvas(currentAmmo,  2);
 
+    }
     private void Update()
     {
         shootingCD -= Time.deltaTime;
@@ -61,23 +79,5 @@ public class Rifle : Guns
 
 
 
-    private void CreateAmmoCanvas()
-    {
-        for (int i = 0; i < ammo; i++)
-        {
-            GameObject go = ammoPicture;
-            Vector3 newPosition = new Vector3(firstAmmoSpot.transform.position.x + i * 3, firstAmmoSpot.transform.position.y, firstAmmoSpot.transform.position.z);
-            Instantiate(go, newPosition, Quaternion.identity);
-            ammoList.Add(go);
-        }
-    }
-    private void RemoveAmmoFromCanvas()
-    {
-        foreach (GameObject go in ammoList)
-        {
-            go.SetActive(false);
-            ammoList.Remove(go);
 
-        }
-    }
 }

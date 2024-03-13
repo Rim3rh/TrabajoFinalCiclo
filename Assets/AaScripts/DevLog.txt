@@ -34,6 +34,23 @@ sistema de recojer armas nuevas
 sonidos de andar y saltar
 
 
+Dia5: 8H
+hacer los shooting targets
+que dispare el fusil
+que dispare la pistola
+sistema de municon en pantalla(con pool y toda la pesaca)
+meter sonidos:
+recargar
+cambiar arma
+disparar pistola y ak
+aterrizar 
+aumentar el mapa(Probuilder)
+sistema de generacion en dummies
+iniciar partida/terminarla
+score partida
+
+
+
 
 
 
