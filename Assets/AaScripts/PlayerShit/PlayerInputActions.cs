@@ -80,6 +80,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d2ebf6a-f89f-4616-8844-1fce2db35f7a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -214,6 +223,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b92cee09-66d4-45e0-a11c-e89ec01ca446"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -228,6 +248,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerNormalMovement_WeaponSwitch = m_PlayerNormalMovement.FindAction("WeaponSwitch", throwIfNotFound: true);
         m_PlayerNormalMovement_Interact = m_PlayerNormalMovement.FindAction("Interact", throwIfNotFound: true);
         m_PlayerNormalMovement_Shoot = m_PlayerNormalMovement.FindAction("Shoot", throwIfNotFound: true);
+        m_PlayerNormalMovement_Reload = m_PlayerNormalMovement.FindAction("Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +316,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerNormalMovement_WeaponSwitch;
     private readonly InputAction m_PlayerNormalMovement_Interact;
     private readonly InputAction m_PlayerNormalMovement_Shoot;
+    private readonly InputAction m_PlayerNormalMovement_Reload;
     public struct PlayerNormalMovementActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -305,6 +327,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @WeaponSwitch => m_Wrapper.m_PlayerNormalMovement_WeaponSwitch;
         public InputAction @Interact => m_Wrapper.m_PlayerNormalMovement_Interact;
         public InputAction @Shoot => m_Wrapper.m_PlayerNormalMovement_Shoot;
+        public InputAction @Reload => m_Wrapper.m_PlayerNormalMovement_Reload;
         public InputActionMap Get() { return m_Wrapper.m_PlayerNormalMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -332,6 +355,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IPlayerNormalMovementActions instance)
@@ -354,6 +380,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IPlayerNormalMovementActions instance)
@@ -379,5 +408,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnWeaponSwitch(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
 }

@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8357541802668690972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Guns/GenericReload
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Guns/GenericReload
+  Guid:
+    Data1: 1416338680
+    Data2: 1231041482
+    Data3: 1855957656
+    Data4: -1515009826
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 410
 --- !u!114 &-6274160519074338202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,9 +69,36 @@ MonoBehaviour:
   Path: Assets/FmodBanks/Desktop/Sfx.bank
   Name: Sfx
   StudioPath: bank:/Sfx
-  lastModified: 638457920736448168
+  lastModified: 638459150534063974
   FileSizes: []
   Exists: 1
+--- !u!114 &-2865676526813971106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Land
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Land
+  Guid:
+    Data1: -592630944
+    Data2: 1203924848
+    Data3: 1134124177
+    Data4: 1622647688
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 258
 --- !u!114 &-1289661556096902356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +114,7 @@ MonoBehaviour:
   Path: Assets/FmodBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638457920734970025
+  lastModified: 638458275237589803
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -83,12 +137,16 @@ MonoBehaviour:
   - {fileID: 7467681402689425820}
   - {fileID: -6274160519074338202}
   - {fileID: 388415886217544220}
+  - {fileID: -2865676526813971106}
+  - {fileID: 7087893837099735804}
+  - {fileID: 5476731093127303320}
+  - {fileID: -8357541802668690972}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1289661556096902356}
   StringsBanks:
   - {fileID: 5038018987201935539}
-  cacheTime: 638457920736448168
+  cacheTime: 638459150534063974
   cacheVersion: 131616
 --- !u!114 &388415886217544220
 MonoBehaviour:
@@ -132,11 +190,65 @@ MonoBehaviour:
   Path: Assets/FmodBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638457920735001497
+  lastModified: 638459150534033930
   FileSizes:
   - Name: 
-    Value: 910
+    Value: 1094
   Exists: 1
+--- !u!114 &5476731093127303320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Guns/Pistol/PistolShot
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Guns/Pistol/PistolShot
+  Guid:
+    Data1: 443550403
+    Data2: 1211712494
+    Data3: 1706407061
+    Data4: 2126994519
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 580
+--- !u!114 &7087893837099735804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Guns/Ak/AkShot
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Guns/Ak/AkShot
+  Guid:
+    Data1: -344123739
+    Data2: 1187552792
+    Data3: 1407457157
+    Data4: 1305920666
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 190
 --- !u!114 &7467681402689425820
 MonoBehaviour:
   m_ObjectHideFlags: 0

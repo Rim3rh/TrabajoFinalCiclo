@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-
+    [SerializeField] PlayerInteract pInteract;
     [SerializeField] GameObject rifle;
 
     private GameObject player;
@@ -15,8 +15,8 @@ public class ShopManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player = other.gameObject;  
-            PlayerInteract.onInteract += GetRifle;
+            player = other.gameObject;
+            pInteract.onInteract += GetRifle;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -25,7 +25,7 @@ public class ShopManager : MonoBehaviour
         {
             player = null;
 
-            PlayerInteract.onInteract -= GetRifle;
+            pInteract.onInteract -= GetRifle;
         }
     }
 

@@ -16,11 +16,6 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] List<GameObject> weaponSlots = new List<GameObject>();
 
 
-    //Shooting Logic
-    public delegate void OnShoot();
-
-    public static OnShoot onShoot;
-    private bool shooting;
 
 
     //animationLogic
@@ -33,8 +28,6 @@ public class WeaponManager : MonoBehaviour
     }
     private void Start()
     {
-        pInput.actions["Shoot"].started += WeaponManager_started;
-        pInput.actions["Shoot"].canceled += WeaponManager_canceled;
 
         TurnAllWeaponsOff();
 
@@ -50,21 +43,12 @@ public class WeaponManager : MonoBehaviour
         secondaryWeapon = abeliableWeapons[1];
     }
 
-    private void WeaponManager_canceled(InputAction.CallbackContext obj)
-    {
-        shooting = false;
-    }
 
-    private void WeaponManager_started(InputAction.CallbackContext obj)
-    {
-        shooting = true;
-    }
 
 
 
     private void Update()
     {
-        if(shooting) if (onShoot != null) onShoot();
 
 
 
@@ -94,6 +78,7 @@ public class WeaponManager : MonoBehaviour
 
     public void SwitchToNextWeapon()
     {
+        AudioManager.instance.PlayerSwitchWeapon();
         weaponSlots.Clear();
         weaponSlots.Add(secondaryWeapon);
         weaponSlots.Add(currentWeapon);
