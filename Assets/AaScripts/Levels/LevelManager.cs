@@ -7,6 +7,9 @@ public class LevelManager : MonoBehaviour
 {
     public bool inGame;
 
+    [SerializeField] GameObject player;
+
+
     [SerializeField] TextMeshPro score;
     [SerializeField] float timeToShoot;
     [SerializeField] float timeBetweenDummies;
@@ -22,6 +25,9 @@ public class LevelManager : MonoBehaviour
     public void StartGame()
     {
         InvokeRepeating(nameof(DummyActivator), 0.1f, timeBetweenDummies);
+        score.text = hittedTargets.ToString() + "/" ;
+        ammountOfDummies = 0;
+        hittedTargets = 0;
         inGame = true;
     }
 
@@ -35,13 +41,18 @@ public class LevelManager : MonoBehaviour
             return;
         }
         GameObject dummy = dummies[Random.Range(0, dummies.Length)];
+
+
         while(!dummy.GetComponent<DummyManager>().canBeRaised) dummy = dummies[Random.Range(0, dummies.Length)];
+
+
         Animator animator = dummy.GetComponent<Animator>();
         DummyManager manager = dummy.GetComponent<DummyManager>();
 
         manager.canBeRaised = false;
         animator.SetTrigger("Rise");
-        manager.beenHit = false;
+        AudioManager.instance.EnemyMove();
+
         StartCoroutine(TimeToShootCorrutine(animator));
         ammountOfDummies++;
     }
@@ -55,9 +66,10 @@ public class LevelManager : MonoBehaviour
             yield break;
         }
         yield return new WaitForSeconds(timeToShoot);
-        if (manager.beenHit) yield break;
-
+        if (manager.beenHit ) yield break;
         anim.SetTrigger("GoBack");
+        AudioManager.instance.EnemyMove();
+
     }
 
 
@@ -66,5 +78,16 @@ public class LevelManager : MonoBehaviour
     {
         inGame = false;
         score.text = hittedTargets.ToString() + "/" +totalAmmountOfDummies.ToString();
+    }
+
+
+
+    public void AddHeadShotPoints()
+    {
+        player.GetComponent<PlayerManager>().PlayerPoints += 100;
+    }
+    public void AddBodyShotPoints()
+    {
+        player.GetComponent<PlayerManager>().PlayerPoints += 50;
     }
 }

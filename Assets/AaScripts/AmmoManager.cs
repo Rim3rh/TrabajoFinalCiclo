@@ -5,17 +5,23 @@ using UnityEngine;
 public class AmmoManager : MonoBehaviour
 {
     //AmmoShit
-    [SerializeField] GameObject pistolAmmo, akAmmo;
+    [SerializeField] GameObject pistolAmmo, akAmmo, sniperAmmo;
 
     public static AmmoManager instance;
 
     [SerializeField] Transform firstAmmoSpot;
+
+    //PistolShit
     [SerializeField] List<GameObject> totalPistolAmmoList = new List<GameObject>();
     [SerializeField] List<GameObject> currentPistolAmmoList = new List<GameObject>();
 
-
+    //AkShit
     [SerializeField] List<GameObject> totalAkAmmoList = new List<GameObject>();
     [SerializeField] List<GameObject> currentAkAmmoList = new List<GameObject>();
+
+    //SniperShit
+    [SerializeField] List<GameObject> totalSniperAmmoList = new List<GameObject>();
+    [SerializeField] List<GameObject> currentSniperAmmoList = new List<GameObject>();
 
 
 
@@ -52,6 +58,15 @@ public class AmmoManager : MonoBehaviour
                     go2.SetActive(false);
                     totalAkAmmoList.Add(go2);
                     break;
+
+                case 3:
+
+                    Vector3 newPosition3 = new Vector3(firstAmmoSpot.transform.position.x + i * 15, firstAmmoSpot.transform.position.y, firstAmmoSpot.transform.position.z);
+                    GameObject go3 = Instantiate(sniperAmmo, newPosition3, Quaternion.identity);
+                    go3.transform.SetParent(firstAmmoSpot.transform);
+                    go3.SetActive(false);
+                    totalSniperAmmoList.Add(go3);
+                    break;
             }
 
 
@@ -82,6 +97,14 @@ public class AmmoManager : MonoBehaviour
                     currentAkAmmoList.Add(go2);
                     go2.SetActive(true);
                     break;
+
+                case 3:
+
+
+                    GameObject go3 = totalSniperAmmoList[i];
+                    currentSniperAmmoList.Add(go3);
+                    go3.SetActive(true);
+                    break;
             }
 
 
@@ -93,7 +116,7 @@ public class AmmoManager : MonoBehaviour
         currentPistolAmmoList.Clear();
         foreach( GameObject go in totalPistolAmmoList)
         {
-            if(go.activeSelf) go.SetActive(false);
+            if(go.activeSelf && go != null) go.SetActive(false);
 
         }
 
@@ -101,10 +124,14 @@ public class AmmoManager : MonoBehaviour
         currentAkAmmoList.Clear ();
         foreach (GameObject go in totalAkAmmoList)
         {
-            if (go.activeSelf) go.SetActive(false);
+            if (go.activeSelf && go != null) go.SetActive(false);
         }
 
-
+        currentSniperAmmoList.Clear();
+        foreach (GameObject go in totalSniperAmmoList)
+        {
+            if (go.activeSelf && go != null) go.SetActive(false);
+        }
     }
 
 
@@ -126,6 +153,13 @@ public class AmmoManager : MonoBehaviour
                 GameObject go2 = currentAkAmmoList[currentAkAmmoList.Count - 1];
                 currentAkAmmoList.Remove(go2);
                 go2.SetActive(false);
+                break;
+            case 3:
+
+                if (currentSniperAmmoList.Count <= 0) return;
+                GameObject go3 = currentSniperAmmoList[currentSniperAmmoList.Count - 1];
+                currentSniperAmmoList.Remove(go3);
+                go3.SetActive(false);
                 break;
         }
 

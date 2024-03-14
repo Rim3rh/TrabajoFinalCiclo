@@ -57,18 +57,26 @@ public class Rifle : Guns
             //Shoot
             AmmoManager.instance.RemoveOneBulletFromAmmo(2);
 
-          animator.SetTrigger("Shoot");
+            animator.SetTrigger("Shoot");
             AudioManager.instance.AkSfxShoot();
             pInteract.PlaceHole();
         }
+        if (shootingCD <= 0 && currentAmmo <= 0)
+        {
+            shootingCD = 1 / shootsPS;
 
+            AudioManager.instance.NoAmmoShoot();
+        }
 
     }
     private void Reload()
     {
+        if (currentAmmo > 29) return;
+
         animator.SetTrigger("Reload");
         AudioManager.instance.ReloadSfx();
         currentAmmo = ammo;
+        AmmoManager.instance.RemoveAllAmmoFromCanvas(ammo);
         AmmoManager.instance.CreateAmmoCanvas(currentAmmo,  2);
 
     }

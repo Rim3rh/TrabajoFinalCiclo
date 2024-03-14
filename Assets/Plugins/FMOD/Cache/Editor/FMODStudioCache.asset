@@ -53,7 +53,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 300
+--- !u!114 &-4147500018939079594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dummy/DummyMovement
+  m_EditorClassIdentifier: 
+  Path: event:/Dummy/DummyMovement
+  Guid:
+    Data1: 1791898259
+    Data2: 1186393010
+    Data3: -813451100
+    Data4: -436352282
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 862
 --- !u!114 &-4016916831535697329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +96,7 @@ MonoBehaviour:
   Path: Assets/FmodBanks/Desktop/Sfx.bank
   Name: Sfx
   StudioPath: bank:/Sfx
-  lastModified: 638459150534063974
+  lastModified: 638460003866116244
   FileSizes: []
   Exists: 1
 --- !u!114 &-2865676526813971106
@@ -99,6 +126,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 258
+--- !u!114 &-1300196375349561735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dummy/DummyHit
+  m_EditorClassIdentifier: 
+  Path: event:/Dummy/DummyHit
+  Guid:
+    Data1: -1676731837
+    Data2: 1206684336
+    Data3: 721722809
+    Data4: -412506055
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 705
 --- !u!114 &-1289661556096902356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,12 +195,18 @@ MonoBehaviour:
   - {fileID: 7087893837099735804}
   - {fileID: 5476731093127303320}
   - {fileID: -8357541802668690972}
+  - {fileID: 3695005504539904904}
+  - {fileID: -1300196375349561735}
+  - {fileID: 2966454979753951698}
+  - {fileID: 2765886951258822158}
+  - {fileID: -4147500018939079594}
+  - {fileID: 3537672509800214860}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1289661556096902356}
   StringsBanks:
   - {fileID: 5038018987201935539}
-  cacheTime: 638459150534063974
+  cacheTime: 638460003866116244
   cacheVersion: 131616
 --- !u!114 &388415886217544220
 MonoBehaviour:
@@ -175,6 +235,114 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 194
+--- !u!114 &2765886951258822158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Guns/NoAmmo
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Guns/NoAmmo
+  Guid:
+    Data1: -1364046973
+    Data2: 1339723082
+    Data3: -1718856535
+    Data4: 576101796
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 75
+--- !u!114 &2966454979753951698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Shop/Buy
+  m_EditorClassIdentifier: 
+  Path: event:/Shop/Buy
+  Guid:
+    Data1: 1981803075
+    Data2: 1252341524
+    Data3: -462593129
+    Data4: 905931704
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1667
+--- !u!114 &3537672509800214860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Shop/Puerta_Metal
+  m_EditorClassIdentifier: 
+  Path: event:/Shop/Puerta_Metal
+  Guid:
+    Data1: 2047695259
+    Data2: 1232587369
+    Data3: 677316512
+    Data4: -1029146422
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1272
+--- !u!114 &3695005504539904904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Guns/SwitchWeapon
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Guns/SwitchWeapon
+  Guid:
+    Data1: 578608899
+    Data2: 1276699091
+    Data3: -775854152
+    Data4: -610591705
+  Banks:
+  - {fileID: -4016916831535697329}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 220
 --- !u!114 &5038018987201935539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,10 +358,10 @@ MonoBehaviour:
   Path: Assets/FmodBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638459150534033930
+  lastModified: 638460003866105261
   FileSizes:
   - Name: 
-    Value: 1094
+    Value: 1386
   Exists: 1
 --- !u!114 &5476731093127303320
 MonoBehaviour:

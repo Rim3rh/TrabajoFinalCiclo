@@ -25,7 +25,10 @@ public class DummyManager : MonoBehaviour
         if (!canBeHit) return;
 
         animator.SetTrigger("Hit");
+        AudioManager.instance.EnemyHit();
         levelManager.hittedTargets++;
+        levelManager.AddHeadShotPoints();
+        canBeHit = false;
         beenHit = true;
     }
 
@@ -35,6 +38,8 @@ public class DummyManager : MonoBehaviour
 
         animator.SetTrigger("Hit");
         levelManager.hittedTargets++;
+        levelManager.AddBodyShotPoints();
+        canBeHit = false;
         beenHit = true;
 
     }
@@ -53,5 +58,9 @@ public class DummyManager : MonoBehaviour
     private void CanBeRaisedToTrue()
     {
         canBeRaised = true;
+    }
+    private void BeenHitReset()
+    {
+        beenHit = false;
     }
 }

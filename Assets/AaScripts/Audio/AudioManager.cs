@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayerSwitchWeapon()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Guns/GenericReload");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Guns/SwitchWeapon");
 
     }
 
@@ -44,12 +44,56 @@ public class AudioManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Guns/Ak/AkShot");
 
     }
+
+    public void NoAmmoShoot()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Guns/NoAmmo");
+
+    }
+
+
+
+    public void BuyFromShop()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Shop/Buy");
+
+    }
+
+    public void FenceOpen()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Shop/Puerta_Metal");
+
+    }
+    public void EnemyHit()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Dummy/DummyHit");
+
+    }
+    public void EnemyMove()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Dummy/DummyMovement");
+
+    }
+
+    public void GameStart()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Shop/Puerta_Metal");
+
+    }
+
+
+
+
     public void ReloadSfx()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Guns/GenericReload");
 
     }
+    public void Beat()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Beat/Beat");
 
+    }
 
 
 

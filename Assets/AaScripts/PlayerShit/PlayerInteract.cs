@@ -10,7 +10,7 @@ public class PlayerInteract : MonoBehaviour
 {
     //INTERACT
     public delegate void OnInteract();
-    public OnInteract onInteract;
+    public static OnInteract onInteract;
     //SHOOT
     public delegate void OnShoot();
     public OnInteract onShoot;
@@ -23,6 +23,7 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField] Transform cam;
     [SerializeField] LayerMask shooteableLayers;
+    [SerializeField] BeatManager beatManager;
 
     //INPUT
     PlayerInput pInput;
@@ -72,6 +73,9 @@ public class PlayerInteract : MonoBehaviour
 
     public void PlaceHole()
     {
+        if (beatManager.inBeat) beatManager.AddToCombo();
+        else beatManager.CancelCombo();
+
         if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hit, Mathf.Infinity, shooteableLayers))
         {
             //ESTO ES GOD
@@ -82,6 +86,7 @@ public class PlayerInteract : MonoBehaviour
             GameObject go = GetHole();
             go.SetActive(true);
             go.transform.SetPositionAndRotation(hit.point, Quaternion.LookRotation(hit.normal));
+            go.transform.parent = hit.collider.transform;
 
         }
     }

@@ -4,18 +4,23 @@ using System.ComponentModel;
 using UnityEngine;
 using FMOD;
 using Unity.VisualScripting;
+using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 
 public class BeatManager : MonoBehaviour
 {
     public float bpm;
     public bool inBeat;
+    public bool coordinationTrigger;
 
+    public bool isBeatPlaying;
 
 
     //logic
 
-    [SerializeField] private float bps;
+    private float bps;
     [SerializeField] private float beatTimer;
+
+    [SerializeField] GameObject beatIndicator;
 
 
     private void Start()
@@ -24,10 +29,24 @@ public class BeatManager : MonoBehaviour
     }
     void Update()
     {
-        Beat();
+        if(isBeatPlaying) Beat();
+        if (inBeat) beatIndicator.SetActive(true); else beatIndicator.SetActive(false); 
     }
 
+    
+    public void BeatToggle()
+    {
+        UnityEngine.Debug.Log("hola");
 
+        if (isBeatPlaying)
+        {
+            isBeatPlaying = false;
+        }
+        else
+        {
+            isBeatPlaying = true;
+        }
+    }
 
     private void Beat()
     {
@@ -35,12 +54,43 @@ public class BeatManager : MonoBehaviour
 
         beatTimer -= Time.deltaTime;
 
-        inBeat = Mathf.Abs(beatTimer) < 0.1f;
+        if (Mathf.Abs(beatTimer) < 0.15f || beatTimer > bps - 0.15f)
+        {
+            inBeat = true;
+        }
+        else
+        {
+            inBeat = false;
+        }
 
+        coordinationTrigger = false;
         if (beatTimer < 0)
         {
             beatTimer = bps;
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Beat");
+            AudioManager.instance.Beat();
+            coordinationTrigger = true;
         }
+    }
+
+
+    private int comboAmmount;
+    private int comboMultiplyer;
+    [SerializeField] int pointsGained;
+    [SerializeField] GameObject player;
+    [SerializeField] UiManager uiManager;
+    public void AddToCombo()
+    {
+        comboMultiplyer++;
+        comboAmmount += comboMultiplyer * pointsGained;
+        uiManager.UpdateCombos(comboAmmount, comboMultiplyer);
+    }
+
+    public void CancelCombo()
+    {
+        player.GetComponent<PlayerManager>().PlayerPoints += comboAmmount;
+        comboMultiplyer = 0;
+        comboAmmount = 0;
+        uiManager.CleanCombos();
+
     }
 }

@@ -55,15 +55,21 @@ public class Pistol : Guns
             pInteract.PlaceHole();
 
         }
-
+        if (shootingCD <= 0 && currentAmmo <= 0)
+        {
+            shootingCD = 1 / shootsPS;
+            AudioManager.instance.NoAmmoShoot();
+        }
 
     }
 
     private void Reload()
     {
+        if (currentAmmo > 5) return;
         animator.SetTrigger("Reload");
         AudioManager.instance.ReloadSfx();
         currentAmmo = ammo;
+        AmmoManager.instance.RemoveAllAmmoFromCanvas(ammo);
         AmmoManager.instance.CreateAmmoCanvas(currentAmmo,  1);
 
 
