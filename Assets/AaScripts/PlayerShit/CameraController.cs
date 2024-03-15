@@ -1,20 +1,23 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using Unity.Netcode;
 
-public class CameraController : MonoBehaviour
+public class CameraController : NetworkBehaviour
 {
     //References
     private PlayerManager pManager;
 
     //Serializable
     [SerializeField] Transform cameraTransform;
-    [SerializeField] Transform weaponTransform;
+    //[SerializeField] Transform weaponTransform;
 
     [SerializeField] Transform cameraPos;
-    [SerializeField] Transform weaponPos;
+   // [SerializeField] Transform weaponPos;
 
 
     //CameraROtationShit
@@ -23,12 +26,15 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         pManager = GetComponent<PlayerManager>();
+        //ameraTransform = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().transform;
 
     }
     private void Update()
     {
+        if (!IsOwner) return;
+
         cameraTransform.transform.position = cameraPos.transform.position;
-        weaponTransform.transform.position = weaponPos.transform.position;
+        //weaponTransform.transform.position = weaponPos.transform.position;
 
         Look();
     }
@@ -48,8 +54,8 @@ public class CameraController : MonoBehaviour
 
         desiredX = rot.y + mouseX;
 
-        cameraTransform.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
-        weaponTransform.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
+        //cameraTransform.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
+        //weaponTransform.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
 
 
         this.transform.localRotation = Quaternion.Euler(transform.rotation.x, desiredX, transform.rotation.z);

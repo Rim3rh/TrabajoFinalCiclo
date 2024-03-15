@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerJump : MonoBehaviour
+
+public class PlayerJump : NetworkBehaviour
 {
     PlayerManager pManager;
     PlayerInput pInput;
@@ -26,9 +28,11 @@ public class PlayerJump : MonoBehaviour
 
     private void PlayerJump_started(InputAction.CallbackContext obj)
     {
+        if (!IsOwner) return;
+
         if (!pManager.isPlayerGrounded) return;
         rb.AddForce(rb.velocity.x, pManager.playerJumpForce, rb.velocity.z, ForceMode.Impulse);
-        animController.Jump();
-        AudioManager.instance.PlayerJumpSfx();
+        //animController.Jump();
+        //AudioManager.instance.PlayerJumpSfx();
     }
 }

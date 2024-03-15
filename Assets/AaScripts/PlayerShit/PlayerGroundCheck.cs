@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerGroundCheck : MonoBehaviour
+public class PlayerGroundCheck : NetworkBehaviour
 {
 
     PlayerManager pManger;
@@ -21,13 +23,14 @@ public class PlayerGroundCheck : MonoBehaviour
     }
     void Update()
     {
+        if (!IsOwner) return;
 
         Collider[] colliders = Physics.OverlapBox(groundCheckPos.transform.position, cubeSize * 2, Quaternion.identity, groundMask);
 
         if (!pManger.isPlayerGrounded && colliders.Length > 0)
         {
-            animController.Land();
-            AudioManager.instance.PlayerLandSfx();
+            //animController.Land();
+            //AudioManager.instance.PlayerLandSfx();
         }
 
         pManger.isPlayerGrounded = colliders.Length > 0;

@@ -34,20 +34,42 @@ sistema de recojer armas nuevas
 sonidos de andar y saltar
 
 
-Dia5: 8H
-hacer los shooting targets
-que dispare el fusil
-que dispare la pistola
-sistema de municon en pantalla(con pool y toda la pesaca)
-meter sonidos:
+Dia5(13/03/:24): 8H
+shooting targets
+fusil dispara
+pistola dispara
+score
+sistema de recarga y municion en pantalla
+marca pared disparo
+
+Sonidos:
+cambiar de arma
+disparos
+aterrizar
 recargar
-cambiar arma
-disparar pistola y ak
-aterrizar 
-aumentar el mapa(Probuilder)
-sistema de generacion en dummies
-iniciar partida/terminarla
-score partida
+
+
+Dia6(14/03/:24): 8H
+enemigos no repien bn al morir
+empezar partidas
+menu inicio fin
+franco dispara
+solucionar solo deja jugar 1 vez
+sistema puntos en base a puntuacion
+sistema combo con beat
+zombie se mueve al beat
+sonidos:
+comprar
+abrir vaya
+
+Dia7(15/03/:24): 8H
+Terminar de retocar huds
+hacer modo endless
+hacer build
+----------
+TFC
+empezar maapa zombies(probuilder)
+
 
 
 

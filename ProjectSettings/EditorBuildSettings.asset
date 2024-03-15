@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ZzScenes/MainMenu.unity
-    guid: 15f80cede696ecc4c91bb85034492425
-  - enabled: 1
     path: Assets/ZzScenes/MainScene.unity
+    guid: 593e1b13a04902b4aae4342c82f14b76
+  - enabled: 0
+    path: Assets/ZzScenes/SootingRangeScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/ZzScenes/WinScene.unity
     guid: ba879b7a5443bcd488a70569d2c9c4a7
+  - enabled: 0
+    path: Assets/ZzScenes/MainMenu.unity
+    guid: 15f80cede696ecc4c91bb85034492425
   m_configObjects: {}

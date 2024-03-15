@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder;
@@ -20,15 +22,16 @@ public class PlayerInteract : MonoBehaviour
     public OnInteract onReload;
 
 
-    [SerializeField] Transform cam;
+    Transform cam;
     [SerializeField] LayerMask shooteableLayers;
-    [SerializeField] BeatManager beatManager;
+   // [SerializeField] BeatManager beatManager;
 
     //INPUT
     PlayerInput pInput;
     private void Awake()
     {
         pInput = GetComponent<PlayerInput>();
+        cam = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().transform;
     }
 
 
@@ -72,8 +75,8 @@ public class PlayerInteract : MonoBehaviour
 
     public void PlaceHole()
     {
-        if (beatManager.inBeat) beatManager.AddToCombo();
-        else beatManager.CancelCombo();
+     //   if (beatManager.inBeat) beatManager.AddToCombo();
+      //  else beatManager.CancelCombo();
 
         if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hit, Mathf.Infinity, shooteableLayers))
         {

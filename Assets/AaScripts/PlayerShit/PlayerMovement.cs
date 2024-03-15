@@ -1,8 +1,10 @@
  using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class PlayerMovement : MonoBehaviour
+
+public class PlayerMovement : NetworkBehaviour
 {
     //PlayerInput Shit
     PlayerInput pInput;
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!IsOwner) return;
         Movement();
     }
 

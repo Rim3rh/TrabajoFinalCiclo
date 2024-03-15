@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] UiManager uiManager;
+    //[SerializeField] UiManager uiManager;
 
 
     public int PlayerPoints
@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
         set 
         {
             playerPoints = value;
-            uiManager.UpdatePlayerPoints(playerPoints);
+           // uiManager.UpdatePlayerPoints(playerPoints);
 
 
         }
