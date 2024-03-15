@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -22,9 +22,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject[] dummies;
 
 
+
+
+    [SerializeField] bool endless;
+
     public void StartGame()
     {
-        InvokeRepeating(nameof(DummyActivator), 0.1f, timeBetweenDummies);
+        Invoke(nameof(DummyActivator), 0.1f);
         score.text = hittedTargets.ToString() + "/" ;
         ammountOfDummies = 0;
         hittedTargets = 0;
@@ -34,6 +38,13 @@ public class LevelManager : MonoBehaviour
 
     private void DummyActivator()
     {
+        Invoke(nameof(DummyActivator), timeBetweenDummies);
+
+        if (endless)
+        {
+            if (timeToShoot > 1.5f) timeToShoot -= 0.05f;
+            timeBetweenDummies -= 0.05f;
+        }
         if(ammountOfDummies == totalAmmountOfDummies) EndGame();
         if (!inGame)
         {
@@ -68,16 +79,18 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(timeToShoot);
         if (manager.beenHit ) yield break;
         anim.SetTrigger("GoBack");
+        if(endless) EndGame();
         AudioManager.instance.EnemyMove();
 
     }
-
 
 
     private void EndGame()
     {
         inGame = false;
         score.text = hittedTargets.ToString() + "/" +totalAmmountOfDummies.ToString();
+        if(endless) score.text = hittedTargets.ToString() + "/" + "∞";
+
     }
 
 

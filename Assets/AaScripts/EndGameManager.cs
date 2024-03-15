@@ -9,6 +9,8 @@ public class EndGameManager : MonoBehaviour
 
     public void LoadWinScene()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         SceneManager.LoadScene(2);
     }
 

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using FMOD;
 using Unity.VisualScripting;
-using Palmmedia.ReportGenerator.Core.Reporting.Builders;
+
 
 public class BeatManager : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class BeatManager : MonoBehaviour
     [SerializeField] GameObject beatIndicator;
 
 
+    float cancelCombo;
     private void Start()
     {
         beatTimer = bps;
@@ -30,7 +31,11 @@ public class BeatManager : MonoBehaviour
     void Update()
     {
         if(isBeatPlaying) Beat();
-        if (inBeat) beatIndicator.SetActive(true); else beatIndicator.SetActive(false); 
+        if (inBeat) beatIndicator.SetActive(true); else beatIndicator.SetActive(false);
+
+
+        cancelCombo -= Time.deltaTime;
+        if (cancelCombo < 0) CancelCombo();
     }
 
     
@@ -83,6 +88,7 @@ public class BeatManager : MonoBehaviour
         comboMultiplyer++;
         comboAmmount += comboMultiplyer * pointsGained;
         uiManager.UpdateCombos(comboAmmount, comboMultiplyer);
+        cancelCombo = 2f;
     }
 
     public void CancelCombo()
