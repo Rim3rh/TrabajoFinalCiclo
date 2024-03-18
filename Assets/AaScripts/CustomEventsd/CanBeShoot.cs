@@ -11,7 +11,6 @@ public class CanBeShoot : NetworkBehaviour
 
     public void ReciveShoot()
     {
-        Debug.Log("0");
 
         CallReciveShootServerRpc();
     }
@@ -19,14 +18,12 @@ public class CanBeShoot : NetworkBehaviour
     [ServerRpc(RequireOwnership =false)]
     private void CallReciveShootServerRpc()
     {
-        Debug.Log("1");
         CallReciveShootClientRpc();
     }
 
     [ClientRpc]
     private void CallReciveShootClientRpc()
     {
-        Debug.Log("2");
         customEvent?.Invoke();
     }
 

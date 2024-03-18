@@ -43,6 +43,7 @@ public class BeatManager : NetworkBehaviour
     
     public void BeatToggle()
     {
+        if (!IsOwner) return;
         BeatToggleToServerRpc();
     }
 
@@ -51,6 +52,7 @@ public class BeatManager : NetworkBehaviour
 
     private void BeatToggleToServerRpc()
     {
+        UnityEngine.Debug.Log("BEAT");
         if (isBeatPlaying)
         {
             isBeatPlaying = false;

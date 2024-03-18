@@ -26,7 +26,6 @@ public class PlayerMovement : NetworkBehaviour
     }
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         pInput.actions["Sprint"].started += PlayerMovement_started;

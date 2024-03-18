@@ -496,7 +496,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1199860553}
-  - {fileID: 5805114757576104788}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &263203169
@@ -16437,13 +16436,13 @@ Transform:
   m_GameObject: {fileID: 5587996129448648444}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.3151923, z: -0, w: 0.94902784}
-  m_LocalPosition: {x: 19.748, y: -3.043, z: -6.7641}
+  m_LocalPosition: {x: 2.8879986, y: -2.033, z: -6.6441}
   m_LocalScale: {x: 1.4861, y: 1.4861, z: 1.4861}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4576940769794213515}
   - {fileID: 8916209269952788485}
-  m_Father: {fileID: 192052730}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -36.745, z: 0}
 --- !u!4 &5874705290387760239
 Transform:
@@ -29651,6 +29650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatManager: {fileID: 1586656549}
+  zombieHealth: 5
 --- !u!114 &8470844460820168200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30075,3 +30075,4 @@ SceneRoots:
   - {fileID: 485732974}
   - {fileID: 192052730}
   - {fileID: 1586656548}
+  - {fileID: 5805114757576104788}

@@ -12,6 +12,7 @@ public class ZombieAnimatorController : NetworkBehaviour
 
     private bool canWalk;
     private bool isWalking;
+    [SerializeField] int zombieHealth;
 
     private void Start()
     {
@@ -24,7 +25,6 @@ public class ZombieAnimatorController : NetworkBehaviour
     }
     public void EnemyHit()
     {
-        if(!IsOwner) return;
         EnemyHitServerRpc();
     }
 
@@ -32,23 +32,39 @@ public class ZombieAnimatorController : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void EnemyHitServerRpc()
     {
+        
+        isWalking = false;
+        canWalk = false;
+        if (zombieHealth <= 0)
+        {
+            EnemyDieClientRpc();
+            return;
+        }
+        else
+        {
+            zombieHealth--;
+        }
         EnemyHitClientRpc();
     }
     [ClientRpc]
     private void EnemyHitClientRpc()
     {
-        Debug.Log("HITENEMIG");
         animator.SetTrigger("Hit");
-        isWalking = false;
-        canWalk = false;
-    }
 
+
+    }
+    [ClientRpc]
+    private void EnemyDieClientRpc()
+    {
+        animator.SetTrigger("Die");
+
+
+    }
 
 
     private void Update()
     {
         if (!IsServer) return;
-
         if (canWalk)
         {
             if (beatManager.coordinationTrigger)
@@ -61,26 +77,33 @@ public class ZombieAnimatorController : NetworkBehaviour
 
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void WalkAnimServerRpc()
-    {
-        WalkAnimClientRpc();
-    }
-    [ClientRpc]
-    private void WalkAnimClientRpc()
     {
         if (isWalking)
         {
-            animator.SetBool("Walk", true);
+            WalkAnimToTrueClientRpc();
         }
         else
         {
-            animator.SetBool("Walk", false);
+            WalkAnimToFalseClientRpc();
 
         }
     }
+    [ClientRpc]
+    private void WalkAnimToTrueClientRpc()
+    {
+        animator.SetBool("Walk", true);
 
 
+    }
+
+    [ClientRpc]
+    private void WalkAnimToFalseClientRpc()
+    {
+        animator.SetBool("Walk", false);
+
+    }
 
 
     private void CanWalkToTrue()
