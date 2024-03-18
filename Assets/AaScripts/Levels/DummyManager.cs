@@ -25,7 +25,7 @@ public class DummyManager : MonoBehaviour
         if (!canBeHit) return;
 
         animator.SetTrigger("Hit");
-        AudioManager.instance.EnemyHit();
+        //AudioManager.instance.EnemyHit();
         levelManager.hittedTargets++;
         levelManager.AddHeadShotPoints();
         canBeHit = false;

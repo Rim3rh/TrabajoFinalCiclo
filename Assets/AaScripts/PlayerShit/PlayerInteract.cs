@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder;
 
-public class PlayerInteract : MonoBehaviour
+public class PlayerInteract : NetworkBehaviour
 {
     //INTERACT
     public delegate void OnInteract();
@@ -22,7 +23,7 @@ public class PlayerInteract : MonoBehaviour
     public OnInteract onReload;
 
 
-    Transform cam;
+    [SerializeField] Transform cam;
     [SerializeField] LayerMask shooteableLayers;
    // [SerializeField] BeatManager beatManager;
 
@@ -31,7 +32,7 @@ public class PlayerInteract : MonoBehaviour
     private void Awake()
     {
         pInput = GetComponent<PlayerInput>();
-        cam = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().transform;
+
     }
 
 
@@ -49,6 +50,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void Update()
     {
+        if(!IsOwner) return;
         if (shooting) onShoot?.Invoke();
 
     }
@@ -75,9 +77,7 @@ public class PlayerInteract : MonoBehaviour
 
     public void PlaceHole()
     {
-     //   if (beatManager.inBeat) beatManager.AddToCombo();
-      //  else beatManager.CancelCombo();
-
+        if (!IsOwner) return;
         if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hit, Mathf.Infinity, shooteableLayers))
         {
             //ESTO ES GOD

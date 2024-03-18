@@ -78,7 +78,7 @@ public class WeaponManager : MonoBehaviour
 
     public void SwitchToNextWeapon()
     {
-        AudioManager.instance.PlayerSwitchWeapon();
+        //AudioManager.instance.PlayerSwitchWeapon();
         weaponSlots.Clear();
         weaponSlots.Add(secondaryWeapon);
         weaponSlots.Add(currentWeapon);

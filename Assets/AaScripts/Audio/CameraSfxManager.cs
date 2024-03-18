@@ -7,6 +7,6 @@ public class CameraSfxManager : MonoBehaviour
     
     private void WalkSfx()
     {
-        AudioManager.instance.PlayerWalkSfx();
+        //AudioManager.instance.PlayerWalkSfx();
     }
 }

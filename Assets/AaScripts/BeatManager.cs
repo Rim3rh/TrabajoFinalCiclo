@@ -4,9 +4,10 @@ using System.ComponentModel;
 using UnityEngine;
 using FMOD;
 using Unity.VisualScripting;
+using Unity.Netcode;
 
 
-public class BeatManager : MonoBehaviour
+public class BeatManager : NetworkBehaviour
 {
     public float bpm;
     public bool inBeat;
@@ -30,19 +31,26 @@ public class BeatManager : MonoBehaviour
     }
     void Update()
     {
+        if (!IsServer) return;
+
         if(isBeatPlaying) Beat();
-        if (inBeat) beatIndicator.SetActive(true); else beatIndicator.SetActive(false);
 
 
         cancelCombo -= Time.deltaTime;
-        if (cancelCombo < 0) CancelCombo();
+        //if (cancelCombo < 0) CancelCombo();
     }
 
     
     public void BeatToggle()
     {
-        UnityEngine.Debug.Log("hola");
+        BeatToggleToServerRpc();
+    }
 
+
+    [ServerRpc(RequireOwnership =false)]
+
+    private void BeatToggleToServerRpc()
+    {
         if (isBeatPlaying)
         {
             isBeatPlaying = false;
@@ -53,6 +61,17 @@ public class BeatManager : MonoBehaviour
         }
     }
 
+
+
+
+    [ClientRpc]
+    private void SetOnBeatClientRpc(bool state)
+    {
+        inBeat = state;
+        if (inBeat) beatIndicator.SetActive(true); else beatIndicator.SetActive(false);
+
+    }
+
     private void Beat()
     {
         bps = 60/ bpm;
@@ -61,18 +80,19 @@ public class BeatManager : MonoBehaviour
 
         if (Mathf.Abs(beatTimer) < 0.15f || beatTimer > bps - 0.15f)
         {
-            inBeat = true;
+            SetOnBeatClientRpc(true);
         }
         else
         {
-            inBeat = false;
+            SetOnBeatClientRpc(false);
+
         }
 
         coordinationTrigger = false;
         if (beatTimer < 0)
         {
             beatTimer = bps;
-            AudioManager.instance.Beat();
+            //AudioManager.instance.Beat();
             coordinationTrigger = true;
         }
     }

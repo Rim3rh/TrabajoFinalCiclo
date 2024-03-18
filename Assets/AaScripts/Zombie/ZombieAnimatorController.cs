@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class ZombieAnimatorController : MonoBehaviour
+public class ZombieAnimatorController : NetworkBehaviour
 {
     Animator animator;
 
@@ -23,15 +24,31 @@ public class ZombieAnimatorController : MonoBehaviour
     }
     public void EnemyHit()
     {
+        if(!IsOwner) return;
+        EnemyHitServerRpc();
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void EnemyHitServerRpc()
+    {
+        EnemyHitClientRpc();
+    }
+    [ClientRpc]
+    private void EnemyHitClientRpc()
+    {
+        Debug.Log("HITENEMIG");
         animator.SetTrigger("Hit");
         isWalking = false;
         canWalk = false;
-
     }
+
 
 
     private void Update()
     {
+        if (!IsServer) return;
+
         if (canWalk)
         {
             if (beatManager.coordinationTrigger)
@@ -40,7 +57,19 @@ public class ZombieAnimatorController : MonoBehaviour
             }
         }
 
-        if(isWalking)
+        WalkAnimServerRpc();
+
+    }
+
+    [ServerRpc]
+    private void WalkAnimServerRpc()
+    {
+        WalkAnimClientRpc();
+    }
+    [ClientRpc]
+    private void WalkAnimClientRpc()
+    {
+        if (isWalking)
         {
             animator.SetBool("Walk", true);
         }
@@ -50,6 +79,8 @@ public class ZombieAnimatorController : MonoBehaviour
 
         }
     }
+
+
 
 
     private void CanWalkToTrue()

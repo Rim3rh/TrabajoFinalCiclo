@@ -33,7 +33,7 @@ public class CanBePurchased : MonoBehaviour
     {
         if(player.GetComponent<PlayerManager>().PlayerPoints >= moneyNeeded)
         {
-            AudioManager.instance.BuyFromShop();
+            //AudioManager.instance.BuyFromShop();
             player.GetComponent<PlayerManager>().PlayerPoints -= moneyNeeded;
             onEnter?.Invoke();
 

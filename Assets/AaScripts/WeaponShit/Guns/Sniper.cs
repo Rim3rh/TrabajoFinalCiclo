@@ -52,14 +52,14 @@ public class Sniper : Guns
             AmmoManager.instance.RemoveOneBulletFromAmmo(3);
 
             animator.SetTrigger("Shoot");
-            AudioManager.instance.PistolSfxShoot();
+            //AudioManager.instance.PistolSfxShoot();
             pInteract.PlaceHole();
 
         }
         if (shootingCD <= 0 && currentAmmo <= 0)
         {
             shootingCD = 1 / shootsPS;
-            AudioManager.instance.NoAmmoShoot();
+            //AudioManager.instance.NoAmmoShoot();
         }
 
     }
@@ -67,7 +67,7 @@ public class Sniper : Guns
     private void Reload()
     {
         animator.SetTrigger("Reload");
-        AudioManager.instance.ReloadSfx();
+        //AudioManager.instance.ReloadSfx();
         currentAmmo = ammo;
         AmmoManager.instance.CreateAmmoCanvas(currentAmmo, 3);
 

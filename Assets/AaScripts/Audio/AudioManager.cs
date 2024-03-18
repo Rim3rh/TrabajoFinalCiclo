@@ -5,11 +5,11 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
 
-    public static AudioManager instance;
+    //public static AudioManager instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
     }
 
     public void PlayerWalkSfx()

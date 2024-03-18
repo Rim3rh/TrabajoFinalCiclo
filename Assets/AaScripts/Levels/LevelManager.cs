@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
 
         manager.canBeRaised = false;
         animator.SetTrigger("Rise");
-        AudioManager.instance.EnemyMove();
+        //AudioManager.instance.EnemyMove();
 
         StartCoroutine(TimeToShootCorrutine(animator));
         ammountOfDummies++;
@@ -80,7 +80,7 @@ public class LevelManager : MonoBehaviour
         if (manager.beenHit ) yield break;
         anim.SetTrigger("GoBack");
         if(endless) EndGame();
-        AudioManager.instance.EnemyMove();
+        //AudioManager.instance.EnemyMove();
 
     }
 
