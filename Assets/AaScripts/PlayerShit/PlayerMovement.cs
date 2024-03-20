@@ -15,9 +15,6 @@ public class PlayerMovement : NetworkBehaviour
     //VARS
     private float defaultSpeed;
 
-
-    [SerializeField] Transform camTransform;
-
     private void Awake()
     {
         pInput = GetComponent<PlayerInput>();
@@ -27,6 +24,7 @@ public class PlayerMovement : NetworkBehaviour
     private void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         pInput.actions["Sprint"].started += PlayerMovement_started;
         pInput.actions["Sprint"].canceled += PlayerMovement_canceled;
@@ -53,7 +51,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Movement()
     {
-        Vector3 movementDirection = camTransform.transform.TransformDirection(new Vector3(Inputs().x, 0, Inputs().y));
+        Vector3 movementDirection = transform.TransformDirection(new Vector3(Inputs().x, 0, Inputs().y));
         pManager.playerCurrentInputs = Inputs();
 
         rb.velocity = new Vector3(movementDirection.x * pManager.playerSpeed, rb.velocity.y, movementDirection.z * pManager.playerSpeed);

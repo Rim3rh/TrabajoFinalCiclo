@@ -70,6 +70,11 @@ hacer build
 TFC
 empezar maapa zombies(probuilder)
 
+Dia7(20/03/:24) 1H:
+añadido modelo del starter pack de unity
+modificado animaciones para que funcionene con este nuevo sistema
+ahora pj rota
+proxiuma vez hacer que pj se mueva con animaciones(correr andar saltar)
 
 
 

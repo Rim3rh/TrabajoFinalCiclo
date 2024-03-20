@@ -13,8 +13,7 @@ public class CameraController : NetworkBehaviour
     private PlayerManager pManager;
 
     //Serializable
-    [SerializeField] Transform camTrasnform;
-    //[SerializeField] Transform weaponTransform;
+    [SerializeField] Transform cameraTrasnform;
 
     [SerializeField] CinemachineVirtualCamera cam;
     
@@ -42,20 +41,17 @@ public class CameraController : NetworkBehaviour
 
     private void Look()
     {
+        if (!IsOwner) return;
+
         float mouseX = Input.GetAxis("Mouse X") * pManager.sensitivity * Time.fixedDeltaTime * pManager.sensMultiplier;
         float mouseY = Input.GetAxis("Mouse Y") * pManager.sensitivity * Time.fixedDeltaTime * pManager.sensMultiplier;
 
-
-        Vector3 rot = camTrasnform.transform.localRotation.eulerAngles;
-        
+        transform.Rotate(Vector3.up * mouseX);
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -70f, 70f);
+        xRotation = Mathf.Clamp(xRotation, -35f, 45f);
 
-        desiredX = rot.y + mouseX;
-
-
-        camTrasnform.transform.rotation = Quaternion.Euler(xRotation, desiredX, camTrasnform.transform.rotation.z);
-
+        cameraTrasnform.localRotation = Quaternion.Euler(xRotation, 0, 0);
     }
+
 }
