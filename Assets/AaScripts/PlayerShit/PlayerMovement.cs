@@ -23,6 +23,10 @@ public class PlayerMovement : NetworkBehaviour
     }
     private void Start()
     {
+        if(IsServer)
+
+
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 

@@ -7,10 +7,11 @@ public class PlayerAnimationController : MonoBehaviour
     PlayerManager pManager;
     [SerializeField] Animator cameraAnimator;
     [SerializeField] Animator weaponAnim;
-
+    Animator bodyAnimator;
     private void Awake()
     {
         pManager = GetComponent<PlayerManager>();
+        bodyAnimator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -18,12 +19,15 @@ public class PlayerAnimationController : MonoBehaviour
         {
             weaponAnim.SetBool("Walk", true);
             cameraAnimator.SetBool("Walk", true);
+            bodyAnimator.SetBool("Walk", true);
+
 
         }
         else
         {
             cameraAnimator.SetBool("Walk", false);
             weaponAnim.SetBool("Walk", false);
+            bodyAnimator.SetBool("Walk", false);
 
 
         }
@@ -36,6 +40,8 @@ public class PlayerAnimationController : MonoBehaviour
             cameraAnimator.SetFloat("WalkSpeed", 1.5f);
 
             cameraAnimator.SetBool("Run", true);
+            bodyAnimator.SetBool("Run", true);
+
 
         }
         else
@@ -44,6 +50,8 @@ public class PlayerAnimationController : MonoBehaviour
             cameraAnimator.SetFloat("WalkSpeed", 1);
 
             cameraAnimator.SetBool("Run", false);
+            bodyAnimator.SetBool("Run", false);
+
 
         }
     }
@@ -52,6 +60,8 @@ public class PlayerAnimationController : MonoBehaviour
     public void Jump()
     {
         cameraAnimator.SetTrigger("Jump");
+        bodyAnimator.SetTrigger("Jump");
+
     }
 
     public void Land()

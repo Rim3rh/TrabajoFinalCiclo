@@ -12,7 +12,7 @@ public class WeaponManager : MonoBehaviour
 
     //WEapon logic
     public GameObject[] abeliableWeapons;
-    [SerializeField] GameObject currentWeapon, secondaryWeapon;
+    public GameObject currentWeapon, secondaryWeapon;
     [SerializeField] List<GameObject> weaponSlots = new List<GameObject>();
 
 
