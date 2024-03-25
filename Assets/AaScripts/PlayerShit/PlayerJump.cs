@@ -23,16 +23,16 @@ public class PlayerJump : NetworkBehaviour
     }
     private void Start()
     {
+        if (!IsOwner) return;
         pInput.actions["Jump"].started += PlayerJump_started;
     }
 
     private void PlayerJump_started(InputAction.CallbackContext obj)
     {
-        if (!IsOwner) return;
 
         if (!pManager.isPlayerGrounded) return;
         rb.AddForce(rb.velocity.x, pManager.playerJumpForce, rb.velocity.z, ForceMode.Impulse);
-        //animController.Jump();
+        animController.Jump();
         //AudioManager.instance.PlayerJumpSfx();
     }
 }

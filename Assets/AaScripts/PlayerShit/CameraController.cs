@@ -41,8 +41,6 @@ public class CameraController : NetworkBehaviour
 
     private void Look()
     {
-        if (!IsOwner) return;
-
         float mouseX = Input.GetAxis("Mouse X") * pManager.sensitivity * Time.fixedDeltaTime * pManager.sensMultiplier;
         float mouseY = Input.GetAxis("Mouse Y") * pManager.sensitivity * Time.fixedDeltaTime * pManager.sensMultiplier;
 

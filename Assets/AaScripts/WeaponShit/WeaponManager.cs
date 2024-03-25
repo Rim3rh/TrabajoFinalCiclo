@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : NetworkBehaviour
 {
 
     //PlayerInput
@@ -28,6 +30,7 @@ public class WeaponManager : MonoBehaviour
     }
     private void Start()
     {
+        if (!IsOwner) return;
 
         TurnAllWeaponsOff();
 
@@ -49,6 +52,8 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
+        if (!IsOwner) return;
+
 
 
 

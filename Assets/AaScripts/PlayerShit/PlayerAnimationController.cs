@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerAnimationController : MonoBehaviour
+public class PlayerAnimationController : NetworkBehaviour
 {
     PlayerManager pManager;
     [SerializeField] Animator cameraAnimator;
@@ -15,7 +17,9 @@ public class PlayerAnimationController : MonoBehaviour
     }
     private void Update()
     {
-        if(pManager.playerCurrentInputs.y > 0 || pManager.playerCurrentInputs.x > 0)
+        if (!IsOwner) return;
+
+        if (pManager.playerCurrentInputs.y > 0)
         {
             weaponAnim.SetBool("Walk", true);
             cameraAnimator.SetBool("Walk", true);
@@ -31,6 +35,17 @@ public class PlayerAnimationController : MonoBehaviour
 
 
         }
+        if(Mathf.Abs(pManager.playerCurrentInputs.x) > 0 && pManager.playerCurrentInputs.y !> 0 || pManager.playerCurrentInputs.y < 0)
+        {
+            bodyAnimator.SetBool("WalkBack", true);
+
+        }
+        else
+        {
+            bodyAnimator.SetBool("WalkBack", false);
+
+        }
+
 
 
 
@@ -59,6 +74,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void Jump()
     {
+        if (!IsOwner) return;
+
         cameraAnimator.SetTrigger("Jump");
         bodyAnimator.SetTrigger("Jump");
 
@@ -66,6 +83,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void Land()
     {
+        if (!IsOwner) return;
+
         cameraAnimator.SetTrigger("Land");
 
     }

@@ -39,6 +39,8 @@ public class PlayerInteract : NetworkBehaviour
 
     private void Start()
     {
+        if (!IsOwner) return;
+
         pInput.actions["Interact"].started += PlayerInteract_started;
         pInput.actions["Shoot"].started += Shoot_Started;
         pInput.actions["Shoot"].canceled += Shoot_Canceled;

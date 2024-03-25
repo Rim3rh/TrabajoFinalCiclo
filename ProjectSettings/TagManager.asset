@@ -15,10 +15,10 @@ TagManager:
   - UI
   - PlayerBody
   - Weapons
-  - Mask1
-  - Mask2
-  - 
-  - 
+  - BodyClient1
+  - BodyClient2
+  - ArmsClient1
+  - ArmsClient2
   - 
   - 
   - 

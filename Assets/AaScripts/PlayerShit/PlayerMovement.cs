@@ -23,10 +23,7 @@ public class PlayerMovement : NetworkBehaviour
     }
     private void Start()
     {
-        if(IsServer)
-
-
-
+        if (!IsOwner) return;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -43,8 +40,12 @@ public class PlayerMovement : NetworkBehaviour
 
     private void PlayerMovement_started(InputAction.CallbackContext obj)
     {
-        pManager.playerSprint = true;
-        pManager.playerSpeed = defaultSpeed * 1.5f;
+        if(Inputs().y > 0)
+        {
+            pManager.playerSprint = true;
+            pManager.playerSpeed = defaultSpeed * 1.5f;
+        }
+
     }
 
     private void FixedUpdate()
@@ -59,6 +60,15 @@ public class PlayerMovement : NetworkBehaviour
         pManager.playerCurrentInputs = Inputs();
 
         rb.velocity = new Vector3(movementDirection.x * pManager.playerSpeed, rb.velocity.y, movementDirection.z * pManager.playerSpeed);
+        if (Inputs().y > 0 && !pManager.playerSprint)
+        {
+            pManager.playerSpeed = defaultSpeed;
+        }
+        if (Inputs().y < 0)
+        {
+            pManager.playerSprint = false;
+            pManager.playerSpeed = defaultSpeed / 2;
+        }
     }
 
 
