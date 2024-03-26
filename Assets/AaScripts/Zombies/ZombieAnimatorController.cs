@@ -1,28 +1,29 @@
-using System.Collections;
+//using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
 public class ZombieAnimatorController : NetworkBehaviour
 {
+    //Component References
     Animator animator;
 
 
     [SerializeField] BeatManager beatManager;
 
     private bool canWalk;
-    private bool isWalking;
+    private bool isWalking = false;
     [SerializeField] int zombieHealth;
-
-    private void Start()
-    {
-        isWalking = false;
-    }
     private void Awake()
     {
-        
+        //Getting Components
         animator = GetComponent<Animator>();
     }
+    private void Start()
+    {
+
+    }
+
     public void EnemyHit()
     {
         EnemyHitServerRpc();
@@ -57,8 +58,7 @@ public class ZombieAnimatorController : NetworkBehaviour
     private void EnemyDieClientRpc()
     {
         animator.SetTrigger("Die");
-
-
+        gameObject.SetActive(false);
     }
 
 

@@ -2872,7 +2872,7 @@ GameObject:
   - component: {fileID: 9213271520681765670}
   - component: {fileID: 3783777734370454351}
   - component: {fileID: 2572563370739024726}
-  - component: {fileID: 8197550340873305773}
+  - component: {fileID: 1896294875359767916}
   - component: {fileID: 5476970492767358115}
   - component: {fileID: 7451979743834329137}
   - component: {fileID: 2564379630766031343}
@@ -3169,7 +3169,7 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!114 &8197550340873305773
+--- !u!114 &1896294875359767916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3178,7 +3178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6365161929817096099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Script: {fileID: 11500000, guid: 3be775e98d195214782cc2d317cc4e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
@@ -3731,6 +3731,7 @@ GameObject:
   - component: {fileID: 2756650698382455321}
   - component: {fileID: 8639555798765911108}
   - component: {fileID: 2902960375035459582}
+  - component: {fileID: 2295783571404315536}
   m_Layer: 0
   m_Name: rifle_001
   m_TagString: Untagged
@@ -3844,6 +3845,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2295783571404315536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280865557957352732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be775e98d195214782cc2d317cc4e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 2902960375035459582}
 --- !u!1 &7372879838452257644
 GameObject:
   m_ObjectHideFlags: 0
@@ -4654,6 +4669,7 @@ GameObject:
   - component: {fileID: 8362967295835974823}
   - component: {fileID: 7786821184417897983}
   - component: {fileID: 8027217121647892526}
+  - component: {fileID: 2244382540835515977}
   m_Layer: 0
   m_Name: pistol_001
   m_TagString: Untagged
@@ -4767,6 +4783,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2244382540835515977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478634512840597942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be775e98d195214782cc2d317cc4e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 8027217121647892526}
 --- !u!1 &8550449361030410339
 GameObject:
   m_ObjectHideFlags: 0
@@ -4844,6 +4874,7 @@ GameObject:
   - component: {fileID: 8428308616212306778}
   - component: {fileID: 1250117387314357957}
   - component: {fileID: 2350986889434498395}
+  - component: {fileID: 3178630795499242674}
   m_Layer: 0
   m_Name: sniper_rifle_001
   m_TagString: Untagged
@@ -4957,6 +4988,20 @@ MonoBehaviour:
   ammo: 0
   shootsPS: 0
   damage: 0
+--- !u!114 &3178630795499242674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730639246930644926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be775e98d195214782cc2d317cc4e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 1250117387314357957}
 --- !u!1 &8824692692719736119
 GameObject:
   m_ObjectHideFlags: 0

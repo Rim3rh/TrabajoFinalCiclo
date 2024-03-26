@@ -14,6 +14,7 @@ public class PlayerMovement : NetworkBehaviour
     Rigidbody rb;
     //Private vars
     private float defaultSpeed;
+    private bool hittingSprintButton;
     #endregion
     #region SelfRunningMethods
     private void Awake()
@@ -37,17 +38,12 @@ public class PlayerMovement : NetworkBehaviour
     }
     private void PlayerSprint_canceled(InputAction.CallbackContext obj)
     {
-        CancelSprint();
+        hittingSprintButton = false;
     }
 
     private void PlayerSprint_Started(InputAction.CallbackContext obj)
     {
-        //if walking, activate sprint
-        if (Inputs().y > 0)
-        {
-            pManager.playerSprint = true;
-            pManager.playerSpeed = defaultSpeed * 1.5f;
-        }
+        hittingSprintButton = true;
     }
     private void FixedUpdate()
     {
@@ -76,6 +72,21 @@ public class PlayerMovement : NetworkBehaviour
         {
             pManager.playerSprint = false;
             pManager.playerSpeed = defaultSpeed / 2;
+        }
+
+        //Sprint
+        if (hittingSprintButton)
+        {
+            //if walking, activate sprint
+            if (Inputs().y > 0)
+            {
+                pManager.playerSprint = true;
+                pManager.playerSpeed = defaultSpeed * 1.5f;
+            }
+        }
+        else
+        {
+            CancelSprint();
         }
     }
 

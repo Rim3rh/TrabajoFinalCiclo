@@ -27,10 +27,6 @@ public class PlayerAnimationController : NetworkBehaviour
         WalkAnimations();
         SprintingAnims();
 
-
-
-
-
     }
     #endregion
     #region PrivateMethods
