@@ -4,47 +4,33 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    //[SerializeField] UiManager uiManager;
-
-
+    #region VARS
     public int PlayerPoints
     {
         get
         {
             return playerPoints;
         }
-
-        set 
+        set
         {
             playerPoints = value;
-           // uiManager.UpdatePlayerPoints(playerPoints);
-
-
+            //Disabled for now
+            // uiManager.UpdatePlayerPoints(playerPoints);
         }
     }
-    private int playerPoints;
-
-
-
-
-
-
-
+    //Will keep count of the points the player has tto spend
+    private int playerPoints = 0;
+    //MouseSensitivity
     public float sensitivity;
     public float sensMultiplier;
+    //Movement Variables
     public float playerSpeed;
     public float playerJumpForce;
-    public bool isPlayerGrounded;
-    public Vector2 playerCurrentInputs;
     public bool playerSprint;
+    //PlayerGroundedState
+    public bool isPlayerGrounded;
+    //CurrentInputs, used to manage animations without the need of accesing specific movement class
+    public Vector2 playerCurrentInputs;
 
-
-
-    private void Awake()
-    {
-        PlayerPoints = 0;
-    }
-
-
-    
+    #endregion
 }

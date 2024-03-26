@@ -76,7 +76,16 @@ modificado animaciones para que funcionene con este nuevo sistema
 ahora pj rota
 proxiuma vez hacer que pj se mueva con animaciones(correr andar saltar)
 
+Dia8-11(20-25/03/24): 4.5hAprox
+Añadidas animaciones pj Correr andar alante/atras, saltar
+añadidas animaciones brazaos, que sigan a las aramas
+separado animaciones de cuerpo(las que ven los jugadores) de naimaciones brazos(las que ve el juegador local)
+añadida parate de sincronizacion
 
+
+
+Dia 12:(26/03/24): 2.5H
+Limpiar codigo de todas las clases del personaje.
 
 
 

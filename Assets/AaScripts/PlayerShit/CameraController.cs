@@ -9,36 +9,36 @@ using Unity.Netcode;
 
 public class CameraController : NetworkBehaviour
 {
-    //References
+    #region VARS
+    //class references
     private PlayerManager pManager;
-
-    //Serializable
+    //CameraTrasform so I can change its rotation
     [SerializeField] Transform cameraTrasnform;
-
+    //need the camera so we can change the priority
     [SerializeField] CinemachineVirtualCamera cam;
-    
-   // [SerializeField] Transform weaponPos;
-
-
-    //CameraROtationShit
-    private float desiredX, xRotation;
-
+    //CameraROtation based on the mouse movement
+    private float xRotation;
+    #endregion
+    #region SelfRunningMethods
     private void Awake()
     {
+        //getting component
         pManager = GetComponent<PlayerManager>();
-        //ameraTransform = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().transform;
-
+    }
+    private void Start()
+    {
+        //Dont want notowners to change cam priority
+        if (!IsOwner) return;
+        cam.Priority = 20;
     }
     private void Update()
     {
+        //nopt owners should not rotate the camera
         if (!IsOwner) return;
-        cam.Priority = 20;
-        //weaponTransform.transform.position = weaponPos.transform.position;
-
         Look();
     }
-
-
+    #endregion
+    #region Private Methods
     private void Look()
     {
         float mouseX = Input.GetAxis("Mouse X") * pManager.sensitivity * Time.fixedDeltaTime * pManager.sensMultiplier;
@@ -51,5 +51,5 @@ public class CameraController : NetworkBehaviour
 
         cameraTrasnform.localRotation = Quaternion.Euler(xRotation, 0, 0);
     }
-
+    #endregion
 }
