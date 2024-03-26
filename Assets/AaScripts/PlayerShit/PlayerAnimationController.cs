@@ -6,86 +6,87 @@ using UnityEngine;
 
 public class PlayerAnimationController : NetworkBehaviour
 {
+    #region VARS
+    //Class references
     PlayerManager pManager;
-    [SerializeField] Animator cameraAnimator;
+    //Animator references
+    [SerializeField] Animator cameraAnim;
     [SerializeField] Animator weaponAnim;
-    Animator bodyAnimator;
+    Animator bodyAnim;
+    #endregion
+    #region SelfRunMethods
     private void Awake()
     {
         pManager = GetComponent<PlayerManager>();
-        bodyAnimator = GetComponent<Animator>();
+        bodyAnim = GetComponent<Animator>();
     }
     private void Update()
     {
         if (!IsOwner) return;
 
-        if (pManager.playerCurrentInputs.y > 0)
-        {
-            weaponAnim.SetBool("Walk", true);
-            cameraAnimator.SetBool("Walk", true);
-            bodyAnimator.SetBool("Walk", true);
-
-
-        }
-        else
-        {
-            cameraAnimator.SetBool("Walk", false);
-            weaponAnim.SetBool("Walk", false);
-            bodyAnimator.SetBool("Walk", false);
-
-
-        }
-        if(Mathf.Abs(pManager.playerCurrentInputs.x) > 0 && pManager.playerCurrentInputs.y !> 0 || pManager.playerCurrentInputs.y < 0)
-        {
-            bodyAnimator.SetBool("WalkBack", true);
-
-        }
-        else
-        {
-            bodyAnimator.SetBool("WalkBack", false);
-
-        }
+        WalkAnimations();
+        SprintingAnims();
 
 
 
 
+
+    }
+    #endregion
+    #region PrivateMethods
+    private void SprintingAnims()
+    {
         if (pManager.playerSprint)
         {
+            //Turn walkSpeed up, so the animation runs faster
             weaponAnim.SetFloat("WalkSpeed", 1.5f);
-            cameraAnimator.SetFloat("WalkSpeed", 1.5f);
-
-            cameraAnimator.SetBool("Run", true);
-            bodyAnimator.SetBool("Run", true);
-
-
+            cameraAnim.SetFloat("WalkSpeed", 1.5f);
+            //Run anim for the ext body
+            bodyAnim.SetBool("Run", true);
         }
         else
         {
             weaponAnim.SetFloat("WalkSpeed", 1);
-            cameraAnimator.SetFloat("WalkSpeed", 1);
+            cameraAnim.SetFloat("WalkSpeed", 1);
 
-            cameraAnimator.SetBool("Run", false);
-            bodyAnimator.SetBool("Run", false);
+            bodyAnim.SetBool("Run", false);
+        }
+    }
+    private void WalkAnimations()
+    {
+        //Walking forward
+        if (pManager.playerCurrentInputs.y > 0)
+        {
+            weaponAnim.SetBool("Walk", true);
+            cameraAnim.SetBool("Walk", true);
+            bodyAnim.SetBool("Walk", true);
+        }
+        else
+        {
+            cameraAnim.SetBool("Walk", false);
+            weaponAnim.SetBool("Walk", false);
+            bodyAnim.SetBool("Walk", false);
+        }
 
+        //WalkingBack
+        if (Mathf.Abs(pManager.playerCurrentInputs.x) > 0 && pManager.playerCurrentInputs.y! > 0 || pManager.playerCurrentInputs.y < 0)
+        {
+            bodyAnim.SetBool("WalkBack", true);
+
+        }
+        else
+        {
+            bodyAnim.SetBool("WalkBack", false);
 
         }
     }
-
-
     public void Jump()
     {
         if (!IsOwner) return;
 
-        cameraAnimator.SetTrigger("Jump");
-        bodyAnimator.SetTrigger("Jump");
+        cameraAnim.SetTrigger("Jump");
+        bodyAnim.SetTrigger("Jump");
 
     }
-
-    public void Land()
-    {
-        if (!IsOwner) return;
-
-        cameraAnimator.SetTrigger("Land");
-
-    }
+    #endregion
 }

@@ -14,7 +14,7 @@ public class BodyLayerSetter : NetworkBehaviour
         if(IsLocalPlayer)
         {
             intBody.SetActive(true);
-           // extBody.SetActive(false);
+            extBody.SetActive(false);
         }
         else
         {
