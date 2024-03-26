@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class ZombiePoolManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] GameObject zombiePrefab;
+
+    List<GameObject> zombiePool = new List<GameObject>();
+
+    List<GameObject> activeZombies = new List<GameObject>();
+
+    [SerializeField] int zombiePoolSize;
+
     void Start()
     {
+        for (int i = 0; i < zombiePoolSize; i++)
+        {
+            GameObject go = Instantiate(zombiePrefab, this.transform);
+            zombiePool.Add(go);
+            go.SetActive(false);
+
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public GameObject GetZombie()
     {
-        
+        foreach (GameObject go in zombiePool)
+        {
+            if (!go.activeSelf)
+            {
+                activeZombies.Add(go);
+                return go;
+            }
+
+        }
+        Debug.LogError("Me has pedido zombie y no hay zombie huevon");
+        return null;
+
     }
+    public void DisableZombie(GameObject zombieToDesable)
+    {
+        activeZombies.Remove(zombieToDesable);
+        zombieToDesable.SetActive(false);
+    }
+
 }

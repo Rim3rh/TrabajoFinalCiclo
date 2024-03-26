@@ -13,17 +13,12 @@ public class ZombieAnimatorController : NetworkBehaviour
 
     private bool canWalk;
     private bool isWalking = false;
-    [SerializeField] int zombieHealth;
+    public int zombieHealth;
     private void Awake()
     {
         //Getting Components
         animator = GetComponent<Animator>();
     }
-    private void Start()
-    {
-
-    }
-
     public void EnemyHit()
     {
         EnemyHitServerRpc();
