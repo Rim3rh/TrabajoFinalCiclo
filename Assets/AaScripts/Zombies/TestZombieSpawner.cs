@@ -20,6 +20,7 @@ public class TestZombieSpawner : MonoBehaviour
     private void SpawnZombie()
     {
         GameObject zombie = poolManager.GetZombie();
+        zombie.SetActive(true);
         zombie.GetComponent<ZombieAnimatorController>().zombieHealth = 5;
         zombie.GetComponent<Animator>().SetTrigger("Rise");
     }
