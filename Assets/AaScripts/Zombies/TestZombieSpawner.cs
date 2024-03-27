@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class TestZombieSpawner : MonoBehaviour
@@ -21,7 +22,9 @@ public class TestZombieSpawner : MonoBehaviour
     {
         GameObject zombie = poolManager.GetZombie();
         zombie.SetActive(true);
-        zombie.GetComponent<ZombieAnimatorController>().zombieHealth = 5;
+        zombie.transform.position = spawnPos.position;
+        zombie.GetComponent<ZombiesHealthController>().zombieHealth = 5;
         zombie.GetComponent<Animator>().SetTrigger("Rise");
+        GetComponent<NetworkObject>().Spawn();
     }
 }

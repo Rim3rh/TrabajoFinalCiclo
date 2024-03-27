@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class ZombiePoolManager : MonoBehaviour
@@ -21,8 +22,9 @@ public class ZombiePoolManager : MonoBehaviour
             zombiePool.Add(go);
             go.SetActive(false);
 
+
         }
-        
+
     }
 
 

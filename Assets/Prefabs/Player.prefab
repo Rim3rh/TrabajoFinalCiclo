@@ -3738,7 +3738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7517557187632133030
 Transform:
   m_ObjectHideFlags: 0
@@ -4760,7 +4760,7 @@ MonoBehaviour:
   pInteract: {fileID: 7097427397621773407}
   myEnum: 1
   ammo: 6
-  shootsPS: 1
+  shootsPS: 6
   damage: 20
 --- !u!95 &8027217121647892526
 Animator:

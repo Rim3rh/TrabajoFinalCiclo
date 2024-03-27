@@ -11,7 +11,6 @@ public class CanBeShoot : NetworkBehaviour
 
     public void ReciveShoot()
     {
-
         CallReciveShootServerRpc();
     }
 

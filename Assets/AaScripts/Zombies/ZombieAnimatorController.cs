@@ -5,105 +5,42 @@ using UnityEngine;
 
 public class ZombieAnimatorController : NetworkBehaviour
 {
+     //class references
+     ZombiesHealthController healthController;
     //Component References
-    Animator animator;
+    Animator anim;
 
-
-    [SerializeField] BeatManager beatManager;
-
-    private bool canWalk;
-    private bool isWalking = false;
-    public int zombieHealth;
     private void Awake()
     {
         //Getting Components
-        animator = GetComponent<Animator>();
-    }
-    public void EnemyHit()
-    {
-        EnemyHitServerRpc();
+        anim = GetComponent<Animator>();
+        healthController = GetComponent<ZombiesHealthController>();
     }
 
 
-    [ServerRpc(RequireOwnership = false)]
-    private void EnemyHitServerRpc()
+    public void Hit()
     {
-        
-        isWalking = false;
-        canWalk = false;
-        if (zombieHealth <= 0)
-        {
-            EnemyDieClientRpc();
-            return;
-        }
-        else
-        {
-            zombieHealth--;
-        }
-        EnemyHitClientRpc();
+        anim.SetTrigger("Hit");
     }
-    [ClientRpc]
-    private void EnemyHitClientRpc()
+
+    public void Die()
     {
-        animator.SetTrigger("Hit");
-
-
+        anim.SetTrigger("Die");
+       
     }
-    [ClientRpc]
-    private void EnemyDieClientRpc()
+    private void SetGoToInactive()
     {
-        animator.SetTrigger("Die");
         gameObject.SetActive(false);
     }
 
 
-    private void Update()
+    private void CanBeShootToTrue()
     {
-        if (!IsServer) return;
-        if (canWalk)
-        {
-            if (beatManager.coordinationTrigger)
-            {
-                isWalking = true;
-            }
-        }
-
-        WalkAnimServerRpc();
-
+        healthController.canBoShoot = true;
+    }
+    private void CanBeShootToFalse()
+    {
+        healthController.canBoShoot=false;
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void WalkAnimServerRpc()
-    {
-        if (isWalking)
-        {
-            WalkAnimToTrueClientRpc();
-        }
-        else
-        {
-            WalkAnimToFalseClientRpc();
-
-        }
-    }
-    [ClientRpc]
-    private void WalkAnimToTrueClientRpc()
-    {
-        animator.SetBool("Walk", true);
-
-
-    }
-
-    [ClientRpc]
-    private void WalkAnimToFalseClientRpc()
-    {
-        animator.SetBool("Walk", false);
-
-    }
-
-
-    private void CanWalkToTrue()
-    {
-                canWalk = true;
-
-    }
 }
