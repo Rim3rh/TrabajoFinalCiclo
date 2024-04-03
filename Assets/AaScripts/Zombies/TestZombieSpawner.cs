@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class TestZombieSpawner : MonoBehaviour
+public class TestZombieSpawner : NetworkBehaviour
 {
     [SerializeField] Transform spawnPos;
     [SerializeField] ZombiePoolManager poolManager;
 
-    private void Update()
+    private void Start()
     {
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SpawnZombie();
-        }
+        if (!IsServer) return;
+        Invoke(nameof(SpawnZombie), 10f);
     }
 
 
@@ -27,4 +24,7 @@ public class TestZombieSpawner : MonoBehaviour
         zombie.GetComponent<Animator>().SetTrigger("Rise");
         GetComponent<NetworkObject>().Spawn();
     }
+
+
+
 }

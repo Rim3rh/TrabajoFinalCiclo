@@ -41,9 +41,6 @@ public class WeaponManager : NetworkBehaviour
         currentWeapon = abeliableWeapons[0];
         weaponSlots.Add(currentWeapon);
 
-        //GET RIFLE
-        weaponSlots.Add(abeliableWeapons[1]);
-        secondaryWeapon = abeliableWeapons[1];
     }
 
 
@@ -115,5 +112,12 @@ public class WeaponManager : NetworkBehaviour
         weaponSlots.Add(currentWeapon);
         weaponSlots.Add(secondaryWeapon);
         UpdateWeapons();
+
     }
+
+
+
+
+
+
 }

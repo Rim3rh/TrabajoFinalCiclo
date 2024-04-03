@@ -11,18 +11,20 @@ public class UiButtons : MonoBehaviour
 
     private void Awake()
     {
-        clientButton.onClick.AddListener(() =>
-        {
-            NetworkManager.Singleton.StartClient();
-            Hide();
-        });
 
         hostButton.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartHost();
-            Hide();
+            NetworkManager.Singleton.SceneManager.LoadScene("LobbyScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
+
 
         });
+        clientButton.onClick.AddListener(() =>
+        {
+            NetworkManager.Singleton.StartClient();
+
+        });
+
     }
 
 
