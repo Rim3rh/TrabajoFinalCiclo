@@ -88,6 +88,11 @@ Dia 12:(26/03/24): 2.5H
 Limpiar codigo de todas las clases del personaje.
 
 
+Dia13(04/04/24): 2.5h
+
+Implementar assets mapa nuevo parcialmente + prueba con sicronizacion armas y prueba con spawn zombies
+
+
 
 
 
