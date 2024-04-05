@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     #region VARS
+    private UiManager uiManager;
+    private void Awake()
+    {
+        uiManager = GetComponent<UiManager>();
+    }
     public int PlayerPoints
     {
         get
@@ -15,11 +20,11 @@ public class PlayerManager : MonoBehaviour
         {
             playerPoints = value;
             //Disabled for now
-            // uiManager.UpdatePlayerPoints(playerPoints);
+             uiManager.UpdatePlayerPoints(playerPoints);
         }
     }
     //Will keep count of the points the player has tto spend
-    private int playerPoints = 0;
+    private int playerPoints = 1000;
     //MouseSensitivity
     public float sensitivity;
     public float sensMultiplier;
@@ -33,4 +38,11 @@ public class PlayerManager : MonoBehaviour
     public Vector2 playerCurrentInputs;
 
     #endregion
+
+
+    private void Start()
+    {
+        uiManager.UpdatePlayerPoints(playerPoints);
+
+    }
 }

@@ -109,7 +109,7 @@ public class BeatManager : NetworkBehaviour
     {
         comboMultiplyer++;
         comboAmmount += comboMultiplyer * pointsGained;
-        uiManager.UpdateCombos(comboAmmount, comboMultiplyer);
+        //uiManager.UpdateCombos(comboAmmount, comboMultiplyer);
         cancelCombo = 2f;
     }
 
@@ -118,7 +118,7 @@ public class BeatManager : NetworkBehaviour
         player.GetComponent<PlayerManager>().PlayerPoints += comboAmmount;
         comboMultiplyer = 0;
         comboAmmount = 0;
-        uiManager.CleanCombos();
+       // uiManager.CleanCombos();
 
     }
 }

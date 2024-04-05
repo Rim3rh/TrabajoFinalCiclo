@@ -13,7 +13,7 @@ public class PlayerInteract : NetworkBehaviour
     #region VARS
     //INTERACT event
     public delegate void OnInteract();
-    public static OnInteract onInteract;
+    public OnInteract onInteract;
     //SHOOT event
     public delegate void OnShoot();
     public OnInteract onShoot;

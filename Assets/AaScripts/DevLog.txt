@@ -93,6 +93,8 @@ Dia13(04/04/24): 2.5h
 Implementar assets mapa nuevo parcialmente + prueba con sicronizacion armas y prueba con spawn zombies
 
 
+Dia14(05/04/24): 1.5h
+meter Hud en player, aöadir abrir puerta con animacion(sin sincronizar)
 
 
 

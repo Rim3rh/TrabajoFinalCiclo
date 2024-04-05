@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
-public class CanBePurchased : MonoBehaviour
+public class CanBePurchased : NetworkBehaviour
 {
     public UnityEvent onEnter;
     [SerializeField] int moneyNeeded;
@@ -15,8 +16,13 @@ public class CanBePurchased : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("COLLIDER");
             player = other.gameObject;
-            PlayerInteract.onInteract += InvokeEnevt;
+            PlayerInteract pInteract = player.GetComponent<PlayerInteract>();
+            UiManager uiManager = player.GetComponent<UiManager>();
+            PlayerManager playerManager = player.GetComponent<PlayerManager>();
+            pInteract.onInteract += InvokeEnevt;
+            uiManager.ShowPrice(playerManager.PlayerPoints);
         }
     }
 
@@ -25,7 +31,11 @@ public class CanBePurchased : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             player = other.gameObject;
-            PlayerInteract.onInteract -= InvokeEnevt;
+            PlayerInteract pInteract = player.GetComponent<PlayerInteract>();
+            UiManager uiManager = player.GetComponent<UiManager>();
+            PlayerManager playerManager = player.GetComponent<PlayerManager>();
+            pInteract.onInteract -= InvokeEnevt;
+            uiManager.HidePrice();
         }
     }
 
@@ -35,8 +45,19 @@ public class CanBePurchased : MonoBehaviour
         {
             //AudioManager.instance.BuyFromShop();
             player.GetComponent<PlayerManager>().PlayerPoints -= moneyNeeded;
-            onEnter?.Invoke();
-
+            OnEnterClientRpc();
         }
+    }
+
+    [ClientRpc]
+    private void OnEnterClientRpc()
+    {
+        OnEnterServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership =false)]
+    private void OnEnterServerRpc()
+    {
+        onEnter?.Invoke();
     }
 }
