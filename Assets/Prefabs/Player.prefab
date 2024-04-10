@@ -3898,13 +3898,14 @@ GameObject:
   - component: {fileID: 5895327165648811585}
   - component: {fileID: 2077731672628422203}
   - component: {fileID: 9213271520681765670}
+  - component: {fileID: 3527384128946047391}
+  - component: {fileID: 5046746356864041560}
   - component: {fileID: 3783777734370454351}
   - component: {fileID: 2572563370739024726}
   - component: {fileID: 1896294875359767916}
   - component: {fileID: 5476970492767358115}
   - component: {fileID: 7451979743834329137}
   - component: {fileID: 2564379630766031343}
-  - component: {fileID: 3527384128946047391}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4137,9 +4138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abeliableWeapons:
-  - {fileID: 8478634512840597942}
-  - {fileID: 7280865557957352732}
-  - {fileID: 8730639246930644926}
+  - {fileID: 7786821184417897983}
+  - {fileID: 8639555798765911108}
+  - {fileID: 2350986889434498395}
   currentWeapon: {fileID: 0}
   secondaryWeapon: {fileID: 0}
   weaponSlots: []
@@ -4159,6 +4160,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraAnim: {fileID: 2124536487131130805}
   weaponAnim: {fileID: 7105900433870890021}
+--- !u!114 &3527384128946047391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6365161929817096099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ed76789a001ca4295f59e3211c9add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPoints: {fileID: 3337528982721184200}
+  priceHud: {fileID: 7092526877107136335}
+  priceText: {fileID: 587871663131056844}
+  hudGameObject: {fileID: 8334488069246151593}
+--- !u!114 &5046746356864041560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6365161929817096099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b4d4441f803e848bac795521db9d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pistolAmmo: {fileID: 7229356053487928474, guid: b50d5dc2a4f7efe4ca0c13443fcf1d4c, type: 3}
+  akAmmo: {fileID: 7229356053487928474, guid: 4a1e1ee1b0a88d947a1f0206eecab4d5, type: 3}
+  sniperAmmo: {fileID: 7229356053487928474, guid: 01be5ab148058e74b9335c2621278b1f, type: 3}
+  firstAmmoSpot: {fileID: 7056411019987252677}
+  totalPistolAmmoList: []
+  currentPistolAmmoList: []
+  totalAkAmmoList: []
+  currentAkAmmoList: []
+  totalSniperAmmoList: []
+  currentSniperAmmoList: []
 --- !u!114 &3783777734370454351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4257,21 +4296,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 8573893091456911495}
     m_Active: 1
   m_Effectors: []
---- !u!114 &3527384128946047391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6365161929817096099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ed76789a001ca4295f59e3211c9add, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPoints: {fileID: 3337528982721184200}
-  priceHud: {fileID: 7092526877107136335}
-  priceText: {fileID: 587871663131056844}
 --- !u!1 &6424550328720554918
 GameObject:
   m_ObjectHideFlags: 0

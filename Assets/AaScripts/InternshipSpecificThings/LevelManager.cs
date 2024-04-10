@@ -94,7 +94,7 @@ public class LevelManager : MonoBehaviour
     }
 
 
-
+    /*
     public void AddHeadShotPoints()
     {
         player.GetComponent<PlayerManager>().PlayerPoints += 100;
@@ -103,4 +103,5 @@ public class LevelManager : MonoBehaviour
     {
         player.GetComponent<PlayerManager>().PlayerPoints += 50;
     }
+    */
 }

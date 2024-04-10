@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Rifle : Guns
+public class Rifle : Gun
 {
 
 

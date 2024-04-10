@@ -13,9 +13,9 @@ public class WeaponManager : NetworkBehaviour
     PlayerInput pInput;
 
     //WEapon logic
-    public GameObject[] abeliableWeapons;
-    public GameObject currentWeapon, secondaryWeapon;
-    [SerializeField] List<GameObject> weaponSlots = new List<GameObject>();
+    public Gun[] abeliableWeapons;
+    public Gun currentWeapon, secondaryWeapon;
+    [SerializeField] List<Gun> weaponSlots = new List<Gun>();
 
 
 
@@ -37,7 +37,7 @@ public class WeaponManager : NetworkBehaviour
 
         //Start with pistol
 
-        abeliableWeapons[0].SetActive(true);
+        abeliableWeapons[0].gameObject.SetActive(true);
         currentWeapon = abeliableWeapons[0];
         weaponSlots.Add(currentWeapon);
 
@@ -92,21 +92,21 @@ public class WeaponManager : NetworkBehaviour
     {
         currentWeapon = weaponSlots[0];
         secondaryWeapon = weaponSlots[1];
-        secondaryWeapon.SetActive(false);
-        currentWeapon.SetActive(true);
+        secondaryWeapon.gameObject.SetActive(false);
+        currentWeapon.gameObject.SetActive(true);
     }
 
     private void TurnAllWeaponsOff()
     {
-        foreach (var w in abeliableWeapons)
+        foreach (var weapon in abeliableWeapons)
         {
-            w.SetActive(false);
+            weapon.gameObject.SetActive(false);  
         }
     }
 
-    public void SetNewWeapon(GameObject weapon)
+    public void SetNewWeapon(Gun weapon)
     {
-        currentWeapon.SetActive(false);
+        currentWeapon.gameObject.SetActive(false);
         currentWeapon = weapon;
         weaponSlots.Clear();
         weaponSlots.Add(currentWeapon);

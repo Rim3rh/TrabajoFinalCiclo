@@ -4,13 +4,16 @@ using UnityEngine;
 using static PlayerInteract;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
-public class Guns : MonoBehaviour
+public abstract class Gun : MonoBehaviour
 {
     //ScriptReferences
     [Header("Player")]
+     Animator anim;
 
     [SerializeField] PlayerInteract pInteract;
+    AmmoManager ammoManager;
 
+    
 
     //>>>>>>>>GESTION DE ARMAS<<<<<<<//
     private enum MyEnum
@@ -29,7 +32,6 @@ public class Guns : MonoBehaviour
     [SerializeField] int ammo;
     [SerializeField] float shootsPS;
     [SerializeField] float damage;
-    Animator animator;
 
     private float shootingCD;
     private int currentAmmo;
@@ -40,7 +42,8 @@ public class Guns : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+        ammoManager = pInteract.GetComponent<AmmoManager>();
     }
 
     private void Start()
@@ -49,8 +52,8 @@ public class Guns : MonoBehaviour
         MyEnum weapon = myEnum;
         weaponID = (int)weapon;
         currentAmmo = ammo;
-        AmmoManager.instance.CreateAmmoPool(ammo, weaponID);
-        AmmoManager.instance.CreateAmmoCanvas(currentAmmo, weaponID);
+        ammoManager.CreateAmmoPool(ammo, weaponID);
+        ammoManager.CreateAmmoCanvas(currentAmmo, weaponID);
 
     }
     private void OnEnable()
@@ -58,7 +61,7 @@ public class Guns : MonoBehaviour
 
         pInteract.onShoot += Shoot;
         pInteract.onReload += Reload;
-        AmmoManager.instance.CreateAmmoCanvas(currentAmmo, weaponID);
+        ammoManager.CreateAmmoCanvas(currentAmmo, weaponID);
 
     }
 
@@ -66,7 +69,7 @@ public class Guns : MonoBehaviour
     {
         pInteract.onShoot -= Shoot;
         pInteract.onReload -= Reload;
-        AmmoManager.instance.RemoveAllAmmoFromCanvas(ammo);
+        ammoManager.RemoveAllAmmoFromCanvas(ammo);
 
 
     }
@@ -78,9 +81,9 @@ public class Guns : MonoBehaviour
             currentAmmo--;
 
             //Shoot
-            AmmoManager.instance.RemoveOneBulletFromAmmo(weaponID);
+            ammoManager.RemoveOneBulletFromAmmo(weaponID);
 
-            animator.SetTrigger("Shoot");
+            anim.SetTrigger("Shoot");
             //AudioManager.instance.AkSfxShoot();
             pInteract.PlaceHole();
         }
@@ -88,10 +91,10 @@ public class Guns : MonoBehaviour
 
     protected virtual void Reload()
     {
-        animator.SetTrigger("Reload");
+        anim.SetTrigger("Reload");
         //AudioManager.instance.ReloadSfx();
         currentAmmo = ammo;
-        AmmoManager.instance.CreateAmmoCanvas(currentAmmo, weaponID);
+        ammoManager.CreateAmmoCanvas(currentAmmo, weaponID);
 
 
     }

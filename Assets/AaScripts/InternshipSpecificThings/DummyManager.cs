@@ -27,7 +27,7 @@ public class DummyManager : MonoBehaviour
         animator.SetTrigger("Hit");
         //AudioManager.instance.EnemyHit();
         levelManager.hittedTargets++;
-        levelManager.AddHeadShotPoints();
+        //levelManager.AddHeadShotPoints();
         canBeHit = false;
         beenHit = true;
     }
@@ -38,7 +38,7 @@ public class DummyManager : MonoBehaviour
 
         animator.SetTrigger("Hit");
         levelManager.hittedTargets++;
-        levelManager.AddBodyShotPoints();
+        //levelManager.AddBodyShotPoints();
         canBeHit = false;
         beenHit = true;
 

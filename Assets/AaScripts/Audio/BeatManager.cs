@@ -36,7 +36,7 @@ public class BeatManager : NetworkBehaviour
         if(isBeatPlaying) Beat();
 
 
-        cancelCombo -= Time.deltaTime;
+        //cancelCombo -= Time.deltaTime;
         //if (cancelCombo < 0) CancelCombo();
     }
 
@@ -112,7 +112,7 @@ public class BeatManager : NetworkBehaviour
         //uiManager.UpdateCombos(comboAmmount, comboMultiplyer);
         cancelCombo = 2f;
     }
-
+    /*
     public void CancelCombo()
     {
         player.GetComponent<PlayerManager>().PlayerPoints += comboAmmount;
@@ -121,4 +121,5 @@ public class BeatManager : NetworkBehaviour
        // uiManager.CleanCombos();
 
     }
+    */
 }

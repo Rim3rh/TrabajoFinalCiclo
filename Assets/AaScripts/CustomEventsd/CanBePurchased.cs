@@ -16,7 +16,6 @@ public class CanBePurchased : NetworkBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("COLLIDER");
             player = other.gameObject;
             PlayerInteract pInteract = player.GetComponent<PlayerInteract>();
             UiManager uiManager = player.GetComponent<UiManager>();
@@ -41,11 +40,13 @@ public class CanBePurchased : NetworkBehaviour
 
     private void InvokeEnevt()
     {
+       
         if(player.GetComponent<PlayerManager>().PlayerPoints >= moneyNeeded)
         {
             //AudioManager.instance.BuyFromShop();
             player.GetComponent<PlayerManager>().PlayerPoints -= moneyNeeded;
             OnEnterClientRpc();
+            player.GetComponent<UiManager>().HidePrice();
         }
     }
 

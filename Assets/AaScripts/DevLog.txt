@@ -95,6 +95,13 @@ Implementar assets mapa nuevo parcialmente + prueba con sicronizacion armas y pr
 
 Dia14(05/04/24): 1.5h
 meter Hud en player, aöadir abrir puerta con animacion(sin sincronizar)
+Dia15(08/04/24): 1h
+Sincronizar lo del ultimo dia
+
+Dia16()(09/04/24):
+Arreglar recarga
+arreglar puntos en multi
+añadir abrir otra puerta
 
 
 

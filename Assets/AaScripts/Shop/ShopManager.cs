@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField] GameObject rifle;
+    [SerializeField] Gun rifle;
 
     private GameObject player;
 

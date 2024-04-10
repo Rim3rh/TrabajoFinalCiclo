@@ -7,8 +7,6 @@ public class AmmoManager : MonoBehaviour
     //AmmoShit
     [SerializeField] GameObject pistolAmmo, akAmmo, sniperAmmo;
 
-    public static AmmoManager instance;
-
     [SerializeField] Transform firstAmmoSpot;
 
     //PistolShit
@@ -31,7 +29,6 @@ public class AmmoManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
     }
 
 
