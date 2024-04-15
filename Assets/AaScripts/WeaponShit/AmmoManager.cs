@@ -130,6 +130,13 @@ public class AmmoManager : MonoBehaviour
             if (go.activeSelf && go != null) go.SetActive(false);
         }
     }
+    public void ReloadAmmo(int totalAmmo, int ammoType)
+    {
+        RemoveAllAmmoFromCanvas(totalAmmo);
+
+        CreateAmmoCanvas(totalAmmo, ammoType);
+
+    }
 
 
     public void RemoveOneBulletFromAmmo(int ammoType)

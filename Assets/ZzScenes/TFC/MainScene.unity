@@ -19445,7 +19445,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuyableDoor
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6048106829391399528, guid: 10c326f282d41f14baa047951c8a555d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

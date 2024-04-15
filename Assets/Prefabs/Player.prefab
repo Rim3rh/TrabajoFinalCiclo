@@ -4946,6 +4946,7 @@ GameObject:
   - component: {fileID: 2902960375035459582}
   - component: {fileID: 2295783571404315536}
   - component: {fileID: 5696107142850874986}
+  - component: {fileID: 7361518511041065237}
   m_Layer: 0
   m_Name: rifle_001
   m_TagString: Untagged
@@ -5099,6 +5100,22 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &7361518511041065237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280865557957352732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &7372879838452257644
 GameObject:
   m_ObjectHideFlags: 0
@@ -6041,6 +6058,7 @@ GameObject:
   - component: {fileID: 8027217121647892526}
   - component: {fileID: 2244382540835515977}
   - component: {fileID: 8047631001242495281}
+  - component: {fileID: 5686301068837034307}
   m_Layer: 0
   m_Name: pistol_001
   m_TagString: Untagged
@@ -6194,6 +6212,22 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &5686301068837034307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478634512840597942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &8550449361030410339
 GameObject:
   m_ObjectHideFlags: 0
@@ -6273,6 +6307,7 @@ GameObject:
   - component: {fileID: 2350986889434498395}
   - component: {fileID: 3178630795499242674}
   - component: {fileID: 9000769071362701829}
+  - component: {fileID: 3646930133297382963}
   m_Layer: 0
   m_Name: sniper_rifle_001
   m_TagString: Untagged
@@ -6426,6 +6461,22 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &3646930133297382963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730639246930644926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &8824692692719736119
 GameObject:
   m_ObjectHideFlags: 0

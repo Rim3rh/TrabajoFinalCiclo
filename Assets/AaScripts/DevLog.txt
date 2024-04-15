@@ -103,6 +103,8 @@ Arreglar recarga
 arreglar puntos en multi
 añadir abrir otra puerta
 
+Dia17()(15/04/24):
+Arreglar recarga por fin
 
 
 

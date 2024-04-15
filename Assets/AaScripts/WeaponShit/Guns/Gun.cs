@@ -91,10 +91,11 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual void Reload()
     {
+        if (currentAmmo == ammo) return;
         anim.SetTrigger("Reload");
         //AudioManager.instance.ReloadSfx();
         currentAmmo = ammo;
-        ammoManager.CreateAmmoCanvas(currentAmmo, weaponID);
+        ammoManager.ReloadAmmo(ammo, weaponID);
 
 
     }

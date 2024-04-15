@@ -18,17 +18,10 @@ public class PurchaseDoorsManager : NetworkBehaviour
     [ClientRpc]
     public void OpenDoorClientRpc()
     {
-        Invoke(nameof(turnColliderOff), 0.6f);
-        if (!IsServer) return;
-        OpenDoorServerRpc();
-    }
-
-    [ServerRpc]
-    private void OpenDoorServerRpc()
-    {
         anim.SetTrigger("Open");
-
+        Invoke(nameof(turnColliderOff), 0.6f);
     }
+
 
 
     private void turnColliderOff()

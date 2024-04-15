@@ -21,7 +21,7 @@ public class CanBePurchased : NetworkBehaviour
             UiManager uiManager = player.GetComponent<UiManager>();
             PlayerManager playerManager = player.GetComponent<PlayerManager>();
             pInteract.onInteract += InvokeEnevt;
-            uiManager.ShowPrice(playerManager.PlayerPoints);
+            uiManager.ShowPrice(moneyNeeded);
         }
     }
 
@@ -43,22 +43,19 @@ public class CanBePurchased : NetworkBehaviour
        
         if(player.GetComponent<PlayerManager>().PlayerPoints >= moneyNeeded)
         {
+            Debug.Log(OwnerClientId);
+
             //AudioManager.instance.BuyFromShop();
             player.GetComponent<PlayerManager>().PlayerPoints -= moneyNeeded;
-            OnEnterClientRpc();
+            OnEnterServerRpc();
             player.GetComponent<UiManager>().HidePrice();
         }
-    }
-
-    [ClientRpc]
-    private void OnEnterClientRpc()
-    {
-        OnEnterServerRpc();
     }
 
     [ServerRpc(RequireOwnership =false)]
     private void OnEnterServerRpc()
     {
+        Debug.Log("LLEGO HASTA AQUI");
         onEnter?.Invoke();
     }
 }

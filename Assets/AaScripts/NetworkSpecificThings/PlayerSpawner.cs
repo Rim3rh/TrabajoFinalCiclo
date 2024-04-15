@@ -11,6 +11,7 @@ public class PlayerSpawner : NetworkBehaviour
     [SerializeField] Transform [] spawnPositions;
     private void Start()
     {
+        if (!IsServer) return;
         foreach(ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             GameObject player = Instantiate(playerPrefab);
