@@ -6,7 +6,6 @@ public class HandsFollowGuns : MonoBehaviour
 {
     [SerializeField] WeaponManager manager;
     [SerializeField] GameObject leftHand, rightHand;
-    [SerializeField] GameObject leftHand2, rightHand2;
 
 
     [Header("-----PISTOL-----")]
@@ -50,8 +49,6 @@ public class HandsFollowGuns : MonoBehaviour
 
         leftHand.transform.SetPositionAndRotation(leftHandPos, leftHandPosRot);
         rightHand.transform.SetPositionAndRotation(rightHandPos, rightHandPosRot);
-        leftHand2.transform.SetPositionAndRotation(leftHandPos, leftHandPosRot);
-        rightHand2.transform.SetPositionAndRotation(rightHandPos, rightHandPosRot);
 
     }
     

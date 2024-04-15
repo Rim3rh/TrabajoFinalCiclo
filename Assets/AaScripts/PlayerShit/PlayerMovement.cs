@@ -38,7 +38,7 @@ public class PlayerMovement : NetworkBehaviour
     }
     private void PlayerSprint_canceled(InputAction.CallbackContext obj)
     {
-        hittingSprintButton = false;
+        CancelSprint();
     }
 
     private void PlayerSprint_Started(InputAction.CallbackContext obj)
@@ -84,10 +84,7 @@ public class PlayerMovement : NetworkBehaviour
                 pManager.playerSpeed = defaultSpeed * 1.5f;
             }
         }
-        else
-        {
-            CancelSprint();
-        }
+
     }
 
     private void CancelSprint()

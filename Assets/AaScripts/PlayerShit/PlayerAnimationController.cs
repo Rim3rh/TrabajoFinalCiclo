@@ -65,7 +65,7 @@ public class PlayerAnimationController : NetworkBehaviour
         }
 
         //WalkingBack
-        if (Mathf.Abs(pManager.playerCurrentInputs.x) > 0 && pManager.playerCurrentInputs.y! > 0 || pManager.playerCurrentInputs.y < 0)
+        if (Mathf.Abs(pManager.playerCurrentInputs.x) > 0 && pManager.playerCurrentInputs.y !>= 0 || pManager.playerCurrentInputs.y < 0)
         {
             bodyAnim.SetBool("WalkBack", true);
 
