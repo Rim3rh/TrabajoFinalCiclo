@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class ZombiePoolManager : MonoBehaviour
+public class ZombiePoolManager : NetworkBehaviour
 {
 
     [SerializeField] GameObject zombiePrefab;
@@ -16,16 +16,38 @@ public class ZombiePoolManager : MonoBehaviour
 
     void Start()
     {
+        if (!IsServer) return;
+        CreateZombiePoolServerRpc();
+
+    }
+
+
+    [ServerRpc]
+    void CreateZombiePoolServerRpc()
+    {
         for (int i = 0; i < zombiePoolSize; i++)
         {
             GameObject go = Instantiate(zombiePrefab, this.transform);
-            zombiePool.Add(go);
-            go.SetActive(false);
-
-
-        }
+            go.GetComponent<NetworkObject>().Spawn();
+        } 
+        CreatePoolClientRpc();
 
     }
+
+    [ClientRpc]
+
+    void CreatePoolClientRpc()
+    {
+        ZombiesHealthController[] zombies = ZombiesHealthController.FindObjectsOfType<ZombiesHealthController>();
+        foreach (ZombiesHealthController zombie in zombies)
+        {
+            zombiePool.Add(zombie.gameObject);
+            zombie.gameObject.SetActive(false);
+        }
+    }
+
+
+
 
 
     public GameObject GetZombie()

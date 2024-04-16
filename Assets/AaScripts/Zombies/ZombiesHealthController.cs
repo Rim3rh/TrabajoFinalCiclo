@@ -12,7 +12,8 @@ public class ZombiesHealthController : NetworkBehaviour
     //healthZombie has
     public int zombieHealth;
 
-    public bool canBoShoot;
+    public bool canBeShoot;
+    [SerializeField] GameEvent onZombieDeath;
     #endregion
 
     private void Awake()
@@ -23,7 +24,7 @@ public class ZombiesHealthController : NetworkBehaviour
     //will get called by canBeShoot when zombie is hit
     public void EnemyHit()
     {
-        if (!canBoShoot) return;
+        if (!canBeShoot) return;
         EnemyHitServerRpc();
     }
     //Its serverRPC because its logic only the server should have.
@@ -33,6 +34,8 @@ public class ZombiesHealthController : NetworkBehaviour
         if (zombieHealth <= 0)
         {
             EnemyDieClientRpc();
+            //we do it here and not in the clientrpc cause we only want the server to do this action
+            onZombieDeath.Raise();
             return;
         }
         else
@@ -40,6 +43,7 @@ public class ZombiesHealthController : NetworkBehaviour
             zombieHealth--;
         }
         EnemyHitClientRpc();
+
     }
     //All clients should see the enemy get hit and die.
     [ClientRpc]

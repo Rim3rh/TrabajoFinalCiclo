@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class TestZombieSpawner : NetworkBehaviour
 {
@@ -10,26 +11,40 @@ public class TestZombieSpawner : NetworkBehaviour
 
     private void Start()
     {
+        Invoke(nameof(SpawnTestZombie), 3);
+    }
+
+    public void SpawnTestZombie()
+    {
         if (!IsServer) return;
+        SpawnZombieServerRpc();
     }
 
 
 
-    private void Update()
+    [ServerRpc]
+    private void SpawnZombieServerRpc()
     {
-        if (Input.GetKeyUp(KeyCode.K))
-        {
-            SpawnZombie(spawnPositions[Random.Range(0, spawnPositions.Length)]);
-        }
+
+        int randomPos = Random.Range(0, spawnPositions.Length);
+        SpawnZombieClientRpc(randomPos);
+
     }
-    private void SpawnZombie(Transform spanwpos)
+
+
+    [ClientRpc]
+    private void SpawnZombieClientRpc(int randomPos)
     {
+        //Get the zombie on the server
         GameObject zombie = poolManager.GetZombie();
+        //Call the clientRPC
+        //shit we want clients to see
         zombie.SetActive(true);
-        zombie.transform.position = spanwpos.position;
-        zombie.GetComponent<ZombiesHealthController>().zombieHealth = 5;
         zombie.GetComponent<Animator>().SetTrigger("Rise");
-        GetComponent<NetworkObject>().Spawn();
+        //Set position
+        zombie.transform.position = spawnPositions[randomPos].position;
+        //La vida solo la necesita saber el server
+        zombie.GetComponent<ZombiesHealthController>().zombieHealth = 5;
     }
 
 

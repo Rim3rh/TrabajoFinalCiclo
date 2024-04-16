@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43860856, g: 0.48673087, b: 0.56700367, a: 1}
+  m_IndirectSpecularColor: {r: 0.4370197, g: 0.48471385, b: 0.5649773, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -322,6 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 25966691}
   - component: {fileID: 25966692}
+  - component: {fileID: 25966693}
   m_Layer: 0
   m_Name: ZombiePool
   m_TagString: Untagged
@@ -358,6 +359,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 1859656639448317427, guid: d18265e9399deaf4aa9cf87c925a3f60, type: 3}
   zombiePoolSize: 5
+--- !u!114 &25966693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25966690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2248772832
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1001 &27053958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4296,7 +4313,7 @@ Transform:
   m_GameObject: {fileID: 385863161}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.02, y: -2.155, z: -1.65}
+  m_LocalPosition: {x: 11.43, y: -2.155, z: -0.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8465,13 +8482,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.77472997, y: -0.1483543, z: 0.18480907, w: 0.58619976}
+  m_LocalRotation: {x: 0.6944256, y: -0.12380615, z: 0.20207757, w: 0.6794188}
   m_LocalPosition: {x: 2.2844033, y: -3.3264267, z: 5.6718903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134910045}
-  m_LocalEulerAnglesHint: {x: 74.393, y: 155.3, z: 182.812}
+  m_LocalEulerAnglesHint: {x: 83.539, y: 87.509, z: 114.198}
 --- !u!1001 &707393773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23007,6 +23024,7 @@ GameObject:
   - component: {fileID: 1381372448}
   - component: {fileID: 1381372449}
   - component: {fileID: 1381372450}
+  - component: {fileID: 1381372451}
   m_Layer: 0
   m_Name: ZombieSpawnManager
   m_TagString: Untagged
@@ -23046,7 +23064,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8200b82a12d462540aa8152f9204b2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPositions: []
+  spawnPositions:
+  - {fileID: 786183585}
+  - {fileID: 385863162}
+  - {fileID: 1132032076}
+  - {fileID: 1373469606}
   poolManager: {fileID: 25966692}
 --- !u!114 &1381372450
 MonoBehaviour:
@@ -23064,6 +23086,34 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &1381372451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381372447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e9d86a23de3c54bb961348db4cefad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 39024e6f1de24f9438240857dd33d71a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1381372449}
+        m_TargetAssemblyTypeName: TestZombieSpawner, Assembly-CSharp
+        m_MethodName: SpawnTestZombie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1381684765
 PrefabInstance:
   m_ObjectHideFlags: 0

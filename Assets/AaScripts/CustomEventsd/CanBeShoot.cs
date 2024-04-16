@@ -17,13 +17,13 @@ public class CanBeShoot : NetworkBehaviour
     [ServerRpc(RequireOwnership =false)]
     private void CallReciveShootServerRpc()
     {
-        CallReciveShootClientRpc();
+        customEvent?.Invoke();
     }
 
     [ClientRpc]
     private void CallReciveShootClientRpc()
     {
-        customEvent?.Invoke();
+       
     }
 
 

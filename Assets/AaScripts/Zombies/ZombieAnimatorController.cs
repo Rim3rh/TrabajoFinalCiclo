@@ -36,11 +36,11 @@ public class ZombieAnimatorController : NetworkBehaviour
 
     private void CanBeShootToTrue()
     {
-        healthController.canBoShoot = true;
+        healthController.canBeShoot = true;
     }
     private void CanBeShootToFalse()
     {
-        healthController.canBoShoot=false;
+        healthController.canBeShoot=false;
     }
 
 }

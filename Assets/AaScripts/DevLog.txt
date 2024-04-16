@@ -108,6 +108,11 @@ Arreglar recarga por fin
 
 
 
+Dia18()(16/04/24): 4h
+Trabajado con el spawn de zombies(no funcionan las putas listas)
+mirar proximo dia xq no puedo descativar objetos de esa lista(networklist alomejor)
+funcionja la pool, y el spawn, pero el mesh renderer del cliente esta bajo tierra
+ZombielPoolManager.cs
 
 
 

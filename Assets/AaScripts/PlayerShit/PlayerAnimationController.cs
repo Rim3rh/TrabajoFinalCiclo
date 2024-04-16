@@ -32,7 +32,7 @@ public class PlayerAnimationController : NetworkBehaviour
     #region PrivateMethods
     private void SprintingAnims()
     {
-        if (pManager.playerSprint)
+        if (pManager.playerSprint && pManager.playerCurrentInputs.y > 0)
         {
             //Turn walkSpeed up, so the animation runs faster
             weaponAnim.SetFloat("WalkSpeed", 1.5f);
