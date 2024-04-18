@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class ZombiesHealthController : NetworkBehaviour
+public class ZombiesHealthController : NetworkBehaviour, IShooteable
 {
     #region Vars
 
@@ -21,14 +21,16 @@ public class ZombiesHealthController : NetworkBehaviour
     }
     #region EnemyHit
     //will get called by canBeShoot when zombie is hit
-    public void EnemyHit()
+
+    public void TakeDamge(int damage)
     {
         if (!canBoShoot) return;
-        EnemyHitServerRpc();
+        EnemyHitServerRpc(damage);
     }
+
     //Its serverRPC because its logic only the server should have.
     [ServerRpc(RequireOwnership = false)]
-    private void EnemyHitServerRpc()
+    private void EnemyHitServerRpc(int damage)
     {
         if (zombieHealth <= 0)
         {
@@ -37,7 +39,7 @@ public class ZombiesHealthController : NetworkBehaviour
         }
         else
         {
-            zombieHealth--;
+            zombieHealth-= damage;
         }
         EnemyHitClientRpc();
     }
