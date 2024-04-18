@@ -37,14 +37,14 @@ public class TestZombieSpawner : NetworkBehaviour
     {
         //Get the zombie on the server
         GameObject zombie = poolManager.GetZombie();
-        //Call the clientRPC
-        //shit we want clients to see
+        
         zombie.SetActive(true);
-        zombie.GetComponent<Animator>().SetTrigger("Rise");
+        
         //Set position
         zombie.transform.position = spawnPositions[randomPos].position;
         //La vida solo la necesita saber el server
         zombie.GetComponent<ZombiesHealthController>().zombieHealth = 5;
+        if(!IsServer) zombie.GetComponent<Animator>().SetTrigger("Rise");
     }
 
 
