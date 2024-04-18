@@ -7,23 +7,23 @@ using UnityEngine.Events;
 public class CanBeShoot : NetworkBehaviour
 {
     public UnityEvent customEvent;
-
-
     public void ReciveShoot()
     {
         CallReciveShootServerRpc();
     }
 
+
+
     [ServerRpc(RequireOwnership =false)]
     private void CallReciveShootServerRpc()
     {
-        customEvent?.Invoke();
+        CallReciveShootClientRpc();
     }
 
     [ClientRpc]
     private void CallReciveShootClientRpc()
-    {
-       
+    { 
+        customEvent?.Invoke();
     }
 
 

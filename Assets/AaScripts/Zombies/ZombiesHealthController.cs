@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class ZombiesHealthController : NetworkBehaviour
+public class ZombiesHealthController : NetworkBehaviour, IShooteable
 {
     #region Vars
 
@@ -12,8 +12,7 @@ public class ZombiesHealthController : NetworkBehaviour
     //healthZombie has
     public int zombieHealth;
 
-    public bool canBeShoot;
-    [SerializeField] GameEvent onZombieDeath;
+    public bool canBoShoot;
     #endregion
 
     private void Awake()
@@ -22,28 +21,27 @@ public class ZombiesHealthController : NetworkBehaviour
     }
     #region EnemyHit
     //will get called by canBeShoot when zombie is hit
-    public void EnemyHit()
+
+    public void TakeDamge(int damage)
     {
-        if (!canBeShoot) return;
-        EnemyHitServerRpc();
+        if (!canBoShoot) return;
+        EnemyHitServerRpc(damage);
     }
+
     //Its serverRPC because its logic only the server should have.
     [ServerRpc(RequireOwnership = false)]
-    private void EnemyHitServerRpc()
+    private void EnemyHitServerRpc(int damage)
     {
         if (zombieHealth <= 0)
         {
             EnemyDieClientRpc();
-            //we do it here and not in the clientrpc cause we only want the server to do this action
-            onZombieDeath.Raise();
             return;
         }
         else
         {
-            zombieHealth--;
+            zombieHealth-= damage;
         }
         EnemyHitClientRpc();
-
     }
     //All clients should see the enemy get hit and die.
     [ClientRpc]
