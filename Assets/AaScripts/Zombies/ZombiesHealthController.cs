@@ -10,9 +10,11 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
     //Class References
     ZombieAnimatorController animController;
     //healthZombie has
-    public int zombieHealth;
+    public float zombieHealth;
 
     public bool canBoShoot;
+
+    [SerializeField] GameEvent onZombieDeath;
     #endregion
 
     private void Awake()
@@ -22,7 +24,7 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
     #region EnemyHit
     //will get called by canBeShoot when zombie is hit
 
-    public void TakeDamge(int damage)
+    public void TakeDamge(float damage)
     {
         if (!canBoShoot) return;
         EnemyHitServerRpc(damage);
@@ -30,11 +32,12 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
 
     //Its serverRPC because its logic only the server should have.
     [ServerRpc(RequireOwnership = false)]
-    private void EnemyHitServerRpc(int damage)
+    private void EnemyHitServerRpc(float damage)
     {
         if (zombieHealth <= 0)
         {
             EnemyDieClientRpc();
+            onZombieDeath.Raise();
             return;
         }
         else

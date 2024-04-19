@@ -36,12 +36,11 @@ public class ZombieAnimatorController : NetworkBehaviour
 
     private void CanBeShootToTrue()
     {
-        healthController.canBeShoot = true;
-        Debug.Log("RUn on the client");
+        healthController.canBoShoot = true;
     }
     private void CanBeShootToFalse()
     {
-        healthController.canBeShoot=false;
+        healthController.canBoShoot = false;
     }
 
 }

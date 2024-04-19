@@ -9,7 +9,6 @@ public class ConectedPlayersVisuals : NetworkBehaviour
     [SerializeField] GameObject secondPlayerVisuals;
     void Start()
     {
-        Debug.Log("HOLA");
         if(IsServer) {  return; }
         SetGoToActiveServerRpc();
     }

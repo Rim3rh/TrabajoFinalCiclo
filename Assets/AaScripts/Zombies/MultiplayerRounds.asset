@@ -13,7 +13,18 @@ MonoBehaviour:
   m_Name: MultiplayerRounds
   m_EditorClassIdentifier: 
   rounds:
+  - round: 0
+    ammountOfZombies: 0
+    zombiesHealth: 0
+    zombiesSpeed: 0
+    spawnRate: 0
   - round: 1
     ammountOfZombies: 6
     zombiesHealth: 100
     zombiesSpeed: 1
+    spawnRate: 3
+  - round: 2
+    ammountOfZombies: 10
+    zombiesHealth: 100
+    zombiesSpeed: 1
+    spawnRate: 2

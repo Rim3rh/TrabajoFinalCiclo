@@ -13,6 +13,7 @@ public class ZombieRoundScriptableObject : ScriptableObject
         public int ammountOfZombies;
         public int zombiesHealth;
         public int zombiesSpeed;
+        public float spawnRate;
     }
     [SerializeField]
     public List<Rounds> rounds = new List<Rounds>();    

@@ -4795,10 +4795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pInteract: {fileID: 7097427397621773407}
-  myEnum: 2
-  ammo: 30
-  shootsPS: 4
-  damage: 30
+  gunScriptableObject: {fileID: 11400000, guid: 2c35b5d24f5cebe4784a657d27c4aead, type: 2}
 --- !u!95 &2902960375035459582
 Animator:
   serializedVersion: 5
@@ -5849,10 +5846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pInteract: {fileID: 7097427397621773407}
-  myEnum: 1
-  ammo: 6
-  shootsPS: 6
-  damage: 20
+  gunScriptableObject: {fileID: 11400000, guid: 5fcfabb31c041a14ab709f794f6dbd19, type: 2}
 --- !u!95 &8027217121647892526
 Animator:
   serializedVersion: 5
@@ -6119,10 +6113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pInteract: {fileID: 7097427397621773407}
-  myEnum: 3
-  ammo: 0
-  shootsPS: 0
-  damage: 0
+  gunScriptableObject: {fileID: 0}
 --- !u!114 &3178630795499242674
 MonoBehaviour:
   m_ObjectHideFlags: 0

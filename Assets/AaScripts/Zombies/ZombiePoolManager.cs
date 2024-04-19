@@ -48,7 +48,20 @@ public class ZombiePoolManager : NetworkBehaviour
 
 
 
+    public bool GetZombieChecker()
+    {
+        foreach (GameObject go in zombiePool)
+        {
+            if (!go.activeSelf)
+            {
+                return true;
+            }
 
+        }
+        Debug.LogError("Me has pedido zombie y no hay zombie huevon");
+        return false;
+
+    }
 
     public GameObject GetZombie()
     {

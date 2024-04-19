@@ -13,30 +13,15 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] PlayerInteract pInteract;
     AmmoManager ammoManager;
 
-    
+
 
     //>>>>>>>>GESTION DE ARMAS<<<<<<<//
-    private enum MyEnum
-    {
-       
-        Pistol = 1,
-        Ak = 2,
-        Sniper = 3
-    }
-    [SerializeField] MyEnum myEnum;
-    int weaponID;
-
-
-    [Header("WEAPONSHIT")]
-
-    [SerializeField] int ammo;
-    [SerializeField] float shootsPS;
-    [SerializeField] float damage;
+    [SerializeField] GunScriptableObject gunScriptableObject;
 
     private float shootingCD;
     private int currentAmmo;
 
-    
+    public float currentWeaponDamage;
 
 
 
@@ -48,12 +33,11 @@ public abstract class Gun : MonoBehaviour
 
     private void Start()
     {
+        currentWeaponDamage = gunScriptableObject.damage;
 
-        MyEnum weapon = myEnum;
-        weaponID = (int)weapon;
-        currentAmmo = ammo;
-        ammoManager.CreateAmmoPool(ammo, weaponID);
-        ammoManager.CreateAmmoCanvas(currentAmmo, weaponID);
+        currentAmmo = gunScriptableObject.ammo;
+        ammoManager.CreateAmmoPool(gunScriptableObject.ammo, gunScriptableObject.weaponID);
+        ammoManager.CreateAmmoCanvas(currentAmmo, gunScriptableObject.weaponID);
 
     }
     private void OnEnable()
@@ -61,7 +45,7 @@ public abstract class Gun : MonoBehaviour
 
         pInteract.onShoot += Shoot;
         pInteract.onReload += Reload;
-        ammoManager.CreateAmmoCanvas(currentAmmo, weaponID);
+        ammoManager.CreateAmmoCanvas(currentAmmo, gunScriptableObject.weaponID);
 
     }
 
@@ -69,7 +53,7 @@ public abstract class Gun : MonoBehaviour
     {
         pInteract.onShoot -= Shoot;
         pInteract.onReload -= Reload;
-        ammoManager.RemoveAllAmmoFromCanvas(ammo);
+        ammoManager.RemoveAllAmmoFromCanvas(gunScriptableObject.ammo);
 
 
     }
@@ -77,11 +61,11 @@ public abstract class Gun : MonoBehaviour
     {
         if (shootingCD <= 0 && currentAmmo > 0)
         {
-            shootingCD = 1 / shootsPS;
+            shootingCD = 1 / gunScriptableObject.shootsPS;
             currentAmmo--;
 
             //Shoot
-            ammoManager.RemoveOneBulletFromAmmo(weaponID);
+            ammoManager.RemoveOneBulletFromAmmo(gunScriptableObject.weaponID);
 
             anim.SetTrigger("Shoot");
             //AudioManager.instance.AkSfxShoot();
@@ -91,11 +75,11 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual void Reload()
     {
-        if (currentAmmo == ammo) return;
+        if (currentAmmo == gunScriptableObject.ammo) return;
         anim.SetTrigger("Reload");
         //AudioManager.instance.ReloadSfx();
-        currentAmmo = ammo;
-        ammoManager.ReloadAmmo(ammo, weaponID);
+        currentAmmo = gunScriptableObject.ammo;
+        ammoManager.ReloadAmmo(gunScriptableObject.ammo, gunScriptableObject.weaponID);
 
 
     }

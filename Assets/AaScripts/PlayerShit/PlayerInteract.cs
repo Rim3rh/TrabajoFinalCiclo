@@ -32,6 +32,7 @@ public class PlayerInteract : NetworkBehaviour
 
     //Component References
     PlayerInput pInput;
+    WeaponManager weaponManager;
 
     #endregion
     #region SelfRunningMethods
@@ -39,6 +40,7 @@ public class PlayerInteract : NetworkBehaviour
     {
         //Geting Components
         pInput = GetComponent<PlayerInput>();
+        weaponManager = GetComponent<WeaponManager>();
     }
     private void Start()
     {
@@ -92,6 +94,9 @@ public class PlayerInteract : NetworkBehaviour
             //this is a class with a Unity envet, so any obj with it will be able to add the logic that it wants to happen when beeing hit
             //so here, we just need to call this method that will call the event.
             if(hit.collider.GetComponent<CanBeShoot>() != null) hit.collider.GetComponent<CanBeShoot>().ReciveShoot();
+            if (hit.collider.GetComponent<IShooteable>() != null)
+                hit.collider.GetComponent<IShooteable>().TakeDamge
+                (weaponManager.currentWeapon.currentWeaponDamage);
 
 
             //Wall Holes object pool
