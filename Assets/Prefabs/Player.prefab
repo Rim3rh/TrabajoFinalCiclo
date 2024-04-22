@@ -4704,9 +4704,6 @@ GameObject:
   - component: {fileID: 2756650698382455321}
   - component: {fileID: 8639555798765911108}
   - component: {fileID: 2902960375035459582}
-  - component: {fileID: 2295783571404315536}
-  - component: {fileID: 5696107142850874986}
-  - component: {fileID: 7361518511041065237}
   m_Layer: 0
   m_Name: rifle_001
   m_TagString: Untagged
@@ -4796,6 +4793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pInteract: {fileID: 7097427397621773407}
   gunScriptableObject: {fileID: 11400000, guid: 2c35b5d24f5cebe4784a657d27c4aead, type: 2}
+  currentWeaponDamage: 0
 --- !u!95 &2902960375035459582
 Animator:
   serializedVersion: 5
@@ -4817,62 +4815,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2295783571404315536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7280865557957352732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be775e98d195214782cc2d317cc4e6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
-  m_Animator: {fileID: 2902960375035459582}
---- !u!114 &5696107142850874986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7280865557957352732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 735fdb1033fcac7439e606038c03355d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  InLocalSpace: 0
-  Interpolate: 1
---- !u!114 &7361518511041065237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7280865557957352732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &7372879838452257644
 GameObject:
   m_ObjectHideFlags: 0
@@ -5755,9 +5697,6 @@ GameObject:
   - component: {fileID: 8362967295835974823}
   - component: {fileID: 7786821184417897983}
   - component: {fileID: 8027217121647892526}
-  - component: {fileID: 2244382540835515977}
-  - component: {fileID: 8047631001242495281}
-  - component: {fileID: 5686301068837034307}
   m_Layer: 0
   m_Name: pistol_001
   m_TagString: Untagged
@@ -5847,6 +5786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pInteract: {fileID: 7097427397621773407}
   gunScriptableObject: {fileID: 11400000, guid: 5fcfabb31c041a14ab709f794f6dbd19, type: 2}
+  currentWeaponDamage: 0
 --- !u!95 &8027217121647892526
 Animator:
   serializedVersion: 5
@@ -5868,62 +5808,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2244382540835515977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8478634512840597942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be775e98d195214782cc2d317cc4e6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
-  m_Animator: {fileID: 8027217121647892526}
---- !u!114 &8047631001242495281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8478634512840597942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 735fdb1033fcac7439e606038c03355d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  InLocalSpace: 0
-  Interpolate: 1
---- !u!114 &5686301068837034307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8478634512840597942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &8550449361030410339
 GameObject:
   m_ObjectHideFlags: 0
@@ -6001,9 +5885,6 @@ GameObject:
   - component: {fileID: 8428308616212306778}
   - component: {fileID: 1250117387314357957}
   - component: {fileID: 2350986889434498395}
-  - component: {fileID: 3178630795499242674}
-  - component: {fileID: 9000769071362701829}
-  - component: {fileID: 3646930133297382963}
   m_Layer: 0
   m_Name: sniper_rifle_001
   m_TagString: Untagged
@@ -6114,62 +5995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pInteract: {fileID: 7097427397621773407}
   gunScriptableObject: {fileID: 0}
---- !u!114 &3178630795499242674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730639246930644926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be775e98d195214782cc2d317cc4e6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
-  m_Animator: {fileID: 1250117387314357957}
---- !u!114 &9000769071362701829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730639246930644926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 735fdb1033fcac7439e606038c03355d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  InLocalSpace: 0
-  Interpolate: 1
---- !u!114 &3646930133297382963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730639246930644926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
+  currentWeaponDamage: 0
 --- !u!1 &8824692692719736119
 GameObject:
   m_ObjectHideFlags: 0

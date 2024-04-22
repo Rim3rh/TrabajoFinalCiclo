@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,28 +10,46 @@ public class ZombiePathController : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    public bool canMove = true;
+    public bool isMoving;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    void Start()
+    void Update()
+    {
+        CheckIfCanAttackPlayer();
+        FindClosestPlayer();
+        if (canMove)
+        {
+            if (targetPlayer != null)
+            {
+                FollowPlayer();
+            }
+        }
+        else
+        {
+            isMoving = false;
+            CancelFollowPlayer();
+        }
+
+    }
+    private void OnEnable()
     {
         FindCurrentPlayers();
     }
 
-    void Update()
-    {
-        FindClosestPlayer();
-        if (targetPlayer != null)
-        {
-            FollowPlayer();
-        }
-    }
-
     private void FollowPlayer()
     {
+        isMoving = true;
         agent.destination = targetPlayer.transform.position;
+        agent.isStopped = false;    
+
+    }
+    private void CancelFollowPlayer()
+    {
+        agent.isStopped = true;
     }
 
     private void FindClosestPlayer()
@@ -51,17 +70,26 @@ public class ZombiePathController : MonoBehaviour
         targetPlayer = closestPlayer;
     }
 
-    private void OnEnable()
-    {
-        FindCurrentPlayers();
-    }
-
     private void FindCurrentPlayers()
     {
         players.Clear(); 
         foreach (PlayerManager player in GameObject.FindObjectsOfType<PlayerManager>())
         {
             players.Add(player.gameObject);
+        }
+    }
+
+    private void CheckIfCanAttackPlayer()
+    {
+        if (targetPlayer == null) return;
+        if(Vector3.Distance(this.transform.position, targetPlayer.transform.position) < 1f)
+        {
+            canMove = false;
+            Debug.Log("AHNDSAOIJHDOAS^PJNDM");
+        }
+        else
+        {
+            canMove = true;
         }
     }
 }

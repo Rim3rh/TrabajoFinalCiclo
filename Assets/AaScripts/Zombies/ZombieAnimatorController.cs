@@ -1,5 +1,4 @@
 //using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ public class ZombieAnimatorController : NetworkBehaviour
 {
      //class references
      ZombiesHealthController healthController;
+    ZombiePathController pathController;
     //Component References
     Animator anim;
 
@@ -15,9 +15,26 @@ public class ZombieAnimatorController : NetworkBehaviour
         //Getting Components
         anim = GetComponent<Animator>();
         healthController = GetComponent<ZombiesHealthController>();
+        pathController = GetComponent<ZombiePathController>();
+    }
+
+    private void Update()
+    {
+        WalkAnimation();
     }
 
 
+    private void WalkAnimation()
+    {
+        if (pathController.isMoving)
+        {
+            anim.SetBool("Walk", true);
+        }
+        else
+        {
+            anim.SetBool("Walk", false);
+        }
+    }
     public void Hit()
     {
         anim.SetTrigger("Hit");
@@ -28,12 +45,21 @@ public class ZombieAnimatorController : NetworkBehaviour
         anim.SetTrigger("Die");
        
     }
+
+
+    #region References For Animator
+    private void CanMoveToTrue()
+    {
+        pathController.canMove = true;
+    }
+    private void CanMoveToFalse()
+    {
+        pathController.canMove= false;
+    }
     private void SetGoToInactive()
     {
         gameObject.SetActive(false);
     }
-
-
     private void CanBeShootToTrue()
     {
         healthController.canBoShoot = true;
@@ -42,5 +68,5 @@ public class ZombieAnimatorController : NetworkBehaviour
     {
         healthController.canBoShoot = false;
     }
-
+    #endregion
 }
