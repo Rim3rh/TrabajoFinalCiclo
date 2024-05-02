@@ -15,6 +15,8 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
     public bool canBoShoot;
 
     [SerializeField] GameEvent onZombieDeath;
+
+    private GameObject player;
     #endregion
 
     private void Awake()
@@ -29,7 +31,10 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
         if (!canBoShoot) return;
         EnemyHitServerRpc(damage);
     }
-
+    public void FindPlayer(GameObject player)
+    {
+        this.player = player;
+    }
     //Its serverRPC because its logic only the server should have.
     [ServerRpc(RequireOwnership = false)]
     private void EnemyHitServerRpc(float damage)
@@ -51,12 +56,23 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
     private void EnemyHitClientRpc()
     {
         animController.Hit();
+        if (player != null)
+        {
+            player.GetComponent<PlayerManager>().PlayerPoints += 10;
+            player = null;
+        }
+
+
     }
     [ClientRpc]
     private void EnemyDieClientRpc()
     {
         animController.Die();
-
+        if (player != null)
+        {
+            player.GetComponent<PlayerManager>().PlayerPoints += 100;
+            player = null;
+        }
     }
     #endregion
 }

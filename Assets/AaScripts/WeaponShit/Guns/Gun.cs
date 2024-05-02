@@ -69,7 +69,7 @@ public abstract class Gun : MonoBehaviour
 
             anim.SetTrigger("Shoot");
             //AudioManager.instance.AkSfxShoot();
-            pInteract.PlaceHole();
+            //pInteract.PlaceHole();
         }
     }
 

@@ -83,7 +83,7 @@ public class PlayerInteract : NetworkBehaviour
         //To false when its released
         shooting = false;
     }
-
+    /*
     public void PlaceHole()
     {
         //check if owner in case a not owner calls this method(might be able to be removed(not sure if it can so im leaving it xd))
@@ -95,8 +95,13 @@ public class PlayerInteract : NetworkBehaviour
             //so here, we just need to call this method that will call the event.
             if(hit.collider.GetComponent<CanBeShoot>() != null) hit.collider.GetComponent<CanBeShoot>().ReciveShoot();
             if (hit.collider.GetComponent<IShooteable>() != null)
+            {
+                hit.collider.GetComponent<IShooteable>().FindPlayer
+                (this.gameObject);
+
                 hit.collider.GetComponent<IShooteable>().TakeDamge
                 (weaponManager.currentWeapon.currentWeaponDamage);
+            }
 
 
             //Wall Holes object pool
@@ -107,6 +112,7 @@ public class PlayerInteract : NetworkBehaviour
 
         }
     }
+    
 
     private GameObject GetHole()
     {
@@ -138,6 +144,6 @@ public class PlayerInteract : NetworkBehaviour
         //Code will never reach this poiunt but unity gets madf if you dont check for all scenrarios.
         return null;
     }
-
+    */
     #endregion
 }

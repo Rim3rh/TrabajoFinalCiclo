@@ -1,24 +1,30 @@
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ZombiePathController : MonoBehaviour
+public class ZombiePathController : NetworkBehaviour
 {
     private List<GameObject> players = new List<GameObject>();
     private GameObject targetPlayer;
 
     private NavMeshAgent agent;
-
+    ZombieAnimatorController animController;
     public bool canMove = true;
     public bool isMoving;
+
+    private float attackTimer = 0f; // Timer to track how long the enemy is close to the player
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        animController = GetComponent<ZombieAnimatorController>();  
     }
 
     void Update()
     {
+        if (!IsServer) return;
         CheckIfCanAttackPlayer();
         FindClosestPlayer();
         if (canMove)
@@ -44,7 +50,7 @@ public class ZombiePathController : MonoBehaviour
     {
         isMoving = true;
         agent.destination = targetPlayer.transform.position;
-        agent.isStopped = false;    
+        agent.isStopped = false;
 
     }
     private void CancelFollowPlayer()
@@ -72,7 +78,7 @@ public class ZombiePathController : MonoBehaviour
 
     private void FindCurrentPlayers()
     {
-        players.Clear(); 
+        players.Clear();
         foreach (PlayerManager player in GameObject.FindObjectsOfType<PlayerManager>())
         {
             players.Add(player.gameObject);
@@ -82,14 +88,24 @@ public class ZombiePathController : MonoBehaviour
     private void CheckIfCanAttackPlayer()
     {
         if (targetPlayer == null) return;
-        if(Vector3.Distance(this.transform.position, targetPlayer.transform.position) < 1f)
+        float distanceToPlayer = Vector3.Distance(transform.position, targetPlayer.transform.position);
+
+        if (distanceToPlayer < 1f)
         {
             canMove = false;
-            Debug.Log("AHNDSAOIJHDOAS^PJNDM");
+            // Increment attack timer
+            attackTimer += Time.deltaTime;
+            // If the attack timer exceeds 0.15 seconds, trigger the attack animation
+            if (attackTimer >= 0.15f)
+            {
+                animController.Attack();
+            }
         }
         else
         {
             canMove = true;
+            // Reset attack timer when the enemy is not close to the player
+            attackTimer = 0f;
         }
     }
 }

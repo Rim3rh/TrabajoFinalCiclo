@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IShooteable 
 {
     public void TakeDamge(float damage);
+    public void FindPlayer(GameObject player);
 }

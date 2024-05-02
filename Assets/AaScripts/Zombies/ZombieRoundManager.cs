@@ -1,36 +1,40 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieRoundManager : NetworkBehaviour
 {
     [SerializeField] Transform[] spawnPositions;
     [SerializeField] ZombiePoolManager poolManager;
 
-
-
-    TestZombieSpawner zombieSpawner;
-
     [SerializeField] ZombieRoundScriptableObject roundContainer;
 
     private List<ZombiesHealthController> zombiesToSpawn = new List<ZombiesHealthController>();
 
+    [SerializeField] TextMeshProUGUI currentRoundText;
 
     public int currentRound = 1;
 
 
-    private int ammountOfZombiesToSapwn;
+    public int ammountOfZombiesToSapwn;
     private float timer;
     bool inRound ;
 
+    [SerializeField] GameEvent onRoundChanged;
 
     private void Start()
     {
+        if(!IsServer) return;
         StartNewRound();
         currentRound  =1;
+        UpdateCurrentRoundClientRpc(currentRound);
+
     }
+
 
 
     public void StartNewRound()
@@ -39,6 +43,7 @@ public class ZombieRoundManager : NetworkBehaviour
         ammountOfZombiesToSapwn = roundContainer.rounds[currentRound].ammountOfZombies;
         timer = roundContainer.rounds[currentRound].spawnRate;
         inRound = true;
+        onRoundChanged.Raise();
 
 
     }
@@ -60,8 +65,19 @@ public class ZombieRoundManager : NetworkBehaviour
                     ammountOfZombiesToSapwn--;
                 }
                 //sino, lo seguira intentando hasta q spawne
+
+
             }
 
+        }
+
+
+        if(poolManager.activeZombies.Count == 0 && inRound  && ammountOfZombiesToSapwn == 0)
+        {
+            inRound = false;
+            currentRound++;
+            Invoke(nameof(StartNewRound), 5f);
+            UpdateCurrentRoundClientRpc(currentRound);
         }
     }
 
@@ -71,9 +87,13 @@ public class ZombieRoundManager : NetworkBehaviour
 
     public bool SpawnZombie()
     {
-        //si no es servidor ns que pasara la verdad xd
-        SpawnZombieServerRpc();
-        return poolManager.GetZombieChecker();
+        if (poolManager.GetZombieChecker())
+        {
+            //si no es servidor ns que pasara la verdad xd
+            SpawnZombieServerRpc();
+            return true;
+        }else return false;
+
     }
 
 
@@ -105,9 +125,15 @@ public class ZombieRoundManager : NetworkBehaviour
         //Set position
         zombie.transform.position = spawnPositions[randomPos].position;
         //La vida solo la necesita saber el server
-        zombie.GetComponent<ZombiesHealthController>().zombieHealth = 5;
+        zombie.GetComponent<ZombiesHealthController>().zombieHealth = roundContainer.rounds[currentRound].zombiesHealth;
         if (!IsServer) zombie.GetComponent<Animator>().SetTrigger("Rise");
+
+        zombie.GetComponent<NavMeshAgent>().speed = roundContainer.rounds[currentRound].zombiesSpeed;
     }
 
-
+    [ClientRpc]
+    public void UpdateCurrentRoundClientRpc(int round)
+    {
+        currentRoundText.text = round.ToString();
+    }
 }

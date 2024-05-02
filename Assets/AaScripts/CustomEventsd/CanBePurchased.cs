@@ -43,8 +43,6 @@ public class CanBePurchased : NetworkBehaviour
        
         if(player.GetComponent<PlayerManager>().PlayerPoints >= moneyNeeded)
         {
-            Debug.Log(OwnerClientId);
-
             //AudioManager.instance.BuyFromShop();
             player.GetComponent<PlayerManager>().PlayerPoints -= moneyNeeded;
             OnEnterServerRpc();

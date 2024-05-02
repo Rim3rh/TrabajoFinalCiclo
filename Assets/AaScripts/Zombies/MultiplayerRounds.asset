@@ -22,9 +22,29 @@ MonoBehaviour:
     ammountOfZombies: 6
     zombiesHealth: 100
     zombiesSpeed: 1
-    spawnRate: 3
+    spawnRate: 5
   - round: 2
-    ammountOfZombies: 10
+    ammountOfZombies: 8
     zombiesHealth: 100
     zombiesSpeed: 1
-    spawnRate: 2
+    spawnRate: 5
+  - round: 3
+    ammountOfZombies: 10
+    zombiesHealth: 110
+    zombiesSpeed: 1
+    spawnRate: 5
+  - round: 4
+    ammountOfZombies: 10
+    zombiesHealth: 160
+    zombiesSpeed: 1
+    spawnRate: 5
+  - round: 5
+    ammountOfZombies: 12
+    zombiesHealth: 170
+    zombiesSpeed: 1
+    spawnRate: 5
+  - round: 6
+    ammountOfZombies: 14
+    zombiesHealth: 170
+    zombiesSpeed: 1.5
+    spawnRate: 4.5

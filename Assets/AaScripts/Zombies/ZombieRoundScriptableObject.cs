@@ -12,7 +12,7 @@ public class ZombieRoundScriptableObject : ScriptableObject
         public int round;
         public int ammountOfZombies;
         public int zombiesHealth;
-        public int zombiesSpeed;
+        public float zombiesSpeed;
         public float spawnRate;
     }
     [SerializeField]

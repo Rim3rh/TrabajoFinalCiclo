@@ -10,9 +10,11 @@ public class ZombiePoolManager : NetworkBehaviour
 
     List<GameObject> zombiePool = new List<GameObject>();
 
-    List<GameObject> activeZombies = new List<GameObject>();
+    public List<GameObject> activeZombies = new List<GameObject>();
 
     [SerializeField] int zombiePoolSize;
+
+    
 
     void Start()
     {
@@ -58,9 +60,7 @@ public class ZombiePoolManager : NetworkBehaviour
             }
 
         }
-        Debug.LogError("Me has pedido zombie y no hay zombie huevon");
         return false;
-
     }
 
     public GameObject GetZombie()

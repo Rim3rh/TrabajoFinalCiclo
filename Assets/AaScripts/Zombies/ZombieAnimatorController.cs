@@ -45,6 +45,11 @@ public class ZombieAnimatorController : NetworkBehaviour
         anim.SetTrigger("Die");
        
     }
+    public void Attack()
+    {
+        anim.SetTrigger("Attack");
+
+    }
 
 
     #region References For Animator

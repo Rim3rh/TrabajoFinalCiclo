@@ -31,6 +31,10 @@ public class UiManager : NetworkBehaviour
     [SerializeField] TextMeshProUGUI priceText;
 
     [SerializeField] GameObject hudGameObject;
+
+
+
+
     private void Start()
     {
         if(!IsLocalPlayer) hudGameObject.SetActive(false);
@@ -40,8 +44,6 @@ public class UiManager : NetworkBehaviour
         if (!IsOwner) return;
         playerPoints.text = newPoints.ToString();
     }
-
-
 
 
     public void ShowPrice(int pointsNeeded)

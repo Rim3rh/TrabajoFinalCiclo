@@ -25,16 +25,16 @@ public class AmmoManager : MonoBehaviour
 
 
     private bool firstPistol;
-
+    
 
     private void Awake()
     {
     }
 
 
+
     public void CreateAmmoPool(int totalAmmo, int ammoType)
     {
-        Debug.Log(totalAmmo + ammoType);
         for (int i = 0; i < totalAmmo; i++)
         {
 
