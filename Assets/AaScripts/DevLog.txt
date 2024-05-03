@@ -114,9 +114,21 @@ mirar proximo dia xq no puedo descativar objetos de esa lista(networklist alomej
 funcionja la pool, y el spawn, pero el mesh renderer del cliente esta bajo tierra
 ZombielPoolManager.cs
 
+----
 
+por lo mencionado en el ultimo dia, 
+zomies spawnean bien, mueren bn, dan puntos, estan bien sincronizados, hay un sistema de rondas(lo rompi ayer(tengo q arreglarlo))
 
+Tiempo que he dejado de apuntar lo que hacia: X horas xd
 
+---
+
+Dia19?(03/05/24): 2h
+
+Place hole error
+fix zombie animations on client
+add headshots to zombies
+fix player controller
 
 
 

@@ -14,7 +14,7 @@ public class PlayerMovement : NetworkBehaviour
     Rigidbody rb;
     //Private vars
     private float defaultSpeed;
-    private bool hittingSprintButton;
+    [SerializeField] bool hittingSprintButton;
     #endregion
     #region SelfRunningMethods
     private void Awake()
@@ -63,7 +63,7 @@ public class PlayerMovement : NetworkBehaviour
         //Aplly the speèd(not on the y)
         rb.velocity = new Vector3(movementDirection.x * pManager.playerSpeed, rb.velocity.y, movementDirection.z * pManager.playerSpeed);
         //if normal walking, speed is defaulted
-        if (Inputs().y > 0 && !pManager.playerSprint)
+        if ((Inputs().y > 0 || Mathf.Abs(Inputs().x) > 0 ) && !pManager.playerSprint)
         {
             pManager.playerSpeed = defaultSpeed;
         }
@@ -89,6 +89,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private void CancelSprint()
     {
+        hittingSprintButton = false;
         pManager.playerSprint = false;
         pManager.playerSpeed = defaultSpeed;
     }

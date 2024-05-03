@@ -12,6 +12,7 @@ public class ZombiePathController : NetworkBehaviour
     private NavMeshAgent agent;
     ZombieAnimatorController animController;
     public bool canMove = true;
+    public bool isStunned;
     public bool isMoving;
 
     private float attackTimer = 0f; // Timer to track how long the enemy is close to the player
@@ -27,6 +28,13 @@ public class ZombiePathController : NetworkBehaviour
         if (!IsServer) return;
         CheckIfCanAttackPlayer();
         FindClosestPlayer();
+
+        if (isStunned)
+        {
+            agent.isStopped = true;
+            return;
+        }
+
         if (canMove)
         {
             if (targetPlayer != null)

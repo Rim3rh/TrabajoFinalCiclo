@@ -19,6 +19,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] GunScriptableObject gunScriptableObject;
 
     private float shootingCD;
+    private bool isReloading;
     private int currentAmmo;
 
     public float currentWeaponDamage;
@@ -59,6 +60,7 @@ public abstract class Gun : MonoBehaviour
     }
     protected virtual void Shoot()
     {
+        if (isReloading) return;
         if (shootingCD <= 0 && currentAmmo > 0)
         {
             shootingCD = 1 / gunScriptableObject.shootsPS;
@@ -69,12 +71,13 @@ public abstract class Gun : MonoBehaviour
 
             anim.SetTrigger("Shoot");
             //AudioManager.instance.AkSfxShoot();
-            //pInteract.PlaceHole();
+            pInteract.PlaceHole();
         }
     }
 
     protected virtual void Reload()
     {
+        if (isReloading) return;
         if (currentAmmo == gunScriptableObject.ammo) return;
         anim.SetTrigger("Reload");
         //AudioManager.instance.ReloadSfx();
@@ -86,5 +89,17 @@ public abstract class Gun : MonoBehaviour
     private void Update()
     {
         shootingCD -= Time.deltaTime;
+    }
+
+
+
+    private void RealoadingToTrue()
+    {
+        isReloading = true;
+    }
+
+    private void RealoadingToFalse()
+    {
+        isReloading = false;
     }
 }

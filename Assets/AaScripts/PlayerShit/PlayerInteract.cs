@@ -83,7 +83,7 @@ public class PlayerInteract : NetworkBehaviour
         //To false when its released
         shooting = false;
     }
-    /*
+    
     public void PlaceHole()
     {
         //check if owner in case a not owner calls this method(might be able to be removed(not sure if it can so im leaving it xd))
@@ -103,17 +103,17 @@ public class PlayerInteract : NetworkBehaviour
                 (weaponManager.currentWeapon.currentWeaponDamage);
             }
 
-
+            /*
             //Wall Holes object pool
             GameObject go = GetHole();
             go.SetActive(true);
             go.transform.SetPositionAndRotation(hit.point, Quaternion.LookRotation(hit.normal));
             go.transform.parent = hit.collider.transform;
-
+            */
         }
     }
-    
 
+    /*
     private GameObject GetHole()
     {
         //reset lastGo so it cant give the same hole as last intineration

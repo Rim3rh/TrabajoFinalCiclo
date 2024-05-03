@@ -26,7 +26,12 @@ public class ZombieAnimatorController : NetworkBehaviour
 
     private void WalkAnimation()
     {
-        if (pathController.isMoving)
+        WalkAnimationClientRpc(pathController.isMoving);
+    }
+    [ClientRpc]
+    private void WalkAnimationClientRpc(bool isMoving)
+    {
+        if (isMoving)
         {
             anim.SetBool("Walk", true);
         }
@@ -35,17 +40,34 @@ public class ZombieAnimatorController : NetworkBehaviour
             anim.SetBool("Walk", false);
         }
     }
+
     public void Hit()
     {
+        HitClientRpc();
+    }
+    [ClientRpc]
+    private void HitClientRpc()
+    {
         anim.SetTrigger("Hit");
+
     }
 
     public void Die()
     {
+        DieClientRpc();
+    }
+    [ClientRpc]
+    private void DieClientRpc()
+    {
         anim.SetTrigger("Die");
-       
+
     }
     public void Attack()
+    {
+        AttackClientRpc();
+    }
+    [ClientRpc]
+    private void AttackClientRpc()
     {
         anim.SetTrigger("Attack");
 
@@ -55,11 +77,11 @@ public class ZombieAnimatorController : NetworkBehaviour
     #region References For Animator
     private void CanMoveToTrue()
     {
-        pathController.canMove = true;
+        pathController.isStunned = false;
     }
     private void CanMoveToFalse()
     {
-        pathController.canMove= false;
+        pathController.isStunned = true;
     }
     private void SetGoToInactive()
     {

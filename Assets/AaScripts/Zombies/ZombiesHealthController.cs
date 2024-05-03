@@ -35,6 +35,12 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
     {
         this.player = player;
     }
+    //creating this so head can pass a player in case you dont have one
+    public void SetPlayer(GameObject player)
+    {
+        this.player = player;
+
+    }
     //Its serverRPC because its logic only the server should have.
     [ServerRpc(RequireOwnership = false)]
     private void EnemyHitServerRpc(float damage)
