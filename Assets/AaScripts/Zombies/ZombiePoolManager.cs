@@ -78,10 +78,9 @@ public class ZombiePoolManager : NetworkBehaviour
         return null;
 
     }
-    public void DisableZombie(GameObject zombieToDesable)
+    public void RemoveOneZombieFromList()
     {
-        activeZombies.Remove(zombieToDesable);
-        zombieToDesable.SetActive(false);
+        activeZombies.RemoveAt(activeZombies.Count-1);
     }
 
 }
