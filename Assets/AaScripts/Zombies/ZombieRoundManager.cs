@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
 public class ZombieRoundManager : NetworkBehaviour
 {
-    [SerializeField] Transform[] spawnPositions;
+    public List<Transform> activeSpawnPositions = new List<Transform>();
     [SerializeField] ZombiePoolManager poolManager;
 
     [SerializeField] ZombieRoundScriptableObject roundContainer;
@@ -103,7 +103,7 @@ public class ZombieRoundManager : NetworkBehaviour
     private void SpawnZombieServerRpc()
     {
 
-        int randomPos = UnityEngine.Random.Range(0, spawnPositions.Length);
+        int randomPos = UnityEngine.Random.Range(0, activeSpawnPositions.Count);
         SpawnZombieClientRpc(randomPos);
 
     }
@@ -123,7 +123,7 @@ public class ZombieRoundManager : NetworkBehaviour
         zombie.SetActive(true);
 
         //Set position
-        zombie.transform.position = spawnPositions[randomPos].position;
+        zombie.transform.position = activeSpawnPositions[randomPos].position;
         //La vida solo la necesita saber el server
         zombie.GetComponent<ZombiesHealthController>().zombieHealth = roundContainer.rounds[currentRound].zombiesHealth;
         if (!IsServer) zombie.GetComponent<Animator>().SetTrigger("Rise");

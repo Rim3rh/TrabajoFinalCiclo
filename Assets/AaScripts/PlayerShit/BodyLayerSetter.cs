@@ -31,6 +31,36 @@ public class BodyLayerSetter : NetworkBehaviour
         }
 
     }
+    public void DethCamera()
+    {
+        if (IsLocalPlayer)
+        {
+
+        }
+        else
+        {
+            //since this class will be run by every player, we set fore the not local players(the rest of the players online)
+            //intbody to false
+            intBody.SetActive(true);
+            //Extbody to true so we can see animations etc.
+            extBody.SetActive(false);
+        }
+    }
+    public void BackToNormalCamera()
+    {
+        if (IsLocalPlayer)
+        {
+
+        }
+        else
+        {
+            //since this class will be run by every player, we set fore the not local players(the rest of the players online)
+            //intbody to false
+            intBody.SetActive(false);
+            //Extbody to true so we can see animations etc.
+            extBody.SetActive(true);
+        }
+    }
 
     #endregion
 }

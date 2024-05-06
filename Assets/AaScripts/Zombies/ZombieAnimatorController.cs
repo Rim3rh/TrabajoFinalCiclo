@@ -95,5 +95,15 @@ public class ZombieAnimatorController : NetworkBehaviour
     {
         healthController.canBoShoot = false;
     }
+    private void StartAttack()
+    {
+        pathController.isAttacking = true;
+        pathController.canMove = false;
+    }
+    private void EndAttack()
+    {
+        pathController.isAttacking = false;
+        pathController.canMove = true;
+    }
     #endregion
 }

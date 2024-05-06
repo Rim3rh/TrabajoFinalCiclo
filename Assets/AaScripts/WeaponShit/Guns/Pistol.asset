@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammo: 6
   shootsPS: 5
-  damage: 20
+  damage: 60
   weaponID: 1

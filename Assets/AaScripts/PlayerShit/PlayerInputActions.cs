@@ -236,6 +236,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dead"",
+            ""id"": ""873fa73f-4435-4d60-a54c-4977ef510126"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""c32106da-1334-4a2f-82e1-6d44e21c4d93"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3879a7e4-9003-43c4-8f19-6edc953f7bd2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -249,6 +277,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerNormalMovement_Interact = m_PlayerNormalMovement.FindAction("Interact", throwIfNotFound: true);
         m_PlayerNormalMovement_Shoot = m_PlayerNormalMovement.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerNormalMovement_Reload = m_PlayerNormalMovement.FindAction("Reload", throwIfNotFound: true);
+        // Dead
+        m_Dead = asset.FindActionMap("Dead", throwIfNotFound: true);
+        m_Dead_Newaction = m_Dead.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -400,6 +431,52 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerNormalMovementActions @PlayerNormalMovement => new PlayerNormalMovementActions(this);
+
+    // Dead
+    private readonly InputActionMap m_Dead;
+    private List<IDeadActions> m_DeadActionsCallbackInterfaces = new List<IDeadActions>();
+    private readonly InputAction m_Dead_Newaction;
+    public struct DeadActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public DeadActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Dead_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Dead; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DeadActions set) { return set.Get(); }
+        public void AddCallbacks(IDeadActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DeadActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DeadActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+        }
+
+        private void UnregisterCallbacks(IDeadActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+        }
+
+        public void RemoveCallbacks(IDeadActions instance)
+        {
+            if (m_Wrapper.m_DeadActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDeadActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DeadActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DeadActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DeadActions @Dead => new DeadActions(this);
     public interface IPlayerNormalMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -409,5 +486,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+    }
+    public interface IDeadActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

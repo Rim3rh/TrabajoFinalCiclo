@@ -14,6 +14,7 @@ public class ZombiePathController : NetworkBehaviour
     public bool canMove = true;
     public bool isStunned;
     public bool isMoving;
+    public bool isAttacking;
 
     private float attackTimer = 0f; // Timer to track how long the enemy is close to the player
 
@@ -29,7 +30,8 @@ public class ZombiePathController : NetworkBehaviour
         CheckIfCanAttackPlayer();
         FindClosestPlayer();
 
-        if (isStunned)
+        if (isAttacking) LookAtPlayer();
+        if (isStunned ||isAttacking)
         {
             agent.isStopped = true;
             return;
@@ -40,6 +42,7 @@ public class ZombiePathController : NetworkBehaviour
             if (targetPlayer != null)
             {
                 FollowPlayer();
+                Debug.Log("TE SIGUE");
             }
         }
         else
@@ -54,6 +57,21 @@ public class ZombiePathController : NetworkBehaviour
         FindCurrentPlayers();
     }
 
+    private void LookAtPlayer()
+    {
+        if (targetPlayer != null)
+        {
+            // Calculate the rotation to look at the target
+            Quaternion targetRotation = Quaternion.LookRotation(targetPlayer.transform.position - transform.position);
+
+            // Keep only the Y rotation
+            float yRotation = targetRotation.eulerAngles.y;
+            Quaternion newYRotation = Quaternion.Euler(0, yRotation, 0);
+
+            // Apply the new rotation only on the Y axis
+            transform.rotation = newYRotation;
+        }
+    }
     private void FollowPlayer()
     {
         isMoving = true;
@@ -98,7 +116,7 @@ public class ZombiePathController : NetworkBehaviour
         if (targetPlayer == null) return;
         float distanceToPlayer = Vector3.Distance(transform.position, targetPlayer.transform.position);
 
-        if (distanceToPlayer < 1f)
+        if (distanceToPlayer < 1.5f && !isAttacking && !isStunned)
         {
             canMove = false;
             // Increment attack timer
@@ -106,10 +124,12 @@ public class ZombiePathController : NetworkBehaviour
             // If the attack timer exceeds 0.15 seconds, trigger the attack animation
             if (attackTimer >= 0.15f)
             {
+                Debug.Log("Attack");
+
                 animController.Attack();
             }
         }
-        else
+        if (distanceToPlayer > 1.5f && !isAttacking && !isStunned)
         {
             canMove = true;
             // Reset attack timer when the enemy is not close to the player

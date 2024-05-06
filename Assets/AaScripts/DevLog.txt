@@ -131,8 +131,13 @@ add headshots to zombies
 fix player controller
 
 
+Dia20(07/05/24): 1h
 
+fixed rounds
 
+Dia21(06/05/24): 3h
+
+added player death with panels, camera swaps, etc
 
 
 
