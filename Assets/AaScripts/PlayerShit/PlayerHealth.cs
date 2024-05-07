@@ -2,6 +2,7 @@ using Cinemachine;
 using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,23 +28,29 @@ public class PlayerHealth : NetworkBehaviour
     private void Update()
     {
         if (!IsOwner) return;
-        if(Input.GetKeyDown(KeyCode.Escape)) 
+        if(Input.GetKeyDown(KeyCode.P)) 
         {
             KillPlayer();
         }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            RevivePlayer();
+        }
     }
 
-
-    private void KillPlayer()
+    #region KillPlayer
+    public void KillPlayer()
     {
+        if (manager.isDead) return;
+        deadHud.SetActive(true);
         KillPlayerServerRpc();
         SwitchActionMap("Dead");
         transform.position = GameObject.FindGameObjectWithTag("DeadPos").transform.position;
         virtualCamera.Priority = 0;
-        deadHud.SetActive(true);
+        manager.isDead = true;
 
     }
-    [ServerRpc()]
+    [ServerRpc(RequireOwnership = false)]
     private void KillPlayerServerRpc()
     {
         GameObject.FindObjectOfType<GameEndChecker>().KillOnePlayer();
@@ -52,7 +59,11 @@ public class PlayerHealth : NetworkBehaviour
     [ClientRpc]
     private void AdjustBodyViewsClientRpc()
     {
-        bodyLayerSetter.DethCamera();
+        Debug.Log("SOY ESTE");
+        foreach (BodyLayerSetter gameObject in GameObject.FindObjectsOfType<BodyLayerSetter>())
+        {
+            gameObject.DethCamera();
+        }
     }
     private void CheckForDeath()
     {
@@ -62,6 +73,38 @@ public class PlayerHealth : NetworkBehaviour
             KillPlayer();
         }
     }
+    #endregion
+    #region RevivePlayer
+
+    public void RevivePlayer()
+    {
+        if (!manager.isDead) return;
+        SwitchActionMap("PlayerNormalMovement");
+        transform.position = Vector3.zero;
+        virtualCamera.Priority = 10;
+        deadHud.SetActive(false);
+        RevivePlayerServerRpc();
+        AdjustBodyViewsRevivePlayerClientRpc();
+        manager.isDead = false;
+
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void RevivePlayerServerRpc()
+    {
+        GameObject.FindObjectOfType<GameEndChecker>().ReviveOnePlayer();
+        AdjustBodyViewsClientRpc();
+    }
+    [ClientRpc]
+    private void AdjustBodyViewsRevivePlayerClientRpc()
+    {
+        Debug.Log("SOY ESTE");
+        foreach (BodyLayerSetter gameObject in GameObject.FindObjectsOfType<BodyLayerSetter>())
+        {
+            gameObject.BackToNormalCamera();
+        }
+    }
+
+    #endregion
     void SwitchActionMap(string actionMapName)
     {
         InputActionMap actionMapToEnable = inputActions.FindActionMap(actionMapName);

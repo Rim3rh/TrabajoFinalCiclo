@@ -52,6 +52,10 @@ public class ZombiePoolManager : NetworkBehaviour
 
     public bool GetZombieChecker()
     {
+        // when you kill a zombnie, because of the delay, the server knows it has an inactive one, but client dosent,
+        //so zombie is spawned on server but not on clietn(i think)
+
+        //solution: on zombieRoundManager, im going to try to revertspawn if client gives an error on spawn
         foreach (GameObject go in zombiePool)
         {
             if (!go.activeSelf)
@@ -69,12 +73,11 @@ public class ZombiePoolManager : NetworkBehaviour
         {
             if (!go.activeSelf)
             {
-                activeZombies.Add(go);
                 return go;
             }
 
         }
-        Debug.LogError("Me has pedido zombie y no hay zombie huevon");
+        Debug.LogWarning("Me has pedido zombie y no hay zombie huevon");
         return null;
 
     }
@@ -82,5 +85,10 @@ public class ZombiePoolManager : NetworkBehaviour
     {
         activeZombies.RemoveAt(activeZombies.Count-1);
     }
+    public void RemoveLastZombieFromList()
+    {
+        activeZombies[activeZombies.Count - 1].SetActive(false);
 
+        activeZombies.RemoveAt(activeZombies.Count - 1);
+    }
 }

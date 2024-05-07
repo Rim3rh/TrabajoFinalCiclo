@@ -3879,6 +3879,7 @@ GameObject:
   - component: {fileID: 7451979743834329137}
   - component: {fileID: 2564379630766031343}
   - component: {fileID: 6572711820985125234}
+  - component: {fileID: 8633197181090040128}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4028,6 +4029,7 @@ MonoBehaviour:
   isPlayerGrounded: 0
   playerCurrentInputs: {x: 0, y: 0}
   playerHealth: 0
+  isDead: 0
 --- !u!114 &1867125546970396413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4286,6 +4288,34 @@ MonoBehaviour:
   inputActions: {fileID: -944628639613478452, guid: 7ff66ff69aa2a6841b49e25ac3befa73, type: 3}
   virtualCamera: {fileID: 8309492004007071593}
   deadHud: {fileID: 4518934530532125173}
+--- !u!114 &8633197181090040128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6365161929817096099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e9d86a23de3c54bb961348db4cefad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7d9dbdd7665f7544087481637a2f7c4e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6572711820985125234}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: RevivePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6424550328720554918
 GameObject:
   m_ObjectHideFlags: 0

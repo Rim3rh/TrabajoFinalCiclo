@@ -43,8 +43,14 @@ public class ZombieRoundManager : NetworkBehaviour
         ammountOfZombiesToSapwn = roundContainer.rounds[currentRound].ammountOfZombies;
         timer = roundContainer.rounds[currentRound].spawnRate;
         inRound = true;
-        onRoundChanged.Raise();
+        OnRoundChangedRaiseClientRpc();
 
+    }
+    [ClientRpc]
+
+    private void OnRoundChangedRaiseClientRpc()
+    {
+        onRoundChanged.Raise();
 
     }
 
@@ -117,8 +123,20 @@ public class ZombieRoundManager : NetworkBehaviour
         GameObject zombie = poolManager.GetZombie();
         if (zombie == null)
         {
+            //this part i think is only reached by clients
+            if (!IsClient)
+            {
+                Debug.LogError("No hay zombie en el server");
+                return;
+            }
+            else
+            {
+                RemoveLastZombieServerRpc();
+                return;
 
-            return;
+            }
+
+
         }
         zombie.SetActive(true);
 
@@ -126,14 +144,23 @@ public class ZombieRoundManager : NetworkBehaviour
         zombie.transform.position = activeSpawnPositions[randomPos].position;
         //La vida solo la necesita saber el server
         zombie.GetComponent<ZombiesHealthController>().zombieHealth = roundContainer.rounds[currentRound].zombiesHealth;
-        if (!IsServer) zombie.GetComponent<Animator>().SetTrigger("Rise");
-
+        zombie.GetComponent<Animator>().SetTrigger("Rise");
+        //add zombie to activeZombieList
+        poolManager.activeZombies.Add(zombie);
         zombie.GetComponent<NavMeshAgent>().speed = roundContainer.rounds[currentRound].zombiesSpeed;
+        Debug.Log("ZombieSpawneado en clienter");
     }
 
     [ClientRpc]
     public void UpdateCurrentRoundClientRpc(int round)
     {
         currentRoundText.text = round.ToString();
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void RemoveLastZombieServerRpc()
+    {
+        poolManager.RemoveLastZombieFromList();
+        timer = 0;
+        ammountOfZombiesToSapwn++;
     }
 }

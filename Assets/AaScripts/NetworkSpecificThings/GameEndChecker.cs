@@ -16,6 +16,12 @@ public class GameEndChecker : NetworkBehaviour
             LoadMainMenuClientRpc();
         }
     }
+    public void ReviveOnePlayer()
+    {
+        if (!IsServer) return;
+        alivePlayers++;
+
+    }
 
     [ClientRpc]
 

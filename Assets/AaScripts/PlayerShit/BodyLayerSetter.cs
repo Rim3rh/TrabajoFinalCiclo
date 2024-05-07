@@ -41,7 +41,7 @@ public class BodyLayerSetter : NetworkBehaviour
         {
             //since this class will be run by every player, we set fore the not local players(the rest of the players online)
             //intbody to false
-            intBody.SetActive(true);
+            intBody.SetActive(false);
             //Extbody to true so we can see animations etc.
             extBody.SetActive(false);
         }

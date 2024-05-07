@@ -38,6 +38,7 @@ public class PlayerManager : MonoBehaviour
     public Vector2 playerCurrentInputs;
 
     public int playerHealth;
+    public bool isDead;
     #endregion
 
 

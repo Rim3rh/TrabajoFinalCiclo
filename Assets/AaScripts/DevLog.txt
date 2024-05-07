@@ -141,8 +141,19 @@ added player death with panels, camera swaps, etc
 
 
 
+Dia22(07/05/24): 2.5h
+trabajando en playerdeath
+problema zombie spawnea en servidor y no en cliente
+posible solucion, lo activa en el server y no en el cliente cunado no pueden haber mas zombies en la partida
+solucionado:
+en caso de que el cliente no pueda spawnear al zombie, cancelara el spawneo del servidor, y lo revierte, lo que hace que lo intente spawnear de nuevo, pero como ya
+habra pasado mas tiempo, no hay bug
 
+El jugador ahora puede morir(por codio)
+y respawnea al terminar la ronda.
 
+Siguiente objetivo:
+DeathCam arms + weapons
 
 
 
