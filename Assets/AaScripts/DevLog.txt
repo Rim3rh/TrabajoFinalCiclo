@@ -155,7 +155,9 @@ y respawnea al terminar la ronda.
 Siguiente objetivo:
 DeathCam arms + weapons
 
-
+Dia23 (08/05/24): 5h
+Worked on creating the particle system,
+making the forcefild absorbe it, making the logic for souls and getting all 3 wells, and then i synced it to the multiplayer
 
 
 

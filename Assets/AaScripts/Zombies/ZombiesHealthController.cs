@@ -9,6 +9,8 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
 
     //Class References
     ZombieAnimatorController animController;
+    ZombieWellInteractor wellInteractor;
+
     //healthZombie has
     public float zombieHealth;
 
@@ -22,6 +24,7 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
     private void Awake()
     {
         animController = GetComponent<ZombieAnimatorController>();
+        wellInteractor = GetComponent<ZombieWellInteractor>();
     }
     #region EnemyHit
     //will get called by canBeShoot when zombie is hit
@@ -49,6 +52,7 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
         {
             EnemyDieClientRpc();
             onZombieDeath.Raise();
+            wellInteractor.OnZombieDeathPs();
             return;
         }
         else

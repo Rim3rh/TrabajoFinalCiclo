@@ -42,7 +42,6 @@ public class ZombiePathController : NetworkBehaviour
             if (targetPlayer != null)
             {
                 FollowPlayer();
-                Debug.Log("TE SIGUE");
             }
         }
         else
@@ -124,7 +123,6 @@ public class ZombiePathController : NetworkBehaviour
             // If the attack timer exceeds 0.15 seconds, trigger the attack animation
             if (attackTimer >= 0.15f)
             {
-                Debug.Log("Attack");
 
                 animController.Attack();
             }

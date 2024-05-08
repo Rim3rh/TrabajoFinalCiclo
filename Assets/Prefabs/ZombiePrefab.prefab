@@ -665,6 +665,7 @@ GameObject:
   - component: {fileID: 4652003910618461799}
   - component: {fileID: 7379240770881627179}
   - component: {fileID: 2798333726867512558}
+  - component: {fileID: 742055288884135236}
   m_Layer: 0
   m_Name: ZombiePrefab
   m_TagString: Untagged
@@ -842,6 +843,19 @@ MonoBehaviour:
   canMove: 1
   isStunned: 0
   isMoving: 0
+  isAttacking: 0
+--- !u!114 &742055288884135236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859656639448317427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1981144551afc2846a4fcf425f42f6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1980044316040078783
 GameObject:
   m_ObjectHideFlags: 0

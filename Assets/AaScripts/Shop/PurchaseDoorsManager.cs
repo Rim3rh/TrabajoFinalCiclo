@@ -18,7 +18,6 @@ public class PurchaseDoorsManager : NetworkBehaviour
     [ClientRpc]
     public void OpenDoorClientRpc()
     {
-        Debug.Log("PasadoCheckUnityEvent");
         anim.SetTrigger("Open");
         Invoke(nameof(turnColliderOff), 0.6f);
     }

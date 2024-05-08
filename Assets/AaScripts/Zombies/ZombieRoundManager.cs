@@ -148,7 +148,6 @@ public class ZombieRoundManager : NetworkBehaviour
         //add zombie to activeZombieList
         poolManager.activeZombies.Add(zombie);
         zombie.GetComponent<NavMeshAgent>().speed = roundContainer.rounds[currentRound].zombiesSpeed;
-        Debug.Log("ZombieSpawneado en clienter");
     }
 
     [ClientRpc]
