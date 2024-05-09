@@ -53,7 +53,6 @@ public class CanBePurchased : NetworkBehaviour
     [ServerRpc(RequireOwnership =false)]
     private void OnEnterServerRpc()
     {
-        Debug.Log("LLEGO HASTA AQUI");
         onEnter?.Invoke();
     }
 }

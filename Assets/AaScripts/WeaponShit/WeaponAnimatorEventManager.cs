@@ -6,19 +6,23 @@ using UnityEngine.Rendering;
 public class WeaponAnimatorEventManager : MonoBehaviour
 {
     [SerializeField] WeaponManager wManager;
+    PlayerManager pManager;
 
-
+    private void Awake()
+    {
+        pManager = wManager.GetComponent<PlayerManager>();
+    }
 
 
 
 
     private void ChanginWeaponToTrue()
     {
-        wManager.changingWeapon = true;
+        pManager.isChangingWeapon = true;
     }
     private void ChanginWeaponToFalse()
     {
-        wManager.changingWeapon = false;
+        pManager.isChangingWeapon = false;
     }
 
 

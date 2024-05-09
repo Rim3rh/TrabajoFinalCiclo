@@ -159,8 +159,117 @@ Dia23 (08/05/24): 5h
 Worked on creating the particle system,
 making the forcefild absorbe it, making the logic for souls and getting all 3 wells, and then i synced it to the multiplayer
 
+Dia24 (09/05/24): 4h
+Worked on buying weapons from wall
+having ammo
+updated ammo hud
+commented classes:
+WeaponaManager
+Guns
+AmmoManager
+WallBuyManager
+
+organized ammount of calasses i need to comment
+test on zombie bugs
+fixed zombioe bugs
+added menu pictures
+player now have different bodues
+added end game price
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #region Vars
+    #endregion
+    #region SelfRunningMethods
+    #endregion
+    #region Private Methods
+    #endregion
+    #region public methods
+    #endregion
+
+--------------Classes I need to comment--------------
+CameraSfxManager
+BeatManager
+AudioManager
+CanBeShoot
+CanBePurchased
+IShooteable
+GameEndChecker
+PlayerHealth
+PlayerAnimationController
+CameraController
+PurchaseDoorsManager
+UiManager
+ConectedPlayersVisuals
+WeaponAnimatorEventManager
+HandsFollowGuns
+ZombieWellInteractor
+WellParticleSpawner
+WellParticleCollector
+ZombieRoundManager
+ZombiePoolManager
+ZombiePathController
+ZombieHeadShotEmmiter
+ZombieAnimatorController
+RoomSpawnerController
+RoomDetector
+--half way--
+PlayerMovement
+PlayerManager
+PlayerInteract
+WallBuyManager
+ZombiesHealthController
+
+--------------Already commented ones--------------
+WeaponaManager
+Guns
+AmmoManager
+WallBuyManager
+UiButtons
+PlayerSpawner
+LobbyUiManager
+ClientNetworkAnimator
+PlayerJump
+PlayerGroundCheck
+BodyLayerSetter
+Gun
+GunScriptableObject
+GameManager
+ZombieRoundScriptableObject
+
+
+
+-----43 total clases---
 
 
 

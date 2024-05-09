@@ -9,7 +9,7 @@ public class ZombieAnimatorController : NetworkBehaviour
     ZombiePathController pathController;
     //Component References
     Animator anim;
-
+     
     private void Awake()
     {
         //Getting Components

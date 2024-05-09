@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ClientNetworkAnimator : NetworkAnimator
 {
+    //will make the networkanimator work on clinets
     protected override bool OnIsServerAuthoritative()
     {
         return false;

@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AmmoManager : MonoBehaviour
 {
+    #region Vars
+    #endregion
+    #region SelfRunningMethods
+    #endregion
+    #region Private Methods
+    #endregion
+    #region public methods
+    #endregion
     //AmmoShit
-    [SerializeField] GameObject pistolAmmo, akAmmo, sniperAmmo;
-
+    [SerializeField] GameObject ammoVisual;
     [SerializeField] Transform firstAmmoSpot;
+    [SerializeField] TextMeshProUGUI totalAmmoText;
 
     //PistolShit
     [SerializeField] List<GameObject> totalPistolAmmoList = new List<GameObject>();
@@ -21,28 +31,19 @@ public class AmmoManager : MonoBehaviour
     [SerializeField] List<GameObject> totalSniperAmmoList = new List<GameObject>();
     [SerializeField] List<GameObject> currentSniperAmmoList = new List<GameObject>();
 
+    private int distanceInAmmoHud = 10;
 
 
-
-    private bool firstPistol;
-    
-
-    private void Awake()
+    public void CreateAmmoPool(int magazineAmmo, int ammoType)
     {
-    }
-
-
-
-    public void CreateAmmoPool(int totalAmmo, int ammoType)
-    {
-        for (int i = 0; i < totalAmmo; i++)
+        for (int i = 0; i < magazineAmmo; i++)
         {
 
             switch (ammoType)
             {
                 case 1:
-                    Vector3 newPosition = new Vector3(firstAmmoSpot.transform.position.x + i * 15, firstAmmoSpot.transform.position.y, firstAmmoSpot.transform.position.z);
-                    GameObject go = Instantiate(pistolAmmo, newPosition, Quaternion.identity);
+                    Vector3 newPosition = new Vector3(firstAmmoSpot.transform.position.x + i * distanceInAmmoHud, firstAmmoSpot.transform.position.y, firstAmmoSpot.transform.position.z);
+                    GameObject go = Instantiate(ammoVisual, newPosition, Quaternion.identity);
                     go.transform.SetParent(firstAmmoSpot.transform);
                     go.SetActive(false);
                     totalPistolAmmoList.Add(go);
@@ -50,8 +51,8 @@ public class AmmoManager : MonoBehaviour
 
                 case 2:
 
-                    Vector3 newPosition2 = new Vector3(firstAmmoSpot.transform.position.x + i * 15, firstAmmoSpot.transform.position.y, firstAmmoSpot.transform.position.z);
-                    GameObject go2 = Instantiate(akAmmo, newPosition2, Quaternion.identity);
+                    Vector3 newPosition2 = new Vector3(firstAmmoSpot.transform.position.x + i * distanceInAmmoHud, firstAmmoSpot.transform.position.y, firstAmmoSpot.transform.position.z);
+                    GameObject go2 = Instantiate(ammoVisual, newPosition2, Quaternion.identity);
                     go2.transform.SetParent(firstAmmoSpot.transform);
                     go2.SetActive(false);
                     totalAkAmmoList.Add(go2);
@@ -59,8 +60,8 @@ public class AmmoManager : MonoBehaviour
 
                 case 3:
 
-                    Vector3 newPosition3 = new Vector3(firstAmmoSpot.transform.position.x + i * 15, firstAmmoSpot.transform.position.y, firstAmmoSpot.transform.position.z);
-                    GameObject go3 = Instantiate(sniperAmmo, newPosition3, Quaternion.identity);
+                    Vector3 newPosition3 = new Vector3(firstAmmoSpot.transform.position.x + i * distanceInAmmoHud, firstAmmoSpot.transform.position.y, firstAmmoSpot.transform.position.z);
+                    GameObject go3 = Instantiate(ammoVisual, newPosition3, Quaternion.identity);
                     go3.transform.SetParent(firstAmmoSpot.transform);
                     go3.SetActive(false);
                     totalSniperAmmoList.Add(go3);
@@ -70,8 +71,9 @@ public class AmmoManager : MonoBehaviour
 
 
         }
+        
     }
-    public void CreateAmmoCanvas(int currentAmmo, int ammoType)
+    public void CreateAmmoCanvas(int currentAmmo, int ammoType, int totalAmmo)
     {
 
 
@@ -108,6 +110,12 @@ public class AmmoManager : MonoBehaviour
 
 
         }
+        UpdateTextAmmoHud(totalAmmo);
+    }
+    public void UpdateTextAmmoHud(int totalAmmo)
+    {
+        totalAmmoText.text = totalAmmo.ToString();
+
     }
     public void RemoveAllAmmoFromCanvas(int totalAmmo)
     {
@@ -130,12 +138,13 @@ public class AmmoManager : MonoBehaviour
         {
             if (go.activeSelf && go != null) go.SetActive(false);
         }
+        UpdateTextAmmoHud(totalAmmo);
     }
-    public void ReloadAmmo(int totalAmmo, int ammoType)
+    public void ReloadAmmo(int magazineTotalAmmo, int ammoType, int totalAmmo)
     {
-        RemoveAllAmmoFromCanvas(totalAmmo);
+        RemoveAllAmmoFromCanvas(magazineTotalAmmo);
 
-        CreateAmmoCanvas(totalAmmo, ammoType);
+        CreateAmmoCanvas(magazineTotalAmmo, ammoType, totalAmmo);
 
     }
 

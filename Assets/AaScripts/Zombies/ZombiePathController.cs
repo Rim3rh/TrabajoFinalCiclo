@@ -11,6 +11,7 @@ public class ZombiePathController : NetworkBehaviour
 
     private NavMeshAgent agent;
     ZombieAnimatorController animController;
+    ZombiesHealthController healthController;
     public bool canMove = true;
     public bool isStunned;
     public bool isMoving;
@@ -21,7 +22,8 @@ public class ZombiePathController : NetworkBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        animController = GetComponent<ZombieAnimatorController>();  
+        animController = GetComponent<ZombieAnimatorController>();
+        healthController = GetComponent <ZombiesHealthController>();
     }
 
     void Update()

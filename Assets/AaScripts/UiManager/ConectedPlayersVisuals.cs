@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ConectedPlayersVisuals : NetworkBehaviour
 {
+    //class used on lobby to know when second playuer has joined
     [SerializeField] GameObject secondPlayerVisuals;
     void Start()
     {

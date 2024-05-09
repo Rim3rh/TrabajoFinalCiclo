@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97312db146ab77149b2f92e71e55423e, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  ammo: 6
+  maxMagazineAmmo: 6
+  totalAmmo: 200
   shootsPS: 5
   damage: 60
   weaponID: 1

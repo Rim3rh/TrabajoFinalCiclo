@@ -7,13 +7,21 @@ using UnityEngine.Rendering;
 public class BodyLayerSetter : NetworkBehaviour
 {
     #region VARS
+
+    [SerializeField] GameObject femaleBody;
+    [SerializeField] GameObject maleBody;
+
     //Getting the playerVisuals
-    [SerializeField] GameObject extBody;
+     GameObject extBody;
     [SerializeField] GameObject intBody;
     #endregion
     #region SelfRunningMethods
     private void Start()
     {
+        if (OwnerClientId == 0) extBody = maleBody;
+        else extBody = femaleBody;
+
+
         if(IsLocalPlayer)
         {
             //if you are the local player,set intBody to true, because youy want to see it

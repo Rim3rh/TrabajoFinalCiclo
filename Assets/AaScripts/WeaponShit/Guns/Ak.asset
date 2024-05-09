@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97312db146ab77149b2f92e71e55423e, type: 3}
   m_Name: Ak
   m_EditorClassIdentifier: 
-  ammo: 30
+  maxMagazineAmmo: 30
+  totalAmmo: 320
   shootsPS: 6
-  damage: 15
+  damage: 100
   weaponID: 2

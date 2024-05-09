@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ZzScenes/TFC/MainMenu.unity
+    guid: ca52f965095c2334c95864d4fa4385f6
+  - enabled: 1
     path: Assets/ZzScenes/TFC/MultiPlayerMenu.unity
     guid: 42a4a4aa47360e044962c57bbffed8ec
   - enabled: 1
@@ -14,10 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ZzScenes/TFC/LobbyScene.unity
     guid: d9b382a3814a8804d9f17eeb9e8332d4
-  - enabled: 1
-    path: Assets/ZzScenes/TFC/MainMenu.unity
-    guid: ca52f965095c2334c95864d4fa4385f6
-  - enabled: 1
-    path: Assets/ZzScenes/TFC/SinglePlayer.unity
-    guid: 82bdf38546a2a274293f2f69c443738b
   m_configObjects: {}

@@ -22,6 +22,9 @@ public class PlayerInteract : NetworkBehaviour
     //Reload event
     public delegate void OnReload();
     public OnInteract onReload;
+    //Change weapon event
+    public delegate void OnWeaponChanged();
+    public OnInteract onWeaponChanged;
 
     //Camera transfor and layers for shooting objcs
     [SerializeField] Transform cam;
@@ -52,14 +55,21 @@ public class PlayerInteract : NetworkBehaviour
         pInput.actions["Shoot"].canceled += Shoot_Canceled;
         pInput.actions["Reload"].started += Reload_Started;
     }
+
+    private float Inputs()
+    {
+        return pInput.actions["WeaponSwitch"].ReadValue<float>();
+    }
     private void Update()
     {
         //even when not suscribed,, no reason to check if shoting if im not owner.
         if(!IsOwner) return;
         //if shooting is true invokke the event
         if (shooting) onShoot?.Invoke();
+        //Invoke the onweaponChangedEvent
+        if(Mathf.Abs(Inputs()) > 0) onWeaponChanged?.Invoke();
     }
-    #endregion
+    #endregion 
     #region PrivateMethods
     private void Reload_Started(InputAction.CallbackContext obj)
     {
@@ -84,7 +94,7 @@ public class PlayerInteract : NetworkBehaviour
         shooting = false;
     }
     
-    public void PlaceHole()
+    public void ShootRaycast()
     {
         //check if owner in case a not owner calls this method(might be able to be removed(not sure if it can so im leaving it xd))
         if (!IsOwner) return;
@@ -102,48 +112,7 @@ public class PlayerInteract : NetworkBehaviour
                 hit.collider.GetComponent<IShooteable>().TakeDamge
                 (weaponManager.currentWeapon.currentWeaponDamage);
             }
-
-            /*
-            //Wall Holes object pool
-            GameObject go = GetHole();
-            go.SetActive(true);
-            go.transform.SetPositionAndRotation(hit.point, Quaternion.LookRotation(hit.normal));
-            go.transform.parent = hit.collider.transform;
-            */
         }
     }
-
-    /*
-    private GameObject GetHole()
-    {
-        //reset lastGo so it cant give the same hole as last intineration
-        GameObject lastGo = null;
-        //loop to check if there are any abeliable holes on the list(if they are inactive they are abeliable)
-        foreach (GameObject go in BulletHolesPoolManager.holeList)
-        {
-            if (go.activeSelf == false)
-            {
-                //if one aveliable is found, retunr it as the hole.
-                lastGo = null;
-                return go;
-            }
-            lastGo = go;
-        }
-
-
-        if (lastGo != null)
-        {
-            //if no Go is aveliable, get the frist one on the list(first one placed)
-            GameObject go = BulletHolesPoolManager.holeList[1];
-            //remove it from the list and add it so its now on the last place of the list.
-            BulletHolesPoolManager.holeList.Remove(go);
-            BulletHolesPoolManager.holeList.Add(go);
-            //return it
-            return go;
-        }
-        //Code will never reach this poiunt but unity gets madf if you dont check for all scenrarios.
-        return null;
-    }
-    */
     #endregion
 }

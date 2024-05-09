@@ -6,26 +6,6 @@ using Unity.Netcode;
 
 public class UiManager : NetworkBehaviour
 {
-
-    #region Combo
-    /*
-    [SerializeField] TextMeshProUGUI comboAmmount, comboMultiplier;
-    private void Awake()
-    {
-        CleanCombos();
-    }
-    public void UpdateCombos(int comboAmmountI, int multiplierI)
-    {
-        comboAmmount.text = comboAmmountI.ToString();
-        comboMultiplier.text = multiplierI.ToString();
-    }
-    public void CleanCombos()
-    {
-        comboAmmount.text = " ";
-        comboMultiplier.text = " ";
-    }
-    */
-    #endregion
     [SerializeField] TextMeshProUGUI playerPoints;
     [SerializeField] GameObject priceHud;
     [SerializeField] TextMeshProUGUI priceText;

@@ -47,4 +47,23 @@ public class GameEndChecker : NetworkBehaviour
     {
         wallToHide.SetActive(false);
     }
+
+
+
+    public void LoadWinScene()
+    {
+        LoadWinSceneServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership =false)]
+    private void LoadWinSceneServerRpc()
+    {
+        LoadWinSceneClientRpc();
+    }
+
+    [ClientRpc]
+    private void LoadWinSceneClientRpc()
+    {
+        SceneManager.LoadScene("WinScene");
+    }
 }

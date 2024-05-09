@@ -24,9 +24,9 @@ public class WellParticleCollector : NetworkBehaviour
             particle.remainingLifetime = 0;
             particles[i] = particle;
             //we only want the well logic happening on the server
-            Debug.Log("particula colision");
+            Debug.Log(this.gameObject);
 
-                wellParticleSpawner.CheckIfWellCompleted();
+            wellParticleSpawner.CheckIfWellCompleted();
             
 
 

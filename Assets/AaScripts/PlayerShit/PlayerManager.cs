@@ -37,6 +37,11 @@ public class PlayerManager : MonoBehaviour
     //CurrentInputs, used to manage animations without the need of accesing specific movement class
     public Vector2 playerCurrentInputs;
 
+    //weapon
+    public bool isReloading;
+    public bool isChangingWeapon;
+
+
     public int playerHealth;
     public bool isDead;
     #endregion

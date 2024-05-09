@@ -6,12 +6,9 @@ using UnityEngine;
 
 public class GunScriptableObject : ScriptableObject
 {
-    
-
-
     [Header("WEAPONSHIT")]
-
-    public int ammo;
+    public int maxMagazineAmmo;
+    public int totalAmmo;
     public float shootsPS;
     public float damage;
     public int weaponID;

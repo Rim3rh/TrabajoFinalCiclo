@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ZombieWellInteractor : NetworkBehaviour
 {
-    [SerializeField]GameObject currentWell;
+    [SerializeField] GameObject currentWell;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Well"))
@@ -17,13 +17,13 @@ public class ZombieWellInteractor : NetworkBehaviour
     {
         if (other.CompareTag("Well"))
         {
-            Invoke(nameof(CurrentWellToNull), 1f);
+            StartCoroutine(CurrentWellToNull());
         }
     }
-    private void CurrentWellToNull()
+    public IEnumerator CurrentWellToNull()
     {
+        yield return new WaitForSeconds(1f);
         currentWell = null;
-
     }
 
     public void OnZombieDeathPs()

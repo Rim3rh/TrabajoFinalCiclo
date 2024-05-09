@@ -77,6 +77,8 @@ public class ZombiesHealthController : NetworkBehaviour, IShooteable
     [ClientRpc]
     private void EnemyDieClientRpc()
     {
+        StartCoroutine(wellInteractor.CurrentWellToNull());
+        canBoShoot = false;
         animController.Die();
         if (player != null)
         {
