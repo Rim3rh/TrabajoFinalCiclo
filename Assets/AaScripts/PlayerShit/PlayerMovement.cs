@@ -58,10 +58,10 @@ public class PlayerMovement : NetworkBehaviour
     {
         //Calculate the movedirecction vector based on the inputs
         Vector3 movementDirection = transform.TransformDirection(new Vector3(Inputs().x, 0, Inputs().y));
-        //Give the playerManager the current inputs
-        pManager.playerCurrentInputs = Inputs();
         //Aplly the speèd(not on the y)
         rb.velocity = new Vector3(movementDirection.x * pManager.playerSpeed, rb.velocity.y, movementDirection.z * pManager.playerSpeed);
+        //Give the playerManager the current inputs
+        pManager.playerCurrentInputs = Inputs();
         //if normal walking, speed is defaulted
         if ((Inputs().y > 0 || Mathf.Abs(Inputs().x) > 0 ) && !pManager.playerSprint)
         {
@@ -73,7 +73,6 @@ public class PlayerMovement : NetworkBehaviour
             pManager.playerSprint = false;
             pManager.playerSpeed = defaultSpeed / 2;
         }
-
         //Sprint
         if (hittingSprintButton)
         {
@@ -84,9 +83,7 @@ public class PlayerMovement : NetworkBehaviour
                 pManager.playerSpeed = defaultSpeed * 1.5f;
             }
         }
-
     }
-
     private void CancelSprint()
     {
         hittingSprintButton = false;

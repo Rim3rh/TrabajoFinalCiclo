@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class RoomSpawnerController : MonoBehaviour
 {
-
+    //class reference
+    [SerializeField] ZombieRoundManager roomRoundManager;
+    //arrays storing all spawnpositions transforms
     [SerializeField] Transform[] room1SpawnPositions;
     [SerializeField] Transform[] room2SpawnPositions;
     [SerializeField] Transform[] room3SpawnPositions;
-
-
-    [SerializeField] ZombieRoundManager roomRoundManager;
-
-
     public void AddRoomToSpawnPositions(int room)
     {
+        //depending on the room you get, add the spawn positions
         switch (room)
         {
             case 1:
@@ -44,6 +42,7 @@ public class RoomSpawnerController : MonoBehaviour
     }
     public void RemoveRoom1FromSpawnPositions(int room)
     {
+        //same thing but removing them
         switch (room)
         {
             case 1:
@@ -67,5 +66,4 @@ public class RoomSpawnerController : MonoBehaviour
         }
 
     }
-
 }

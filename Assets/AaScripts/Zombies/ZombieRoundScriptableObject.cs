@@ -9,10 +9,15 @@ public class ZombieRoundScriptableObject : ScriptableObject
     [Serializable]
     public class Rounds
     {
+        [Tooltip("Game Round")]
         public int round;
+        [Tooltip("Zombies to spawn in that round")]
         public int ammountOfZombies;
+        [Tooltip("heealth zombies of this round will have")]
         public int zombiesHealth;
+        [Tooltip("speed zombies of this round will have")]
         public float zombiesSpeed;
+        [Tooltip("rate at wich zombies will spawn")]
         public float spawnRate;
     }
     [SerializeField]

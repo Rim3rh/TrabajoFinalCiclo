@@ -6,39 +6,47 @@ using UnityEngine.AI;
 
 public class ZombiePathController : NetworkBehaviour
 {
-    private List<GameObject> players = new List<GameObject>();
-    private GameObject targetPlayer;
-
-    private NavMeshAgent agent;
+    #region Vars
+    //reference to anim controller
     ZombieAnimatorController animController;
-    ZombiesHealthController healthController;
+    //zombieAgent
+    private NavMeshAgent zombieAgent;
+    //find all players in scene
+    private List<GameObject> players = new List<GameObject>();
+    //closest player
+    private GameObject targetPlayer;
+    //made public to be modified from other classes(animator controller)
     public bool canMove = true;
     public bool isStunned;
     public bool isMoving;
     public bool isAttacking;
-
-    private float attackTimer = 0f; // Timer to track how long the enemy is close to the player
-
+    //timer to controll zombie attack
+    float attackTimer;
+    #endregion
+    #region SelfRunningMethods
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        //getting class references
+        zombieAgent = GetComponent<NavMeshAgent>();
         animController = GetComponent<ZombieAnimatorController>();
-        healthController = GetComponent <ZombiesHealthController>();
     }
-
     void Update()
     {
+        //logic only done on serverr
         if (!IsServer) return;
-        CheckIfCanAttackPlayer();
+        //find closest player of list of players
         FindClosestPlayer();
-
+        //check for attack
+        CheckIfCanAttackPlayer();
+        //look at player when attacking so it dosent look wierd
         if (isAttacking) LookAtPlayer();
-        if (isStunned ||isAttacking)
+        //check when to stop agent
+        if (isStunned || isAttacking)
         {
-            agent.isStopped = true;
+            CancelFollowPlayer();
             return;
         }
-
+        //move player
         if (canMove)
         {
             if (targetPlayer != null)
@@ -57,39 +65,33 @@ public class ZombiePathController : NetworkBehaviour
     {
         FindCurrentPlayers();
     }
-
+    #endregion
+    #region Private Methods
     private void LookAtPlayer()
     {
         if (targetPlayer != null)
         {
-            // Calculate the rotation to look at the target
+            //Calculate lookrotation
             Quaternion targetRotation = Quaternion.LookRotation(targetPlayer.transform.position - transform.position);
-
-            // Keep only the Y rotation
-            float yRotation = targetRotation.eulerAngles.y;
-            Quaternion newYRotation = Quaternion.Euler(0, yRotation, 0);
-
-            // Apply the new rotation only on the Y axis
-            transform.rotation = newYRotation;
+            //ignore all axis but y
+            transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y,0);
         }
     }
     private void FollowPlayer()
     {
         isMoving = true;
-        agent.destination = targetPlayer.transform.position;
-        agent.isStopped = false;
-
+        zombieAgent.destination = targetPlayer.transform.position;
+        zombieAgent.isStopped = false;
     }
     private void CancelFollowPlayer()
     {
-        agent.isStopped = true;
+        zombieAgent.isStopped = true;
     }
-
     private void FindClosestPlayer()
     {
+        //calculate closest player of all players in list
         float minDistance = Mathf.Infinity;
         GameObject closestPlayer = null;
-
         foreach (GameObject player in players)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);
@@ -99,24 +101,24 @@ public class ZombiePathController : NetworkBehaviour
                 closestPlayer = player;
             }
         }
-
         targetPlayer = closestPlayer;
     }
 
     private void FindCurrentPlayers()
     {
+        //clear list
         players.Clear();
         foreach (PlayerManager player in GameObject.FindObjectsOfType<PlayerManager>())
         {
+            //add plauyers to list
             players.Add(player.gameObject);
         }
     }
-
     private void CheckIfCanAttackPlayer()
     {
         if (targetPlayer == null) return;
+        //calculate distance to player
         float distanceToPlayer = Vector3.Distance(transform.position, targetPlayer.transform.position);
-
         if (distanceToPlayer < 1.5f && !isAttacking && !isStunned)
         {
             canMove = false;
@@ -125,7 +127,6 @@ public class ZombiePathController : NetworkBehaviour
             // If the attack timer exceeds 0.15 seconds, trigger the attack animation
             if (attackTimer >= 0.15f)
             {
-
                 animController.Attack();
             }
         }
@@ -136,4 +137,20 @@ public class ZombiePathController : NetworkBehaviour
             attackTimer = 0f;
         }
     }
+    //called from animator
+    public void CheckZombieDamage()
+    {
+        //this is called when animation hit from zombie hits
+        if (targetPlayer != null)
+        {
+            //check if your close to player
+            float distanceToPlayer = Vector3.Distance(transform.position, targetPlayer.transform.position);
+
+            if (distanceToPlayer < 1.5f)
+            {
+                targetPlayer.GetComponent<PlayerHealth>().TakeDamge(25);
+            }
+        }
+    }
+    #endregion
 }

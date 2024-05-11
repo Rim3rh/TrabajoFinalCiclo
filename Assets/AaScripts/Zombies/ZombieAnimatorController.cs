@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ZombieAnimatorController : NetworkBehaviour
 {
-     //class references
-     ZombiesHealthController healthController;
+    #region Vars
+    //class references
+    ZombiesHealthController healthController;
     ZombiePathController pathController;
     //Component References
     Animator anim;
-     
+    #endregion
+    #region SelfRunningMethods
     private void Awake()
     {
         //Getting Components
@@ -17,20 +19,21 @@ public class ZombieAnimatorController : NetworkBehaviour
         healthController = GetComponent<ZombiesHealthController>();
         pathController = GetComponent<ZombiePathController>();
     }
-
     private void Update()
     {
         WalkAnimation();
     }
-
-
+    #endregion
+    #region Private Methods
     private void WalkAnimation()
     {
+        //call animation on clients giving bool from server(server knows when zombie moves but client dosent)
         WalkAnimationClientRpc(pathController.isMoving);
     }
     [ClientRpc]
     private void WalkAnimationClientRpc(bool isMoving)
     {
+        //aply bool on animator depending on ismoving bool
         if (isMoving)
         {
             anim.SetBool("Walk", true);
@@ -41,39 +44,40 @@ public class ZombieAnimatorController : NetworkBehaviour
         }
     }
 
-    public void Hit()
-    {
-        HitClientRpc();
-    }
     [ClientRpc]
     private void HitClientRpc()
     {
+        //animation call for clients
         anim.SetTrigger("Hit");
-
-    }
-
-    public void Die()
-    {
-        DieClientRpc();
     }
     [ClientRpc]
     private void DieClientRpc()
     {
+        //animation call for clients
         anim.SetTrigger("Die");
-
+    }
+    [ClientRpc]
+    private void AttackClientRpc()
+    {
+        //animation call for clients
+        anim.SetTrigger("Attack");
+    }
+    #endregion
+    #region public methods
+    //public methods called from other scripts in zombie
+    public void Hit()
+    {
+        HitClientRpc();
+    }
+    public void Die()
+    {
+        DieClientRpc();
     }
     public void Attack()
     {
         AttackClientRpc();
     }
-    [ClientRpc]
-    private void AttackClientRpc()
-    {
-        anim.SetTrigger("Attack");
-
-    }
-
-
+    #endregion
     #region References For Animator
     private void CanMoveToTrue()
     {

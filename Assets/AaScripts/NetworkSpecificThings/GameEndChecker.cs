@@ -6,21 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class GameEndChecker : NetworkBehaviour
 {
+    //modified from playerhealth, so we know how many players we have playing
     public int alivePlayers;
+
+    private int ammountOfCompletedWells;
+    [SerializeField] GameObject wallToHide;
     public void KillOnePlayer()
     {
         if(!IsServer) return;
         alivePlayers--;
-        if (alivePlayers >= 0)
+        if (alivePlayers <= 0)
         {
             LoadMainMenuClientRpc();
         }
     }
     public void ReviveOnePlayer()
     {
+        Debug.Log("GameEndRevive" + OwnerClientId);
+
         if (!IsServer) return;
         alivePlayers++;
-
     }
 
     [ClientRpc]
@@ -31,8 +36,7 @@ public class GameEndChecker : NetworkBehaviour
     }
 
 
-    private int ammountOfCompletedWells;
-    [SerializeField] GameObject wallToHide;
+
     public void OneWellCompleted()
     {
         ammountOfCompletedWells++;

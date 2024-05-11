@@ -5,33 +5,45 @@ using UnityEngine;
 
 public class WellParticleSpawner : NetworkBehaviour
 {
+    #region Vars
+    [Tooltip("particle system used for zombies death")]
     [SerializeField] ParticleSystem particleSystem;
+    [Tooltip("reference to gameManager")]
+    [SerializeField] GameEndChecker gameEndChecker;
+    //particle system used when well is completed
+    [SerializeField] ParticleSystem endParticleSystem;
+    [Tooltip("souls needed to complete soul")]
+    [SerializeField] int maxAmmountOfSouls;
+    //private reference to ammount of souls on current well
+    int ammountOfSouls;
+    //bool used to stop souls from spwaning
     public bool isWellCompleted;
+    #endregion
+    #region Private Methods
+    [ClientRpc]
+    private void SpawnClientRpc(float posX, float posY, float posZ)
+    {
+        //spawn it, play it and destroy it
+        ParticleSystem ps = Instantiate(particleSystem);
+        ps.transform.position = new Vector3(posX, posY, posZ);
+        ps.Play();
+        Destroy(ps, 2f);
+    }
+    #endregion
+    #region public methods
+    //public method called from zombies when die
     public void SpawnNewParticle(Vector3 positionToSpawn)
     {
         //this will be run on clients
         if (isWellCompleted) return;
-
+        //call client rpc with zombie position where to spawn particle system
         SpawnClientRpc(positionToSpawn.x, positionToSpawn.y, positionToSpawn.z);
     }
-    [ClientRpc]
-    private void SpawnClientRpc(float posX, float posY, float posZ)
-    {
-        ParticleSystem ps = Instantiate(particleSystem);
-        ps.transform.position = new Vector3(posX,posY,posZ);
-        ps.Play();
-        Destroy(ps, 2f);
-    }
-
-
-    [SerializeField] GameEndChecker gameEndChecker;
-    [SerializeField] int maxAmmountOfSouls;
-    [SerializeField] ParticleSystem endParticleSystem;
-    [SerializeField] int ammountOfSouls;
     public void CheckIfWellCompleted()
     {
         //this will be run only on server
         ammountOfSouls++;
+        //if souls completed reporduce ps and tell gameendchecjer well is completed
         if (ammountOfSouls >= maxAmmountOfSouls)
         {
             isWellCompleted = true;
@@ -39,5 +51,5 @@ public class WellParticleSpawner : NetworkBehaviour
             endParticleSystem.Play();
         }
     }
-
+    #endregion
 }

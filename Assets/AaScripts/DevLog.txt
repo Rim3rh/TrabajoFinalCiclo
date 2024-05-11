@@ -8,17 +8,17 @@ meter fmod en el juego tmb
 
 Dia2(03/03/24)1:30H
 Idea de como hacer el sistema de beat raro:
-tener una booleana de cunado estas en “ritmo” que seria basicamente el momento en el que suena el
+tener una booleana de cunado estas en ï¿½ritmoï¿½ que seria basicamente el momento en el que suena el
 beat(que podria ser como 0.1s), una vez teniendo esa booleana, esta nos serviria para saber si le 
 has dado a los zombies en el beat, y para en las animaciones de andar, que le puedo decir que empieze 
 a mover se y a andar a la vez, y que solo lo haga cunado la variable de beat sea true, por lo que si le 
-haces daño, tendra que poder moverse, y empezara a moverse cunado la animacion y el beat se sincronizen.
+haces daï¿½o, tendra que poder moverse, y empezara a moverse cunado la animacion y el beat se sincronizen.
 
 -Meter proyecto en repositiorio y probarlo en el portatil--
 
 
 Dia3(11/03/24)1:30H
-Aprobechar que en la empresa me han pedido que haga un juego pequeño en 4 dias, voy a desarrollar la mecaniuca basica de movimiento y el cambio de armas.
+Aprobechar que en la empresa me han pedido que haga un juego pequeï¿½o en 4 dias, voy a desarrollar la mecaniuca basica de movimiento y el cambio de armas.
 
 
 Dia4(12/03/:24) 8H
@@ -71,16 +71,16 @@ TFC
 empezar maapa zombies(probuilder)
 
 Dia7(20/03/:24) 1H:
-añadido modelo del starter pack de unity
+aï¿½adido modelo del starter pack de unity
 modificado animaciones para que funcionene con este nuevo sistema
 ahora pj rota
 proxiuma vez hacer que pj se mueva con animaciones(correr andar saltar)
 
 Dia8-11(20-25/03/24): 4.5hAprox
-Añadidas animaciones pj Correr andar alante/atras, saltar
-añadidas animaciones brazaos, que sigan a las aramas
+Aï¿½adidas animaciones pj Correr andar alante/atras, saltar
+aï¿½adidas animaciones brazaos, que sigan a las aramas
 separado animaciones de cuerpo(las que ven los jugadores) de naimaciones brazos(las que ve el juegador local)
-añadida parate de sincronizacion
+aï¿½adida parate de sincronizacion
 
 
 
@@ -94,14 +94,14 @@ Implementar assets mapa nuevo parcialmente + prueba con sicronizacion armas y pr
 
 
 Dia14(05/04/24): 1.5h
-meter Hud en player, aöadir abrir puerta con animacion(sin sincronizar)
+meter Hud en player, aï¿½adir abrir puerta con animacion(sin sincronizar)
 Dia15(08/04/24): 1h
 Sincronizar lo del ultimo dia
 
 Dia16()(09/04/24):
 Arreglar recarga
 arreglar puntos en multi
-añadir abrir otra puerta
+aï¿½adir abrir otra puerta
 
 Dia17()(15/04/24):
 Arreglar recarga por fin
@@ -175,6 +175,8 @@ fixed zombioe bugs
 added menu pictures
 player now have different bodues
 added end game price
+Dia24 (11/05/24): 2h
+Comented a ton of classes
 
 
 
@@ -205,7 +207,7 @@ added end game price
 
 
 
-
+    //Its serverRPC because its logic only the server should have, ownership set to false since clients will be calling it
 
 
     #region Vars
@@ -218,6 +220,10 @@ added end game price
     #endregion
 
 --------------Classes I need to comment--------------
+
+---Big ones---
+AmmoManager
+-----
 CameraSfxManager
 BeatManager
 AudioManager
@@ -225,35 +231,35 @@ CanBeShoot
 CanBePurchased
 IShooteable
 GameEndChecker
-PlayerHealth
 PlayerAnimationController
 CameraController
 PurchaseDoorsManager
 UiManager
 ConectedPlayersVisuals
-WeaponAnimatorEventManager
-HandsFollowGuns
-ZombieWellInteractor
-WellParticleSpawner
-WellParticleCollector
-ZombieRoundManager
-ZombiePoolManager
-ZombiePathController
-ZombieHeadShotEmmiter
-ZombieAnimatorController
-RoomSpawnerController
-RoomDetector
+
+
+
 --half way--
 PlayerMovement
 PlayerManager
 PlayerInteract
 WallBuyManager
-ZombiesHealthController
 
 --------------Already commented ones--------------
+HandsFollowGuns
+WeaponAnimatorEventManager
+----CUIDADO CON PALOMA------
+WellParticleCollector
+----------------
+WellParticleSpawner
+ZombieWellInteractor
+ZombiePathController
+ZombieAnimatorController
+ZombieHeadShotEmmiter
+ZombieRoundManager
 WeaponaManager
 Guns
-AmmoManager
+
 WallBuyManager
 UiButtons
 PlayerSpawner
@@ -266,8 +272,11 @@ Gun
 GunScriptableObject
 GameManager
 ZombieRoundScriptableObject
-
-
+PlayerHealth
+RoomDetector
+ZombiesHealthController
+ZombiePoolManager
+RoomSpawnerController
 
 -----43 total clases---
 

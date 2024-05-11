@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 
 public class PlayerAnimationController : NetworkBehaviour
@@ -10,18 +11,21 @@ public class PlayerAnimationController : NetworkBehaviour
     //Class references
     PlayerManager pManager;
     //Animator references
-    [SerializeField] Animator cameraAnim;
     [SerializeField] Animator weaponAnim;
     Animator bodyAnim;
+    ClientNetworkAnimator networkBodyAnim;
     #endregion
     #region SelfRunMethods
     private void Awake()
     {
+        //Getting components from player
         pManager = GetComponent<PlayerManager>();
         bodyAnim = GetComponent<Animator>();
+        networkBodyAnim = GetComponent<ClientNetworkAnimator>();
     }
     private void Update()
     {
+        //Animations will only be run by owner
         if (!IsOwner) return;
 
         WalkAnimations();
@@ -29,21 +33,19 @@ public class PlayerAnimationController : NetworkBehaviour
 
     }
     #endregion
-    #region PrivateMethods
+    #region Private Methods
     private void SprintingAnims()
     {
         if (pManager.playerSprint && pManager.playerCurrentInputs.y > 0)
         {
             //Turn walkSpeed up, so the animation runs faster
             weaponAnim.SetFloat("WalkSpeed", 1.5f);
-            cameraAnim.SetFloat("WalkSpeed", 1.5f);
             //Run anim for the ext body
             bodyAnim.SetBool("Run", true);
         }
         else
         {
             weaponAnim.SetFloat("WalkSpeed", 1);
-            cameraAnim.SetFloat("WalkSpeed", 1);
 
             bodyAnim.SetBool("Run", false);
         }
@@ -54,12 +56,10 @@ public class PlayerAnimationController : NetworkBehaviour
         if (pManager.playerCurrentInputs.y > 0)
         {
             weaponAnim.SetBool("Walk", true);
-            cameraAnim.SetBool("Walk", true);
             bodyAnim.SetBool("Walk", true);
         }
         else
         {
-            cameraAnim.SetBool("Walk", false);
             weaponAnim.SetBool("Walk", false);
             bodyAnim.SetBool("Walk", false);
         }
@@ -78,11 +78,10 @@ public class PlayerAnimationController : NetworkBehaviour
     }
     public void Jump()
     {
-        if (!IsOwner) return;
-
-        cameraAnim.SetTrigger("Jump");
-        bodyAnim.SetTrigger("Jump");
-
+        //only owners can send this message
+        networkBodyAnim.SetTrigger("Jump");
     }
+    #endregion
+    #region public methods
     #endregion
 }

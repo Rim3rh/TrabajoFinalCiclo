@@ -106,7 +106,7 @@ public class PlayerInteract : NetworkBehaviour
             if(hit.collider.GetComponent<CanBeShoot>() != null) hit.collider.GetComponent<CanBeShoot>().ReciveShoot();
             if (hit.collider.GetComponent<IShooteable>() != null)
             {
-                hit.collider.GetComponent<IShooteable>().FindPlayer
+                hit.collider.GetComponent<IShooteable>().SetPlayer
                 (this.gameObject);
 
                 hit.collider.GetComponent<IShooteable>().TakeDamge
