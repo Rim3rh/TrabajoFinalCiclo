@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
-
+//we want all obj with this class to have a boxcollider as its needed for its behaveur
 [RequireComponent(typeof(BoxCollider))]
 public class CanBePurchased : NetworkBehaviour
 {
