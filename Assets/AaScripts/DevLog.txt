@@ -222,30 +222,28 @@ Comented a ton of classes
 --------------Classes I need to comment--------------
 
 ---Big ones---
-AmmoManager
+
 -----
-CameraSfxManager
-BeatManager
 AudioManager
 CanBeShoot
 CanBePurchased
-IShooteable
-GameEndChecker
-PlayerAnimationController
-CameraController
-PurchaseDoorsManager
-UiManager
-ConectedPlayersVisuals
-
 
 
 --half way--
+
+--------------Already commented ones--------------
+GameEndChecker
+PlayerAnimationController
 PlayerMovement
 PlayerManager
 PlayerInteract
+GameEvent
+GameEventListener
+ConectedPlayersVisuals
+UiManager
+PurchaseDoorsManager
 WallBuyManager
-
---------------Already commented ones--------------
+AmmoManager
 HandsFollowGuns
 WeaponAnimatorEventManager
 ----CUIDADO CON PALOMA------

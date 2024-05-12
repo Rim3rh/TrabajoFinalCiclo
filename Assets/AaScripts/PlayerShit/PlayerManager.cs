@@ -5,27 +5,24 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     #region VARS
+    //reference to uiManager
     private UiManager uiManager;
-    private void Awake()
-    {
-        uiManager = GetComponent<UiManager>();
-    }
+    //player points getter/setter
     public int PlayerPoints
     {
         get
         {
-            return playerPoints;
+            //if you ask for the points, you get the points
+            return PlayerPoints;
         }
         set
         {
-            playerPoints = value;
-            //Disabled for now
-             uiManager.UpdatePlayerPoints(playerPoints);
+            //if you set the points, adjust its value, then update the player points HUD
+            PlayerPoints = value;
+             uiManager.UpdatePlayerPoints(PlayerPoints);
         }
     }
-    //Will keep count of the points the player has tto spend
-    private int playerPoints = 1000;
-    //MouseSensitivity
+    //MouseSensitivity and its multiplier
     public float sensitivity;
     public float sensMultiplier;
     //Movement Variables
@@ -37,19 +34,22 @@ public class PlayerManager : MonoBehaviour
     //CurrentInputs, used to manage animations without the need of accesing specific movement class
     public Vector2 playerCurrentInputs;
 
-    //weapon
+    //weapon states
     public bool isReloading;
     public bool isChangingWeapon;
 
-
+    //game end states
     public int playerHealth;
     public bool isDead;
     #endregion
-
-
+    private void Awake()
+    {
+        //getting reference(from same go)
+        uiManager = GetComponent<UiManager>();
+    }
     private void Start()
     {
-        uiManager.UpdatePlayerPoints(playerPoints);
-
+        //update the points on start
+        uiManager.UpdatePlayerPoints(PlayerPoints);
     }
 }

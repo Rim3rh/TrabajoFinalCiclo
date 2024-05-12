@@ -78,10 +78,8 @@ public class PlayerAnimationController : NetworkBehaviour
     }
     public void Jump()
     {
-        //only owners can send this message
+        //using networkbodyanim cause normal animator was not working, you can onyl use this for triggers
         networkBodyAnim.SetTrigger("Jump");
     }
-    #endregion
-    #region public methods
     #endregion
 }

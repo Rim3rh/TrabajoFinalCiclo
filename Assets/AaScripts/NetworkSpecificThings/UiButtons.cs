@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class UiButtons : MonoBehaviour
 {
     //class to select if you want to create a game or join one
-
     [SerializeField] Button clientButton, hostButton;
     private void Awake()
     {
@@ -26,10 +25,8 @@ public class UiButtons : MonoBehaviour
         clientButton.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartClient();
-
         });
     }
-
     public void LoadMultiplayerMenu()
     {
         SceneManager.LoadScene("MultiPlayerMenu");

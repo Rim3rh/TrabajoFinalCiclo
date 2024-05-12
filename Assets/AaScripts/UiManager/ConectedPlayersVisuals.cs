@@ -10,25 +10,20 @@ public class ConectedPlayersVisuals : NetworkBehaviour
     [SerializeField] GameObject secondPlayerVisuals;
     void Start()
     {
-        if(IsServer) {  return; }
+        //only want to be acces by clients
+        if(IsServer)  return;
         SetGoToActiveServerRpc();
     }
-
-
-
     [ServerRpc(RequireOwnership = false)]
-
     private void SetGoToActiveServerRpc()
     {
-
         SetGoToActiveClientRpc();
     }
     [ClientRpc]
-
     private void SetGoToActiveClientRpc()
     {
+        //once client has joined, set obj to true on all clients(including server)
         secondPlayerVisuals.SetActive(true);
-
     }
 
 }

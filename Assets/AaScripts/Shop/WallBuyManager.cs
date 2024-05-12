@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class WallBuyManager : MonoBehaviour
 {
+    /// <summary>
+    /// this class in only local, this behaviur has nothing to do with multiplayyer
+    /// </summary>
+    #region Vars
     //Private reference setted when player enters the weaponbuy area
     private GameObject player;
     //Moneyn needed to by weapon or ammo
@@ -13,8 +17,8 @@ public class WallBuyManager : MonoBehaviour
     //money setted from inspector for weapon/ammo
     [SerializeField] int weaponCost, weaponAmmoCost;
     [SerializeField] int weaponId;
-
-
+    #endregion
+    #region SelfRunningMethods
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -47,21 +51,22 @@ public class WallBuyManager : MonoBehaviour
             uiManager.HidePrice();
         }
     }
-
+    #endregion
+    #region Private Methods
     private void DecideWhatPlayerIsBuying(GameObject player)
     {
         //Player References
         WeaponManager wManager = player.GetComponent<WeaponManager>();
         PlayerInteract pInteract = player.GetComponent<PlayerInteract>();
         //we check if there is a second weapon, if there is not you can not have any other weapon apart from pistol
-        if(wManager.secondaryWeapon == null)
+        if (wManager.secondaryWeapon == null)
         {
             moneyNeeded = weaponCost;
             pInteract.onInteract += BuyWeapon;
             return;
         }
         //check if player has weapon or not
-        if (wManager.secondaryWeapon.GetGunWeaponId()  == weaponId || wManager.currentWeapon.GetGunWeaponId() == weaponId)
+        if (wManager.secondaryWeapon.GetGunWeaponId() == weaponId || wManager.currentWeapon.GetGunWeaponId() == weaponId)
         {
             moneyNeeded = weaponAmmoCost;
             pInteract.onInteract += BuyAmmo;
@@ -98,7 +103,7 @@ public class WallBuyManager : MonoBehaviour
             //hide price
             player.GetComponent<UiManager>().HidePrice();
             //if player is holding the weapon max its amo, if he is not, swap weapon and max its ammo
-            if(player.GetComponent<WeaponManager>().currentWeapon.GetGunWeaponId() == weaponId)
+            if (player.GetComponent<WeaponManager>().currentWeapon.GetGunWeaponId() == weaponId)
             {
                 player.GetComponent<WeaponManager>().currentWeapon.MaxAmmo();
             }
@@ -109,5 +114,5 @@ public class WallBuyManager : MonoBehaviour
             }
         }
     }
-
+    #endregion
 }

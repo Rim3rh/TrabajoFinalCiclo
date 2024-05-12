@@ -34,6 +34,4 @@ public class PlayerSpawner : NetworkBehaviour
             spawnPos++;
         }
     }
-
-
 }

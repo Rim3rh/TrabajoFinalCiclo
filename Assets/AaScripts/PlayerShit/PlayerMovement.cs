@@ -13,19 +13,20 @@ public class PlayerMovement : NetworkBehaviour
     PlayerInput pInput;
     Rigidbody rb;
     //Private vars
-    private float defaultSpeed;
-    [SerializeField] bool hittingSprintButton;
+    float defaultSpeed;
+    bool hittingSprintButton;
     #endregion
     #region SelfRunningMethods
     private void Awake()
     {
-        //getting components
+        //getting references
         pInput = GetComponent<PlayerInput>();
         pManager = GetComponent<PlayerManager>();
         rb = GetComponent<Rigidbody>();
     }
     private void Start()
     {
+        //only run by player owners
         if (!IsOwner) return;
         //this is so the cursor is inmvisible and it does not exit the game screen.
         Cursor.visible = false;
@@ -36,11 +37,12 @@ public class PlayerMovement : NetworkBehaviour
         //set default speed to the playerspeed
         defaultSpeed = pManager.playerSpeed;
     }
+    //method called when player lets go of sprint button
     private void PlayerSprint_canceled(InputAction.CallbackContext obj)
     {
         CancelSprint();
     }
-
+    //method called when player actions sprint button
     private void PlayerSprint_Started(InputAction.CallbackContext obj)
     {
         hittingSprintButton = true;
@@ -50,10 +52,8 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsOwner) return;
         Movement();
     }
-
     #endregion
     #region private Methods
-
     private void Movement()
     {
         //Calculate the movedirecction vector based on the inputs
@@ -92,11 +92,8 @@ public class PlayerMovement : NetworkBehaviour
     }
     private Vector2 Inputs()
     {
+        //will retunr new input system iunputs
         return pInput.actions["Movement"].ReadValue<Vector2>();
-
     }
     #endregion
-
-
-
 }

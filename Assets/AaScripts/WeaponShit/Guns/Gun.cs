@@ -60,7 +60,7 @@ public abstract class Gun : MonoBehaviour
         pInteract.onShoot -= Shoot;
         pInteract.onReload -= Reload;
         //disable ammo canvas
-        ammoManager.RemoveAllAmmoFromCanvas(gunScriptableObject.maxMagazineAmmo);
+        ammoManager.RemoveAllAmmoFromCanvas();
     }
     #endregion
     #region Private Methods

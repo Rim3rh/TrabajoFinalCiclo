@@ -7,18 +7,16 @@ using UnityEngine.UI;
 public class AmmoManager : MonoBehaviour
 {
     #region Vars
-    #endregion
-    #region SelfRunningMethods
-    #endregion
-    #region Private Methods
-    #endregion
-    #region public methods
-    #endregion
-    //AmmoShit
+    //Ammo sprite displayed in hud
     [SerializeField] GameObject ammoVisual;
+    //where the ammo hud will start to generate
     [SerializeField] Transform firstAmmoSpot;
+    //distance in betwen ammo sprites
+    private int distanceInAmmoHud = 10;
+    //text displayting total ammo
     [SerializeField] TextMeshProUGUI totalAmmoText;
 
+    //lists to keep track of ammo sprites, and ammo to be displayed
     //PistolShit
     [SerializeField] List<GameObject> totalPistolAmmoList = new List<GameObject>();
     [SerializeField] List<GameObject> currentPistolAmmoList = new List<GameObject>();
@@ -30,22 +28,26 @@ public class AmmoManager : MonoBehaviour
     //SniperShit
     [SerializeField] List<GameObject> totalSniperAmmoList = new List<GameObject>();
     [SerializeField] List<GameObject> currentSniperAmmoList = new List<GameObject>();
-
-    private int distanceInAmmoHud = 10;
-
-
+    #endregion
+    #region public methods
+    //this method will create the pool of ammo sprites for each weapon
     public void CreateAmmoPool(int magazineAmmo, int ammoType)
     {
         for (int i = 0; i < magazineAmmo; i++)
         {
-
+            //depending on the ammotype(in case weapon share ammo) create ammo pool
             switch (ammoType)
             {
                 case 1:
+                    //set the possition with fristammo spot and multipliying by i ^distance so it is farther away each intineration
                     Vector3 newPosition = new Vector3(firstAmmoSpot.transform.position.x + i * distanceInAmmoHud, firstAmmoSpot.transform.position.y, firstAmmoSpot.transform.position.z);
+                    //create the obj
                     GameObject go = Instantiate(ammoVisual, newPosition, Quaternion.identity);
+                    //give it its parent(so we have it organized)
                     go.transform.SetParent(firstAmmoSpot.transform);
+                    //set it to inactive so we cant see it untill we need it
                     go.SetActive(false);
+                    //add it to the list
                     totalPistolAmmoList.Add(go);
                     break;
 
@@ -67,25 +69,24 @@ public class AmmoManager : MonoBehaviour
                     totalSniperAmmoList.Add(go3);
                     break;
             }
-
-
-
         }
         
     }
+    //make the ammo actually visible
     public void CreateAmmoCanvas(int currentAmmo, int ammoType, int totalAmmo)
     {
-
-
+        //create the ammo canvas with the current ammo, that way if you need to reaload, ammo is displayed correctly
         for (int i = 0; i < currentAmmo; i++)
         {
-
+            //depenginf on the ammo type, we use different sprites
             switch (ammoType)
             {
                 case 1:
-
+                    //go trhouhg the list
                     GameObject go = totalPistolAmmoList[i];
+                    //add it to the currentammo list
                     currentPistolAmmoList.Add(go);
+                    //enable it
                     go.SetActive(true);
 
                     break;
@@ -110,53 +111,52 @@ public class AmmoManager : MonoBehaviour
 
 
         }
+        //update the total ammo text in the hud
         UpdateTextAmmoHud(totalAmmo);
     }
     public void UpdateTextAmmoHud(int totalAmmo)
     {
         totalAmmoText.text = totalAmmo.ToString();
-
     }
-    public void RemoveAllAmmoFromCanvas(int totalAmmo)
+    //used to disable all ammo sprites
+    public void RemoveAllAmmoFromCanvas()
     {
+        //clear the current ammo list(becazuse you are going to disable all obj now)
         currentPistolAmmoList.Clear();
+        //for each go in the list, disable it(we dont remove it from the list, since this is the pool, not the current list
         foreach( GameObject go in totalPistolAmmoList)
         {
             if(go.activeSelf && go != null) go.SetActive(false);
-
         }
-
-
         currentAkAmmoList.Clear ();
         foreach (GameObject go in totalAkAmmoList)
         {
             if (go.activeSelf && go != null) go.SetActive(false);
         }
-
         currentSniperAmmoList.Clear();
         foreach (GameObject go in totalSniperAmmoList)
         {
             if (go.activeSelf && go != null) go.SetActive(false);
         }
-        UpdateTextAmmoHud(totalAmmo);
     }
+    //for realoading, we first remove all ammo sprites, then generate new ones with reloaded info done on the weapon logic.
     public void ReloadAmmo(int magazineTotalAmmo, int ammoType, int totalAmmo)
     {
-        RemoveAllAmmoFromCanvas(magazineTotalAmmo);
-
+        RemoveAllAmmoFromCanvas();
         CreateAmmoCanvas(magazineTotalAmmo, ammoType, totalAmmo);
-
     }
-
-
+    //called when shot, removes one bullet from list(last one)
     public void RemoveOneBulletFromAmmo(int ammoType)
     {
+        //needed to know what weapon ur using
         switch (ammoType)
         {
             case 1:
+                //if you dont have ammo retunr
                 if (currentPistolAmmoList.Count <= 0) return;
-
+                //find last obj in the list
                 GameObject go = currentPistolAmmoList[currentPistolAmmoList.Count - 1];
+                //remove it from the list and disable it
                 currentPistolAmmoList.Remove(go);
                 go.SetActive(false);
                 break;
@@ -180,5 +180,6 @@ public class AmmoManager : MonoBehaviour
 
 
     }
+    #endregion
 }
 
