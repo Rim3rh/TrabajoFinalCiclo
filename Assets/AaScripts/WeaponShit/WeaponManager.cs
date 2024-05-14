@@ -86,10 +86,14 @@ public class WeaponManager : NetworkBehaviour
 
     public void SetNewWeapon(int weaponId)
     {
+        if(secondaryWeapon == null)
+        {
+            //make secunadary weapon be the currentweapon
+            secondaryWeapon = currentWeapon;
+        }
+
         //turn current weapon off
         currentWeapon.gameObject.SetActive(false);
-        //make secunadary weapon be the currentweapon
-        secondaryWeapon = currentWeapon;
         //set currentweapon to desiered weapon id(-1 because weapon Id does not have 0)
         currentWeapon = abeliableWeapons[weaponId - 1];
         //clear weaponslots

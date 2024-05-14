@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
              uiManager.UpdatePlayerPoints(playerPoints);
         }
     }
-    private int playerPoints = 1000;
+    private int playerPoints = 10000;
     //MouseSensitivity and its multiplier
     public float sensitivity;
     public float sensMultiplier;

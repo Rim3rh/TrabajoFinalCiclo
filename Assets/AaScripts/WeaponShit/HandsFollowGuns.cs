@@ -16,8 +16,10 @@ public class HandsFollowGuns : MonoBehaviour
     [SerializeField] GameObject akLeftHandPos, akRightHandPos;
     [Header("-----Sniper-----")]
     [SerializeField] GameObject sniperLeftHandPos, sniperRightHandPos;
-    [Header("-----Sniper-----")]
+    [Header("-----M4-----")]
     [SerializeField] GameObject m4LeftHandPos, m4RightHandPos;
+    [Header("-----M4-----")]
+    [SerializeField] GameObject mgLeftHandPos, mgRightHandPos;
     #endregion
     private void Update()
     {
@@ -48,6 +50,14 @@ public class HandsFollowGuns : MonoBehaviour
         {
             leftHandPos = m4LeftHandPos.transform.position;
             leftHandPosRot = m4LeftHandPos.transform.rotation;
+
+            rightHandPos = m4RightHandPos.transform.position;
+            rightHandPosRot = m4RightHandPos.transform.rotation;
+        }
+        if (manager.currentWeapon == manager.abeliableWeapons[3])
+        {
+            leftHandPos = mgLeftHandPos.transform.position;
+            leftHandPosRot = mgLeftHandPos.transform.rotation;
 
             rightHandPos = m4RightHandPos.transform.position;
             rightHandPosRot = m4RightHandPos.transform.rotation;
