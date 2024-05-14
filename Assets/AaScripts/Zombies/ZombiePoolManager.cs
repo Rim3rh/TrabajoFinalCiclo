@@ -85,5 +85,10 @@ public class ZombiePoolManager : NetworkBehaviour
         activeZombies[activeZombies.Count - 1].SetActive(false);
         activeZombies.RemoveAt(activeZombies.Count - 1);
     }
+    //Used for when you kill zombies(called on inspector)
+    public void RemoveOneZombieFromList()
+    {
+        activeZombies.RemoveAt(activeZombies.Count - 1);
+    }
     #endregion
 }

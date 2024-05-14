@@ -13,15 +13,16 @@ public class PlayerManager : MonoBehaviour
         get
         {
             //if you ask for the points, you get the points
-            return PlayerPoints;
+            return playerPoints;
         }
         set
         {
             //if you set the points, adjust its value, then update the player points HUD
-            PlayerPoints = value;
-             uiManager.UpdatePlayerPoints(PlayerPoints);
+            playerPoints = value;
+             uiManager.UpdatePlayerPoints(playerPoints);
         }
     }
+    private int playerPoints = 1000;
     //MouseSensitivity and its multiplier
     public float sensitivity;
     public float sensMultiplier;

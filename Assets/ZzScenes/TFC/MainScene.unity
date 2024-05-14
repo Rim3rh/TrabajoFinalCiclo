@@ -456,7 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponCost: 1000
   weaponAmmoCost: 150
-  weaponId: 2
+  weaponId: 3
 --- !u!1001 &22418847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -567,8 +567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 1859656639448317427, guid: d18265e9399deaf4aa9cf87c925a3f60, type: 3}
-  activeZombies: []
   zombiePoolSize: 5
+  activeZombies: []
 --- !u!114 &25966693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,11 +644,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 1185303688}
-  isWellCompleted: 0
   gameEndChecker: {fileID: 1064747878}
-  maxAmmountOfSouls: 5
   endParticleSystem: {fileID: 1467298431}
-  ammountOfSouls: 0
+  maxAmmountOfSouls: 5
+  isWellCompleted: 0
 --- !u!4 &26580185
 Transform:
   m_ObjectHideFlags: 0
@@ -2278,7 +2277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: 1
   spawnerController: {fileID: 192728828}
-  ammountOfPlayersInRoom: 0
 --- !u!65 &175185284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2426,6 +2424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16a21cb62823f645a1516c29744903d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomRoundManager: {fileID: 1381372452}
   room1SpawnPositions:
   - {fileID: 786183585}
   - {fileID: 385863162}
@@ -2449,7 +2448,6 @@ MonoBehaviour:
   - {fileID: 120291760}
   - {fileID: 820609246}
   - {fileID: 67252813}
-  roomRoundManager: {fileID: 1381372452}
 --- !u!1 &195194882
 GameObject:
   m_ObjectHideFlags: 0
@@ -10895,11 +10893,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 2046787480}
-  isWellCompleted: 0
   gameEndChecker: {fileID: 1064747878}
-  maxAmmountOfSouls: 5
   endParticleSystem: {fileID: 230844607}
-  ammountOfSouls: 0
+  maxAmmountOfSouls: 5
+  isWellCompleted: 0
 --- !u!4 &461885745
 Transform:
   m_ObjectHideFlags: 0
@@ -22904,7 +22901,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: 3
   spawnerController: {fileID: 192728828}
-  ammountOfPlayersInRoom: 0
 --- !u!1001 &938124586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34325,12 +34321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38595c519db67ea42aea677e816dc11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeSpawnPositions: []
   poolManager: {fileID: 25966692}
   roundContainer: {fileID: 11400000, guid: 5511b4850a27a3243bedb01b8473e77b, type: 2}
+  activeSpawnPositions: []
   currentRoundText: {fileID: 195194883}
-  currentRound: 1
-  ammountOfZombiesToSapwn: 0
   onRoundChanged: {fileID: 11400000, guid: 7d9dbdd7665f7544087481637a2f7c4e, type: 2}
 --- !u!1001 &1381684765
 PrefabInstance:
@@ -40723,11 +40717,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 713155707}
-  isWellCompleted: 0
   gameEndChecker: {fileID: 1064747878}
-  maxAmmountOfSouls: 5
   endParticleSystem: {fileID: 1431475209}
-  ammountOfSouls: 0
+  maxAmmountOfSouls: 5
+  isWellCompleted: 0
 --- !u!4 &1465076404
 Transform:
   m_ObjectHideFlags: 0
@@ -53889,7 +53882,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: 2
   spawnerController: {fileID: 192728828}
-  ammountOfPlayersInRoom: 0
 --- !u!65 &2017241950
 BoxCollider:
   m_ObjectHideFlags: 0

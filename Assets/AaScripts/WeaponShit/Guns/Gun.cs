@@ -20,7 +20,7 @@ public abstract class Gun : MonoBehaviour
     private int currentMagazineAmmo;
     private int currentAmmo;
     //made public so zombie knows how much damage to recive
-    public float currentWeaponDamage;
+    [HideInInspector] public float currentWeaponDamage;
     #endregion
     #region SelfRunningMethods
     private void Awake()
