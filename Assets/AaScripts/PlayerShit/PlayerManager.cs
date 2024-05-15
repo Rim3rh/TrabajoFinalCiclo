@@ -40,7 +40,21 @@ public class PlayerManager : MonoBehaviour
     public bool isChangingWeapon;
 
     //game end states
-    public int playerHealth;
+    public int PlayerHealth
+    {
+        get
+        {
+            return playerHealth;
+        }
+        set
+        {
+            playerHealth = value;
+            uiManager.SetHealthHud();
+        }
+    }
+    private int playerHealth;
+
+
     public bool isDead;
     #endregion
     private void Awake()

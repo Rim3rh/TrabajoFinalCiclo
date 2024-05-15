@@ -20,6 +20,10 @@ public class PlayerHealth : NetworkBehaviour
     //Hud displayed when dead
     [SerializeField] GameObject deadHud;
     [SerializeField] GameObject hitHud;
+
+    //health regeneration
+    bool hasBeenHit;
+    float hasBeenHitTimer;
     #endregion
     #region SelfRunningMethods
     private void Awake()
@@ -33,16 +37,27 @@ public class PlayerHealth : NetworkBehaviour
     {
         if (!IsOwner) return;
         //Set player health
-        manager.playerHealth = 100;
+        manager.PlayerHealth = 100;
     }
     private void Update()
     {
         if (!IsOwner) return;
-        if (Input.GetKeyDown(KeyCode.O))
+        //if you have been hit, start counting seconds to reheal
+        if (hasBeenHit)
         {
-            RevivePlayer();
+            hasBeenHitTimer += Time.deltaTime;
+            //if you reach 2 seconds withou getting hit, heal 25
+            if(hasBeenHitTimer >= 2)
+            {
+                manager.PlayerHealth += 25;
+                //if u are full hp, your no loger hit, if ur not, set tiumer to 1 since it should take less timne to heal rest hp
+                if (manager.PlayerHealth == 100) hasBeenHit = false;
+                else hasBeenHitTimer = 1;
+            }
         }
+
     }
+
     #endregion
     #region Private Methods
     [ServerRpc(RequireOwnership = false)]
@@ -67,7 +82,7 @@ public class PlayerHealth : NetworkBehaviour
     private void CheckForDeath()
     {
         //kill player
-        if (manager.playerHealth <= 0)
+        if (manager.PlayerHealth <= 0)
         {
             KillPlayer();
         }
@@ -80,7 +95,7 @@ public class PlayerHealth : NetworkBehaviour
         //tell server to revive one player on the logic
         GameObject.FindObjectOfType<GameEndChecker>().ReviveOnePlayer();
         //adjust the body layers backwords
-        AdjustBodyViewsClientRpc();
+        AdjustBodyViewsRevivePlayerClientRpc();
     }
     [ClientRpc]
     private void AdjustBodyViewsRevivePlayerClientRpc()
@@ -93,6 +108,7 @@ public class PlayerHealth : NetworkBehaviour
     }
     void SwitchActionMap(string actionMapName)
     {
+        if (!IsOwner) return;
         //Find map to set
         InputActionMap actionMapToEnable = inputActions.FindActionMap(actionMapName);
 
@@ -121,15 +137,23 @@ public class PlayerHealth : NetworkBehaviour
     //Methods zombies wil call
     public void TakeDamge(int damage)
     {
-        manager.playerHealth -= damage;
+        if (!IsLocalPlayer) return;
+        //rehealing shit
+        hasBeenHit = true;
+        hasBeenHitTimer = 0f;
+
+        manager.PlayerHealth -= damage;
         CheckForDeath();
         StartCoroutine(TakeDamageHud());
     }
-    public void KillPlayer()
+    private void KillPlayer()
     {
-        Debug.Log("Kill player " + OwnerClientId);
-
         if (manager.isDead) return;
+        //healinng shit
+        hasBeenHit = false;
+        hasBeenHitTimer = 0f;
+
+        manager.PlayerHealth = 100;
         deadHud.SetActive(true);
         KillPlayerServerRpc();
         SwitchActionMap("Dead");
@@ -142,8 +166,6 @@ public class PlayerHealth : NetworkBehaviour
     }
     public void RevivePlayer()
     {
-        Debug.Log("Revive player" + OwnerClientId);
-
         if (!manager.isDead) return;
         SwitchActionMap("PlayerNormalMovement");
         //set pos to 000
@@ -152,9 +174,8 @@ public class PlayerHealth : NetworkBehaviour
         virtualCamera.Priority = 10;
         deadHud.SetActive(false);
         RevivePlayerServerRpc();
-        AdjustBodyViewsRevivePlayerClientRpc();
         manager.isDead = false;
-        manager.playerHealth = 100;
+        manager.PlayerHealth = 100;
     }
     #endregion
 

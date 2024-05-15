@@ -19,7 +19,7 @@ public class ZombieRoundManager : NetworkBehaviour
     //canvas text to display rounds
     [SerializeField] TextMeshProUGUI currentRoundText;
 
-    int currentRound = 1;
+    [HideInInspector] public int currentRound = 1;
     int ammountOfZombiesToSapwn;
     float timer;
     bool inRound;
@@ -99,15 +99,17 @@ public class ZombieRoundManager : NetworkBehaviour
 
             }
         }
-        zombie.SetActive(true);
         //Set position
         zombie.transform.position = activeSpawnPositions[randomPos].position;
         //La vida solo la necesita saber el server
         zombie.GetComponent<ZombiesHealthController>().zombieHealth = roundContainer.rounds[currentRound].zombiesHealth;
-        zombie.GetComponent<Animator>().SetTrigger("Rise");
         //add zombie to activeZombieList
         poolManager.activeZombies.Add(zombie);
         zombie.GetComponent<NavMeshAgent>().speed = roundContainer.rounds[currentRound].zombiesSpeed;
+
+        zombie.SetActive(true);
+        zombie.GetComponent<Animator>().SetTrigger("Rise");
+
     }
     [ClientRpc]
     private void UpdateCurrentRoundClientRpc(int round)

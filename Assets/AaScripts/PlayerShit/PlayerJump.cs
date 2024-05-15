@@ -41,7 +41,7 @@ public class PlayerJump : NetworkBehaviour
         //Call the Jump Animation
         animController.Jump();
         //AudioDisabledForNow
-        //AudioManager.instance.PlayerJumpSfx();
+        AudioManager.instance.PlayerJumpSfx(this.transform.position);
     }
     #endregion
 }

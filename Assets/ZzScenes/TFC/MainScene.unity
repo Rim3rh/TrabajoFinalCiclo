@@ -532,6 +532,7 @@ GameObject:
   - component: {fileID: 25966692}
   - component: {fileID: 25966693}
   - component: {fileID: 25966694}
+  - component: {fileID: 25966695}
   m_Layer: 0
   m_Name: ZombiePool
   m_TagString: Untagged
@@ -567,8 +568,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 1859656639448317427, guid: d18265e9399deaf4aa9cf87c925a3f60, type: 3}
-  zombiePoolSize: 5
   activeZombies: []
+  roundContainer: {fileID: 11400000, guid: 5511b4850a27a3243bedb01b8473e77b, type: 2}
+  roundManager: {fileID: 1381372452}
 --- !u!114 &25966693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,6 +606,34 @@ MonoBehaviour:
       - m_Target: {fileID: 25966692}
         m_TargetAssemblyTypeName: ZombiePoolManager, Assembly-CSharp
         m_MethodName: RemoveOneZombieFromList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &25966695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25966690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e9d86a23de3c54bb961348db4cefad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7d9dbdd7665f7544087481637a2f7c4e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 25966692}
+        m_TargetAssemblyTypeName: ZombiePoolManager, Assembly-CSharp
+        m_MethodName: CreateZombiePoolServerRpc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -36464,6 +36494,7 @@ MonoBehaviour:
   roundContainer: {fileID: 11400000, guid: 5511b4850a27a3243bedb01b8473e77b, type: 2}
   activeSpawnPositions: []
   currentRoundText: {fileID: 195194883}
+  currentRound: 1
   onRoundChanged: {fileID: 11400000, guid: 7d9dbdd7665f7544087481637a2f7c4e, type: 2}
 --- !u!1001 &1381684765
 PrefabInstance:
@@ -68811,6 +68842,7 @@ GameObject:
   - component: {fileID: 2859274540135804985}
   - component: {fileID: 9020238095713324363}
   - component: {fileID: 7404199595745205118}
+  - component: {fileID: 9020238095713324364}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -86441,6 +86473,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &9020238095713324364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4155442736315964135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 4155442736315964135}
 --- !u!33 &9062131187917427459
 MeshFilter:
   m_ObjectHideFlags: 0

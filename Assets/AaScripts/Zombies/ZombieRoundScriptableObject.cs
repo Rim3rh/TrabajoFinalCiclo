@@ -19,6 +19,8 @@ public class ZombieRoundScriptableObject : ScriptableObject
         public float zombiesSpeed;
         [Tooltip("rate at wich zombies will spawn")]
         public float spawnRate;
+        [Tooltip("how many zombies can there be at the same time")]
+        public int zombiePoolSize;
     }
     [SerializeField]
     public List<Rounds> rounds = new List<Rounds>();    

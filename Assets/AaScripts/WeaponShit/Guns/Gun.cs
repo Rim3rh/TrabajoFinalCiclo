@@ -69,8 +69,17 @@ public abstract class Gun : MonoBehaviour
         //if ur realoading cancel action
         if (pManager.isReloading) return;
         //if timer allows you to shoot and you have ammo
-        if (shootingCD <= 0 && currentMagazineAmmo > 0)
+        if (shootingCD <= 0 )
         {
+            if(currentMagazineAmmo < 0)
+            {
+
+                //assing cd back to value specified by So(scriptable object)
+                shootingCD = 1 / gunScriptableObject.shootsPS;
+                //Audio
+                AudioManager.instance.NoAmmoShoot(this.transform.position);
+                return;
+            }
             //assing cd back to value specified by So(scriptable object)
             shootingCD = 1 / gunScriptableObject.shootsPS;
             //substract one ammo, we pass weapon id so it knows what weapon we want it to remove it from
@@ -81,7 +90,7 @@ public abstract class Gun : MonoBehaviour
             //send the shooting raycast
             pInteract.ShootRaycast();
             //Audio
-            //AudioManager.instance.AkSfxShoot();
+            AudioManager.instance.PlayGunShoot(gunScriptableObject.weaponID, this.transform.position);
         }
     }
     protected virtual void Reload()
@@ -89,6 +98,7 @@ public abstract class Gun : MonoBehaviour
         //if ur realoading or have max ammo return
         if (pManager.isReloading) return;
         if (currentMagazineAmmo == gunScriptableObject.maxMagazineAmmo) return;
+        
         //trigger the animation
         anim.SetTrigger("Reload");
         //remove used magazine ammo from current ammo
@@ -98,7 +108,7 @@ public abstract class Gun : MonoBehaviour
         //tell hud to reload ammo
         ammoManager.ReloadAmmo(gunScriptableObject.maxMagazineAmmo, gunScriptableObject.weaponID, currentAmmo);
         //Audio
-        //AudioManager.instance.ReloadSfx();
+        AudioManager.instance.ReloadSfx(this.transform.position);
     }
     //references for animator evets
     private void RealoadingToTrue()

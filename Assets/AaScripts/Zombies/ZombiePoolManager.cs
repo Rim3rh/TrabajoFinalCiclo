@@ -9,32 +9,36 @@ public class ZombiePoolManager : NetworkBehaviour
     [Tooltip("ZombiePrefab that will get spawned")]
     [SerializeField] GameObject zombiePrefab;
     [Tooltip("Ammount of zombies that are allowed to spawn at the same time")]
-    [SerializeField] int zombiePoolSize;
+    int zombiePoolSize = 0;
     //list of the zombiePool created on start
     List<GameObject> zombiePool = new List<GameObject>();
     //list of zombies on scene
     public List<GameObject> activeZombies = new List<GameObject>();
+
+    [SerializeField] ZombieRoundScriptableObject roundContainer;
+    [SerializeField] ZombieRoundManager roundManager;
     #endregion
     #region SelfRunningMethods
-    void Start()
-    {
-        if (!IsServer) return;
-        //Creating the pool only on the server
-        CreateZombiePoolServerRpc();
-    }
     #endregion
     #region Private Methods
-    [ServerRpc]
-    void CreateZombiePoolServerRpc()
+    //called on round change, thats why its public
+    //set ownership to false so it dosent give errors, but if ur not server return
+    [ServerRpc(RequireOwnership = false)]
+    public void CreateZombiePoolServerRpc()
     {
+        if (!IsServer) return;
+        //if its already the same size, return
+        if (roundContainer.rounds[roundManager.currentRound].zombiePoolSize == zombiePoolSize) return;
+
         //create the amount of zombies specified on zombiePoolSize
-        for (int i = 0; i < zombiePoolSize; i++)
+        for (int i = 0; i < (roundContainer.rounds[roundManager.currentRound].zombiePoolSize - zombiePoolSize); i++)
         {
-            GameObject go = Instantiate(zombiePrefab, this.transform);
+            GameObject go = Instantiate(zombiePrefab, Vector3.zero, Quaternion.identity);
             //networkObjects need to be spawned
             go.GetComponent<NetworkObject>().Spawn();
         }
         //actions we want to happen on clients
+        zombiePoolSize = roundContainer.rounds[roundManager.currentRound].zombiePoolSize;
         CreatePoolClientRpc();
     }
     [ClientRpc]
@@ -44,10 +48,16 @@ public class ZombiePoolManager : NetworkBehaviour
         ZombiesHealthController[] zombies = ZombiesHealthController.FindObjectsOfType<ZombiesHealthController>();
         foreach (ZombiesHealthController zombie in zombies)
         {
+            //if the list already conteins zombie, skip inteneration
+            if(zombiePool.Contains(zombie.gameObject)) continue;
             zombiePool.Add(zombie.gameObject);
             zombie.gameObject.SetActive(false);
         }
     }
+
+
+
+
     #endregion
     #region public methods
     public bool GetZombieChecker()

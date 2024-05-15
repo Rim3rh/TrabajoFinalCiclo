@@ -140,7 +140,9 @@ public class ZombiePathController : NetworkBehaviour
     //called from animator
     public void CheckZombieDamage()
     {
-        //this is called when animation hit from zombie hits
+        if(!IsServer) return;
+        //CheckZombieDamageServerRpc();
+
         if (targetPlayer != null)
         {
             //check if your close to player
@@ -148,9 +150,31 @@ public class ZombiePathController : NetworkBehaviour
 
             if (distanceToPlayer < 1.5f)
             {
-                targetPlayer.GetComponent<PlayerHealth>().TakeDamge(25);
+                //hiteas en todos los clientes a x personaje, y que solo los lkocales recivan daño
+                HitPlayerClientRpc();
             }
         }
     }
+    [ClientRpc]
+    private void HitPlayerClientRpc()
+    {
+        //calculate closest player of all players in list
+        float minDistance = Mathf.Infinity;
+        GameObject closestPlayer = null;
+        foreach (GameObject player in players)
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestPlayer = player;
+            }
+        }
+        GameObject targetPlayer;
+        targetPlayer = closestPlayer;
+
+        targetPlayer.GetComponent<PlayerHealth>().TakeDamge(25);
+    }
+
     #endregion
 }

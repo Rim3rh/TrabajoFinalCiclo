@@ -18,33 +18,88 @@ MonoBehaviour:
     zombiesHealth: 0
     zombiesSpeed: 0
     spawnRate: 0
+    zombiePoolSize: 0
   - round: 1
     ammountOfZombies: 6
     zombiesHealth: 100
     zombiesSpeed: 1
     spawnRate: 5
+    zombiePoolSize: 5
   - round: 2
     ammountOfZombies: 8
     zombiesHealth: 100
     zombiesSpeed: 1
     spawnRate: 5
+    zombiePoolSize: 6
   - round: 3
     ammountOfZombies: 10
     zombiesHealth: 110
     zombiesSpeed: 1
     spawnRate: 5
+    zombiePoolSize: 7
   - round: 4
     ammountOfZombies: 10
     zombiesHealth: 160
     zombiesSpeed: 1
     spawnRate: 5
+    zombiePoolSize: 8
   - round: 5
     ammountOfZombies: 12
     zombiesHealth: 170
     zombiesSpeed: 1
     spawnRate: 5
+    zombiePoolSize: 9
   - round: 6
     ammountOfZombies: 14
     zombiesHealth: 170
     zombiesSpeed: 1.5
     spawnRate: 4.5
+    zombiePoolSize: 10
+  - round: 7
+    ammountOfZombies: 20
+    zombiesHealth: 190
+    zombiesSpeed: 1.5
+    spawnRate: 4.5
+    zombiePoolSize: 11
+  - round: 8
+    ammountOfZombies: 22
+    zombiesHealth: 200
+    zombiesSpeed: 1.5
+    spawnRate: 4.5
+    zombiePoolSize: 12
+  - round: 9
+    ammountOfZombies: 24
+    zombiesHealth: 200
+    zombiesSpeed: 1.5
+    spawnRate: 4.5
+    zombiePoolSize: 13
+  - round: 10
+    ammountOfZombies: 26
+    zombiesHealth: 220
+    zombiesSpeed: 1.5
+    spawnRate: 4.5
+    zombiePoolSize: 14
+  - round: 11
+    ammountOfZombies: 30
+    zombiesHealth: 250
+    zombiesSpeed: 2
+    spawnRate: 4
+    zombiePoolSize: 20
+  - round: 12
+    ammountOfZombies: 32
+    zombiesHealth: 250
+    zombiesSpeed: 2
+    spawnRate: 4
+    zombiePoolSize: 20
+  - round: 13
+    ammountOfZombies: 35
+    zombiesHealth: 250
+    zombiesSpeed: 2
+    spawnRate: 4
+    zombiePoolSize: 22
+  - round: 14
+    ammountOfZombies: 40
+    zombiesHealth: 250
+    zombiesSpeed: 2
+    spawnRate: 4
+    zombiePoolSize: 25
