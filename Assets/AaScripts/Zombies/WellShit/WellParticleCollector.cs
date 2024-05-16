@@ -26,8 +26,9 @@ public class WellParticleCollector : NetworkBehaviour
             particle.remainingLifetime = 0;
             particles[i] = particle;
             //we only want the well logic happening on the server
-            if(IsServer) wellParticleSpawner.CheckIfWellCompleted();
+            if (IsServer) wellParticleSpawner.CheckIfWellCompleted();
         }
         particleSystem.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, particles);
     }
+
 }

@@ -25,10 +25,14 @@ public class WellParticleSpawner : NetworkBehaviour
     {
         //spawn it, play it and destroy it
         ParticleSystem ps = Instantiate(particleSystem);
+        if(IsServer) ps.GetComponent<NetworkObject>().Spawn();
         ps.transform.position = new Vector3(posX, posY, posZ);
         ps.Play();
         Destroy(ps, 2f);
     }
+
+
+
     #endregion
     #region public methods
     //public method called from zombies when die
@@ -43,6 +47,7 @@ public class WellParticleSpawner : NetworkBehaviour
     {
         //this will be run only on server
         ammountOfSouls++;
+        Debug.Log("PARTICLE HERE");
         //if souls completed reporduce ps and tell gameendchecjer well is completed
         if (ammountOfSouls >= maxAmmountOfSouls)
         {

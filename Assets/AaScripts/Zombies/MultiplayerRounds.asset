@@ -103,3 +103,33 @@ MonoBehaviour:
     zombiesSpeed: 2
     spawnRate: 4
     zombiePoolSize: 25
+  - round: 14
+    ammountOfZombies: 40
+    zombiesHealth: 250
+    zombiesSpeed: 2
+    spawnRate: 4
+    zombiePoolSize: 25
+  - round: 14
+    ammountOfZombies: 40
+    zombiesHealth: 250
+    zombiesSpeed: 2
+    spawnRate: 4
+    zombiePoolSize: 25
+  - round: 14
+    ammountOfZombies: 40
+    zombiesHealth: 250
+    zombiesSpeed: 2
+    spawnRate: 4
+    zombiePoolSize: 25
+  - round: 14
+    ammountOfZombies: 40
+    zombiesHealth: 250
+    zombiesSpeed: 2
+    spawnRate: 4
+    zombiePoolSize: 25
+  - round: 14
+    ammountOfZombies: 40
+    zombiesHealth: 250
+    zombiesSpeed: 2
+    spawnRate: 4
+    zombiePoolSize: 25

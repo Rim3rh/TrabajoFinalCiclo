@@ -16362,6 +16362,7 @@ GameObject:
   - component: {fileID: 713155707}
   - component: {fileID: 713155709}
   - component: {fileID: 713155708}
+  - component: {fileID: 713155711}
   m_Layer: 0
   m_Name: PsEmmiter
   m_TagString: Untagged
@@ -21251,6 +21252,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1465076404}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &713155711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713155706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3416715757
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1001 &713829580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28025,6 +28042,7 @@ GameObject:
   - component: {fileID: 1185303688}
   - component: {fileID: 1185303687}
   - component: {fileID: 1185303690}
+  - component: {fileID: 1185303691}
   m_Layer: 0
   m_Name: PsEmmiter
   m_TagString: Untagged
@@ -32914,6 +32932,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wellParticleSpawner: {fileID: 26580184}
+--- !u!114 &1185303691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185303686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3309103967
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &1186498385
 GameObject:
   m_ObjectHideFlags: 0
@@ -57476,6 +57510,7 @@ GameObject:
   - component: {fileID: 2046787480}
   - component: {fileID: 2046787482}
   - component: {fileID: 2046787481}
+  - component: {fileID: 2046787484}
   m_Layer: 0
   m_Name: PsEmmiter
   m_TagString: Untagged
@@ -62365,6 +62400,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 461885745}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &2046787484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046787479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1223730395
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1001 &2050803015
 PrefabInstance:
   m_ObjectHideFlags: 0

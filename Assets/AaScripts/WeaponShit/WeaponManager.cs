@@ -58,7 +58,7 @@ public class WeaponManager : NetworkBehaviour
     private void TurnAllWeaponsOff()
     {
         //loop to turn all abeliableWapons off
-        foreach (var weapon in abeliableWeapons)
+        foreach (Gun weapon in abeliableWeapons)
         {
             weapon.gameObject.SetActive(false);
         }
