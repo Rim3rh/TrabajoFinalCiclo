@@ -68,5 +68,10 @@ public class GameEndChecker : NetworkBehaviour
         if (!IsServer) return;
         alivePlayers++;
     }
+
+    public void WinGame()
+    {
+        LoadWinSceneServerRpc();
+    }
     #endregion
 }
