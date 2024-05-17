@@ -10,7 +10,7 @@ public class CanBePurchased : NetworkBehaviour
     public UnityEvent onEnter;
     [SerializeField] int moneyNeeded;
     private GameObject player;
-
+    bool canBoPurchased = true;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,13 +40,14 @@ public class CanBePurchased : NetworkBehaviour
 
     private void InvokeEnevt()
     {
-       
+        if (!canBoPurchased) return;
         if(player.GetComponent<PlayerManager>().PlayerPoints >= moneyNeeded)
         {
             //AudioManager.instance.BuyFromShop();
             player.GetComponent<PlayerManager>().PlayerPoints -= moneyNeeded;
             OnEnterServerRpc();
             player.GetComponent<UiManager>().HidePrice();
+            canBoPurchased = false;
         }
     }
 

@@ -82,4 +82,12 @@ public class PlayerAnimationController : NetworkBehaviour
         networkBodyAnim.SetTrigger("Jump");
     }
     #endregion
+
+    #region AnimatorReferences
+    private void PlayWalkSfx()
+    {
+        AudioManager.instance.PlayerWalkSfx(this.transform.position);
+    }
+    #endregion
+
 }
