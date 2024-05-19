@@ -31,7 +31,11 @@ public class WellParticleSpawner : NetworkBehaviour
         Destroy(ps, 2f);
     }
 
-
+    [ClientRpc]
+    private void EndWellClientRpc()
+    {
+        endParticleSystem.Play();
+    }
 
     #endregion
     #region public methods
@@ -53,7 +57,7 @@ public class WellParticleSpawner : NetworkBehaviour
         {
             isWellCompleted = true;
             gameEndChecker.OneWellCompleted();
-            endParticleSystem.Play();
+            EndWellClientRpc();
         }
     }
     #endregion
